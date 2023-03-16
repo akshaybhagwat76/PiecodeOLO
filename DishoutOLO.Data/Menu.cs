@@ -6,7 +6,7 @@ namespace DishoutOLO.Data
     [Table("Menus")]    
     public class Menu:BaseEntity
     {
-        public string? MenuName { get; set; }
+        public string MenuName { get; set; }
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }

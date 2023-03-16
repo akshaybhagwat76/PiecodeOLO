@@ -92,6 +92,22 @@ namespace DishoutOLO.Controllers
             return Json(_ItemService.AddOrUpdateItem(itemVM));
 
         }
+        public JsonResult AddOrUpdateItemSimple(AddItemModel itemVM)
+        {
+            try
+            {
+                AddItemModel itemModel = new AddItemModel();
+                                   
+            }
+            catch (Exception ex)
+            {
+                _loggerProvider.logmsg(ex.Message);
+
+            }
+            return Json(_ItemService.AddOrUpdateItem(itemVM));
+
+        }
+
         /// <summary>
         /// Delete Item
         /// </summary>

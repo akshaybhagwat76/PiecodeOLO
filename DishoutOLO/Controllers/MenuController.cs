@@ -114,13 +114,29 @@ namespace DishoutOLO.Controllers
 
                     menuVM.Image = fileName;
                 }
+                
             }
             catch (Exception ex)
             {
                 _loggerProvider.logmsg(ex.Message);
             }
-            return Json(_menuService.AddOrUpdateMenu(menuVM, menuVM.Id > 0 ? menuVM.Image : string.Empty));
+            return Json(_menuService.AddOrUpdateMenu(menuVM));
         }
+
+        public JsonResult AddOrUpdateMenuSimple(AddMenuModel menuVM)
+        {
+            try
+            {
+                AddMenuModel menuModel = new AddMenuModel();
+               
+            }
+            catch (Exception ex)
+            {
+                _loggerProvider.logmsg(ex.Message);
+            }
+            return Json(_menuService.AddOrUpdateMenu(menuVM));
+        }
+        
         /// <summary>
         /// Delete Menu
         /// </summary>

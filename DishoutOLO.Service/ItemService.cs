@@ -16,8 +16,6 @@ namespace DishoutOLO.Service
         private IRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
         #endregion
-
-
         #region Constructor
         public ItemService(IRepository<Item> itemRepository, IMapper mapper, IRepository<Category> categoryRepository)
         {
@@ -29,6 +27,7 @@ namespace DishoutOLO.Service
 
 
         #endregion
+
         #region Crud Methods
 
         public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data)
@@ -113,7 +112,7 @@ namespace DishoutOLO.Service
                 IEnumerable<ListItemModel> data = (from ct in _categoryRepository.GetAll()
                                                    join it in _itemRepository.GetAll() on
                                                    ct.Id equals it.CategoryId
-                                                   where it.IsActive =true
+                                                   where it.IsActive ==true
                                                   
                                                    select new ListItemModel
                                                    {
@@ -195,7 +194,7 @@ namespace DishoutOLO.Service
 
         }
 
-        public DishoutOLOResponseModel GetAllCategories()
+        public DishoutOLOResponseModel GetAllItems()
         {
             try
             {
@@ -217,7 +216,7 @@ namespace DishoutOLO.Service
                ListItemModel item = _itemRepository.GetListByPredicate(x => x.IsActive  && x.Id == Id
                                      )
                                      .Select(y => new ListItemModel()
-                                     { Id = y.Id, ItemName = y.ItemName, IsCombo = y.IsCombo, IsTax = y.IsTax, IsVeg = y.IsVeg, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription }
+                                     { Id = y.Id, ItemName = y.ItemName, IsCombo = y.IsCombo, IsTax = y.IsTax, IsVeg = y.IsVeg, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription,ItemImage=y.ItemImage }
                                      ).FirstOrDefault();
 
                 if (item != null)
@@ -230,6 +229,7 @@ namespace DishoutOLO.Service
                     obj.IsCombo = item.IsCombo;
                     obj.ItemDescription = item.ItemDescription;
                     obj.CategoryId = item.CategoryId;
+                    obj.ItemImage= item.ItemImage;  
 
                     return obj;
                 }

@@ -1,0 +1,39 @@
+﻿$(document).ready(function () {
+    $("#lblError").removeClass("success").removeClass("error").text('');
+
+    $("#btn-submit").on("click", function () {
+        $("#lblError").removeClass("success").removeClass("error").text('');
+        var retval = true;
+        $("#myForm .required").each(function () {
+            if (!$(this).val()) {
+                $(this).addClass("error");
+                retval = false;
+            }
+            else {
+                $(this).removeClass("error");
+            }
+        });
+        if (retval) {
+            var data = {
+                id: $("#Id").val(),
+                itemGroup: $("#itemGroup").val(),
+                DisplayOrder: $("#DisplayOrder").val(),
+                ItemId: $("#ItemId").val(),
+                IsActive: $("#IsActive").val() == "true" ? true : false
+            }
+            $.ajax({
+                type: "POST",
+                url: "/ItemGroup/AddOrUpdateItemGroup",
+                data: { itemgroupVM: data },
+                success: function (data) {
+                    if (!data.isSuccess) {
+                        $("#lblError").addClass("error").text(data.message.toString()).show();
+                    }
+                    else {
+                        window.location.href = '/ItemGroup/Index'
+                    }
+                }
+            });
+        }
+    })
+});

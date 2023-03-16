@@ -60,7 +60,7 @@ function loadAllItem() {
                 "data": function (full) {
 
                     var imgPath = '/Content/Item/' + full.itemImage;
-                    return "<img src=" + imgPath + " height='50'width='90'>";
+                    return "<img src=" + imgPath + " height='60'width='100'>";
                 }
             },
             { 

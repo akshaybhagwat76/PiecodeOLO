@@ -20,6 +20,8 @@ builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();    
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IitemgroupService, ItemgroupService>();
+builder.Services.AddScoped<IitemgroupRepository, ItemgroupRepository>();
 builder.Services.AddScoped<LoggerProvider>();
 
 

@@ -13,6 +13,6 @@ namespace DishoutOLO.Service.Interface
 
         public AddItemModel GetItem(int Id);
 
-        public DishoutOLOResponseModel GetAllCategories();
+        public DishoutOLOResponseModel GetAllItems();
     }
 }
