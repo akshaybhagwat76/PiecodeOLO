@@ -42,7 +42,7 @@ namespace DishoutOLO.Service
                     response.IsSuccess = false;
                     response.Status = 400;
                     response.Errors = new List<ErrorDet>();
-                    if (Item.ItemName.ToLower() == data.ItemName.ToLower() && Item.ItemName.ToLower() != data.ItemName.ToLower())
+                    if (Item.ItemName.ToLower() == data.ItemName.ToLower()) 
                     {
                         response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
                     }
@@ -64,7 +64,6 @@ namespace DishoutOLO.Service
                         DateTime createdDt = item.CreationDate;
                         bool isActive = item.IsActive;
                         item = _mapper.Map<AddItemModel, Item>(data);
-                        item.ItemName = !string.IsNullOrEmpty(itemname) ? itemname : item.ItemName;
                         item.ModifiedDate = DateTime.Now; item.CreationDate = createdDt; item.IsActive = isActive;
                         _itemRepository.Update(item);
                     }
