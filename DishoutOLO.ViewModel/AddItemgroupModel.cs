@@ -29,7 +29,6 @@ namespace DishoutOLO.ViewModel
         public string ItemName { get; set; }
 
         public int ItemId { get; set; }
-        [DisplayName("Item")]
 
         public string DisplayOrder { get; set; }
     }

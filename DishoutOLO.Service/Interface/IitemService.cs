@@ -6,7 +6,8 @@ namespace DishoutOLO.Service.Interface
 {
     public interface IitemService
     {
-        public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data);
+        public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data, string itemname = "");
+
 
         public DishoutOLOResponseModel DeleteItem(int data);
         public DataTableFilterModel GetItemList(DataTableFilterModel filter);

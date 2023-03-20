@@ -55,7 +55,7 @@ namespace DishoutOLO.Service
                                                        ItemName = it.ItemName,
                                                        ItemGroup = ig.ItemGroup,
                                                        DisplayOrder = ig.DisplayOrder,
-                                                       Id = it.Id,
+                                                       Id = ig.Id,
 
                                                    }).AsEnumerable();
 
@@ -121,13 +121,13 @@ namespace DishoutOLO.Service
         {
             try
             {
-                ListItemgroupsModel item = _itemgroupRepository.GetListByPredicate(x => x.IsActive  && x.Id == Id).Select(y => new ListItemgroupsModel()
+                ListItemgroupsModel item = _itemgroupRepository.GetListByPredicate(x => x.IsActive == true  && x.Id == Id).Select(y => new ListItemgroupsModel()
                                       {
                                       Id = y.Id, 
                                       DisplayOrder=y.DisplayOrder,
                                       ItemGroup=y.ItemGroup,
                                       ItemId=y.ItemId,
-                                      ItemName=y.ItemName,
+                                      ItemName=y.ItemName
                                       }
                                       ).FirstOrDefault();
 

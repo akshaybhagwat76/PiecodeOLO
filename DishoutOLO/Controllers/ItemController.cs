@@ -97,7 +97,7 @@ namespace DishoutOLO.Controllers
             try
             {
                 AddItemModel itemModel = new AddItemModel();
-                                   
+
             }
             catch (Exception ex)
             {
@@ -163,7 +163,7 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName", id);
-
+                
             }
 
             catch (Exception ex)

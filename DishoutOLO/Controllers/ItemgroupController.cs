@@ -11,11 +11,14 @@ namespace DishoutOLO.Controllers
 {
     public class ItemgroupController : Controller
     {
+        #region Declarations
 
         private LoggerProvider _loggerProvider;
         private readonly IitemService _ItemService;
         private readonly IitemgroupService _itemgroupService;
+        #endregion
 
+        #region Constructor
         public ItemgroupController(LoggerProvider loggerProvider, IitemService itemService, IitemgroupService itemgroupService)
         {
             _loggerProvider = loggerProvider;
@@ -23,11 +26,17 @@ namespace DishoutOLO.Controllers
             _itemgroupService = itemgroupService;
         }
 
+        #endregion
+
+        #region  Crud Methods
         public IActionResult Index()
         {
             return View();
         }
-
+        /// <summary>
+        /// Create ItemGroup
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
             try
@@ -44,7 +53,11 @@ namespace DishoutOLO.Controllers
 
 
         }
-
+        /// <summary>
+        /// To add or insert ItemGroup
+        /// </summary>
+        /// <param name="itemgroupVM"></param>
+        /// <returns></returns>
         public JsonResult AddOrUpdateItemGroup(AddItemgroupsModel itemgroupVM)
         {
             try
@@ -61,20 +74,11 @@ namespace DishoutOLO.Controllers
             return Json(_itemgroupService.AddOrUpdateItemGroup(itemgroupVM));
 
         }
-
-        public JsonResult GetAllItemGroup(DataTableFilterModel filter)
-        {
-            try
-            {
-                DataTableFilterModel list = _itemgroupService.GetItemGroupList(filter);
-                return Json(list);
-            }
-            catch (Exception ex)
-            {
-                _loggerProvider.logmsg(ex.Message);
-            }
-            return Json(filter);
-        }
+        /// <summary>
+        /// Delete ItemGroup
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult DeleteItemGroup(int id)
         {
             try
@@ -89,6 +93,32 @@ namespace DishoutOLO.Controllers
             return Json(id);
         }
 
+        #endregion
+
+        #region Get Methods
+        /// <summary>
+        /// Get All ItemGroup List
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public JsonResult GetAllItemGroup(DataTableFilterModel filter)
+        {
+            try
+            {
+                DataTableFilterModel list = _itemgroupService.GetItemGroupList(filter);
+                return Json(list);
+            }
+            catch (Exception ex)
+            {
+                _loggerProvider.logmsg(ex.Message);
+            }
+            return Json(filter);
+        }
+        /// <summary>
+        /// go to edit page with update data 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id)
         {
             try
@@ -106,5 +136,6 @@ namespace DishoutOLO.Controllers
 
         }
 
+        #endregion
     }
 }
