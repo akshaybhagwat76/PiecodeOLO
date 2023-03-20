@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DishoutOLO.Repo.Interface
 {
-    public interface IitemgroupRepository:IRepository<ItemGroup>
+    public interface IitemgroupRepository:IRepository<ItemGroups>
     {
 
     }

@@ -11,11 +11,11 @@ namespace DishoutOLO.Service
     {
         #region Declarations
         private IRepository<Item> _itemRepository;
-        private IRepository<ItemGroup> _itemgroupRepository;
+        private IRepository<ItemGroups> _itemgroupRepository;
         private readonly IMapper _mapper;
         #endregion
         #region Constructor
-        public ItemgroupService(IRepository<Item> itemRepository, IMapper mapper, IRepository<ItemGroup> itemgroupRepository)
+        public ItemgroupService(IRepository<Item> itemRepository, IMapper mapper, IRepository<ItemGroups> itemgroupRepository)
         {
             _itemRepository = itemRepository;
             _itemgroupRepository = itemgroupRepository;
@@ -43,18 +43,18 @@ namespace DishoutOLO.Service
         {
             try
             {
-                IEnumerable<ListItemgroupModel> data = (from it in _itemRepository.GetAll()
+
+                IEnumerable<ListItemgroupsModel> data = (from it in _itemRepository.GetAll()
                                                    join ig in _itemgroupRepository.GetAll() on
                                                    it.Id equals ig.ItemId
+
                                                    where ig.IsActive == true
 
-                                                   select new ListItemgroupModel
+                                                   select new ListItemgroupsModel
                                                    {
-                                                       
                                                        ItemName = it.ItemName,
-                                                       ItemGroup = ig.itemGroup,
+                                                       ItemGroup = ig.ItemGroup,
                                                        DisplayOrder = ig.DisplayOrder,
-                                                       IsActive = ig.IsActive,
                                                        Id = it.Id,
 
                                                    }).AsEnumerable();
@@ -117,28 +117,33 @@ namespace DishoutOLO.Service
             }
         }
 
-        public AddItemgroupModel GetItemGroup(int Id)
+        public AddItemgroupsModel GetItemGroup(int Id)
         {
             try
             {
-                ListItemgroupModel item = _itemgroupRepository.GetListByPredicate(x => x.IsActive && x.Id == Id
-                                      )
-                                      .Select(y => new ListItemgroupModel()
-                                      { Id = y.Id, IsActive = y.IsActive,DisplayOrder=y.DisplayOrder,ItemGroup=y.itemGroup,ItemId=y.ItemId }
+                ListItemgroupsModel item = _itemgroupRepository.GetListByPredicate(x => x.IsActive  && x.Id == Id).Select(y => new ListItemgroupsModel()
+                                      {
+                                      Id = y.Id, 
+                                      DisplayOrder=y.DisplayOrder,
+                                      ItemGroup=y.ItemGroup,
+                                      ItemId=y.ItemId,
+                                      ItemName=y.ItemName,
+                                      }
                                       ).FirstOrDefault();
 
                 if (item != null)
                 {
-                    AddItemgroupModel obj = new  AddItemgroupModel();
+                    AddItemgroupsModel obj = new  AddItemgroupsModel();
                     obj.Id = item.Id;
                     obj.ItemName = item.ItemName;
                     obj.ItemGroup = item.ItemGroup;
                     obj.DisplayOrder = item.DisplayOrder;
                     obj.ItemId = item.ItemId;
+                    obj.IsActive = item.IsActive;
 
                     return obj;
                 }
-                return new AddItemgroupModel();
+                return new AddItemgroupsModel();
             }
             catch (Exception ex)
             {
@@ -152,11 +157,11 @@ namespace DishoutOLO.Service
 
         #region Crud Methods
 
-        public DishoutOLOResponseModel AddOrUpdateItemGroup(AddItemgroupModel data)
+        public DishoutOLOResponseModel AddOrUpdateItemGroup(AddItemgroupsModel data)
         {
             try
             {
-                ItemGroup Item = _itemgroupRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == false && (x.itemGroup.ToLower() == data.ItemGroup.ToLower()));
+                ItemGroups Item = _itemgroupRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == false && (x.ItemGroup.ToLower() == data.ItemGroup.ToLower()));
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
                 if (Item != null)
@@ -164,7 +169,7 @@ namespace DishoutOLO.Service
                     response.IsSuccess = false;
                     response.Status = 400;
                     response.Errors = new List<ErrorDet>();
-                    if (Item.itemGroup.ToLower() == data.ItemGroup.ToLower())
+                    if (Item.ItemGroup.ToLower() == data.ItemGroup.ToLower())
                     {
                         response.Errors.Add(new ErrorDet() { ErrorField = "ItemGroup", ErrorDescription = "ItemGroup already exist" });
                     }
@@ -175,18 +180,20 @@ namespace DishoutOLO.Service
                     if (data.Id == 0)
                     {
 
-                        ItemGroup tblItem = _mapper.Map<AddItemgroupModel, ItemGroup>(data);
+                        ItemGroups tblItem = _mapper.Map<AddItemgroupsModel, ItemGroups>(data);
                         tblItem.CreationDate = DateTime.Now;
                         tblItem.IsActive = true;
                         _itemgroupRepository.Insert(tblItem);
                     }
                     else
                     {
-                        ItemGroup item = _itemgroupRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                        DateTime createdDt = item.CreationDate;
+                        ItemGroups item = _itemgroupRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
+                       DateTime createdDt = item.CreationDate;
                         bool isActive = item.IsActive;
-                        item = _mapper.Map<AddItemgroupModel, ItemGroup>(data);
-                        item.ModifiedDate = DateTime.Now; item.CreationDate = createdDt; item.IsActive = isActive;
+                        item = _mapper.Map<AddItemgroupsModel, ItemGroups>(data);
+                        item.ModifiedDate = DateTime.Now; 
+                        item.CreationDate = createdDt;
+                        item.IsActive = isActive;
                         _itemgroupRepository.Update(item);
                     }
                 }
@@ -207,7 +214,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                ItemGroup item = _itemgroupRepository.GetByPredicate(x => x.Id == data);
+                ItemGroups item = _itemgroupRepository.GetByPredicate(x => x.Id == data);
 
                 if (item != null)
                 {

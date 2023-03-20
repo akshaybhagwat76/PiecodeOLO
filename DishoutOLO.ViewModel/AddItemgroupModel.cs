@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace DishoutOLO.ViewModel
 {
-    public class AddItemgroupModel
+    public class AddItemgroupsModel
     {
         public int Id { get; set; }
 
@@ -14,12 +14,13 @@ namespace DishoutOLO.ViewModel
         [DisplayName("Item")]
 
         public string ItemName { get; set; }
+
         public bool IsActive { get; set; }
 
         public string DisplayOrder { get; set; }
     }
 
-    public class UpdateItemgroupModel
+    public class UpdateItemgroupsModel
     {
         public int Id { get; set; }
 
@@ -33,21 +34,23 @@ namespace DishoutOLO.ViewModel
         public string DisplayOrder { get; set; }
     }
 
-    public class ListItemgroupModel
+    public class ListItemgroupsModel
     {
         public int Id { get; set; }
 
         public string ItemGroup { get; set; }
 
         public int ItemId { get; set; }
+        [DisplayName("Item")]
+
+        public string ItemName { get; set; }
 
         public bool IsActive { get; set; }  
-        public string ItemName { get; set; }    
         public string DisplayOrder { get; set; }
     }
 
 
-    public class DeleteItemgroupModel
+    public class DeleteItemgroupsModel
     {
         public int Id { get; set; }
     }

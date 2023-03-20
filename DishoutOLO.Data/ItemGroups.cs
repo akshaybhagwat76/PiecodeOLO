@@ -3,16 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DishoutOLO.Data
 {
     [Table("ItemGroups")]
-    public class ItemGroup : BaseEntity
-
+    public class ItemGroups : BaseEntity
     {
 
-        public string itemGroup { get; set; }
+        public string ItemGroup { get; set; }
         [Required]
         [ForeignKey("ItemId")]
-        public virtual ItemGroup ItemGroups { get; set; }
+        public virtual ItemGroups ItemGroups1 { get; set; }
 
         public int ItemId { get; set; }
         public string DisplayOrder { get; set; }
+
+        [NotMapped]
+        public string ItemName { get; set; }
     }
 }

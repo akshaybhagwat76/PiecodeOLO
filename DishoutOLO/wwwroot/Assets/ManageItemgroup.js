@@ -16,10 +16,10 @@
         if (retval) {
             var data = {
                 id: $("#Id").val(),
-                itemGroup: $("#itemGroup").val(),
+                ItemGroup: $("#ItemGroup").val(),
                 DisplayOrder: $("#DisplayOrder").val(),
                 ItemId: $("#ItemId").val(),
-                IsActive: $("#IsActive").val() == "true" ? true : false
+                IsActive: $("#IsActive").val() == "True" ? true : false
             }
             $.ajax({
                 type: "POST",

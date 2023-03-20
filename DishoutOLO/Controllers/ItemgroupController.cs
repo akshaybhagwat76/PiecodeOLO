@@ -28,7 +28,7 @@ namespace DishoutOLO.Controllers
             return View();
         }
 
-        public  IActionResult Create()
+        public IActionResult Create()
         {
             try
             {
@@ -40,18 +40,18 @@ namespace DishoutOLO.Controllers
                 _loggerProvider.logmsg(ex.Message);
 
             }
-            return View("ManageItemGroup", new AddItemgroupModel());
+            return View("ManageItemGroup", new AddItemgroupsModel());
 
-            
+
         }
 
-        public JsonResult AddOrUpdateItemGroup(AddItemgroupModel itemgroupVM)
+        public JsonResult AddOrUpdateItemGroup(AddItemgroupsModel itemgroupVM)
         {
             try
             {
-                AddItemgroupModel itemgroupModel = new AddItemgroupModel();
+                AddItemgroupsModel itemgroupModel = new AddItemgroupsModel();
 
-               
+
             }
             catch (Exception ex)
             {

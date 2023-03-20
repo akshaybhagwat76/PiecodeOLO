@@ -7,10 +7,10 @@ namespace DishoutOLO.Service.Interface
 {
     public interface IitemgroupService
     {
-        public DishoutOLOResponseModel AddOrUpdateItemGroup(AddItemgroupModel data);
+        public DishoutOLOResponseModel AddOrUpdateItemGroup(AddItemgroupsModel data);
         public DishoutOLOResponseModel DeleteItemGroup(int data);
         public DishoutOLOResponseModel GetAllItems();
         public DataTableFilterModel GetItemGroupList(DataTableFilterModel filter);
-        public AddItemgroupModel GetItemGroup(int Id);
+        public AddItemgroupsModel GetItemGroup(int Id);
     }
 }
