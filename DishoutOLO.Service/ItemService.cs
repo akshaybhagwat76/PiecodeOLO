@@ -4,6 +4,7 @@ using DishoutOLO.Repo.Interface;
 using DishoutOLO.Service.Interface;
 using DishoutOLO.ViewModel;
 using DishoutOLO.ViewModel.Helper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DishoutOLO.Service
 {
@@ -30,11 +31,11 @@ namespace DishoutOLO.Service
 
         #region Crud Methods
 
-        public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data, string itemname="")
+        public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data)
         {
             try
             {
-                Item Item = _itemRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == false && (x.ItemName.ToLower() == data.ItemName.ToLower()));
+                Item Item = _itemRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == true && (x.ItemName.ToLower() == data.ItemName.ToLower()));
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
                 if (Item != null)
@@ -42,9 +43,14 @@ namespace DishoutOLO.Service
                     response.IsSuccess = false;
                     response.Status = 400;
                     response.Errors = new List<ErrorDet>();
+
                     if (Item.ItemName.ToLower() == data.ItemName.ToLower()) 
                     {
                         response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
+                    }
+                    else
+                    {
+                        
                     }
 
                 }
@@ -64,7 +70,9 @@ namespace DishoutOLO.Service
                         DateTime createdDt = item.CreationDate;
                         bool isActive = item.IsActive;
                         item = _mapper.Map<AddItemModel, Item>(data);
-                        item.ModifiedDate = DateTime.Now; item.CreationDate = createdDt; item.IsActive = isActive;
+                        item.ModifiedDate = DateTime.Now;
+                        item.CreationDate = createdDt;
+                        item.IsActive = isActive;
                         _itemRepository.Update(item);
                     }
                 }

@@ -6,7 +6,7 @@ namespace DishoutOLO.Service.Interface
 {
     public interface IitemService
     {
-        public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data, string itemname = "");
+        public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data);
 
 
         public DishoutOLOResponseModel DeleteItem(int data);

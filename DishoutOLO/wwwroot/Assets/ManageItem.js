@@ -82,7 +82,7 @@ function Ajaxform(retval) {
             processData: false,
             success: function (data) {
                 if (!data.isSuccess) {
-                    $("#lblError").addClass("error").text(data.message.toString()).show();
+                    $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
 
                 }
                 else {
@@ -114,7 +114,7 @@ function Ajaxwithform(retval) {
             cache: false,
             success: function (data) {
                 if (!data.isSuccess) {
-                    $("#lblError").addClass("error").text(data.message.toString()).show();
+                    $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
                     
                 }
                 else {
