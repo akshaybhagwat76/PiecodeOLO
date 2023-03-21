@@ -33,12 +33,15 @@
                                     @Html.DropDownListFor(f=>f.ItemId, ViewBag.ItemList as SelectList,"---SELECT-----", new { @class = "form-control required" })
                                 </div>
                             </div>
+                           
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DisplayOrder,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Display Order" } })
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

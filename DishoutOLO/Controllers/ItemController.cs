@@ -95,7 +95,7 @@ namespace DishoutOLO.Controllers
         public JsonResult AddOrUpdateItemSimple(AddItemModel itemVM)
         {
             try
-            {
+                {
                 AddItemModel itemModel = new AddItemModel();
 
             }

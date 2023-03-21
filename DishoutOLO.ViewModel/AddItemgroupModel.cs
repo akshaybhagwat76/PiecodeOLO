@@ -17,7 +17,7 @@ namespace DishoutOLO.ViewModel
 
         public bool IsActive { get; set; }
 
-        public string DisplayOrder { get; set; }
+        public int DisplayOrder { get; set; }
     }
 
     public class UpdateItemgroupsModel
@@ -30,7 +30,7 @@ namespace DishoutOLO.ViewModel
 
         public int ItemId { get; set; }
 
-        public string DisplayOrder { get; set; }
+        public int DisplayOrder { get; set; }
     }
 
     public class ListItemgroupsModel
@@ -45,7 +45,7 @@ namespace DishoutOLO.ViewModel
         public string ItemName { get; set; }
 
         public bool IsActive { get; set; }  
-        public string DisplayOrder { get; set; }
+        public int DisplayOrder { get; set; }
     }
 
 

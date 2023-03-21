@@ -10,7 +10,7 @@
         public int ListCount { get; set; }
         public List<ErrorDet> Errors { get; set; }
 
-        public int Status {     get; set; }
+        public int Status { get; set; }
 
       
     }

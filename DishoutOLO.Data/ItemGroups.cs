@@ -12,7 +12,7 @@ namespace DishoutOLO.Data
         public virtual ItemGroups ItemGroups1 { get; set; }
 
         public int ItemId { get; set; }
-        public string DisplayOrder { get; set; }
+        public int DisplayOrder { get; set; }
 
         [NotMapped]
         public string ItemName { get; set; }

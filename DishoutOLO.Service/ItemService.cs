@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DishoutOLO.Data;
+using DishoutOLO.Repo;
 using DishoutOLO.Repo.Interface;
 using DishoutOLO.Service.Interface;
 using DishoutOLO.ViewModel;
@@ -35,53 +36,54 @@ namespace DishoutOLO.Service
         {
             try
             {
-                Item Item = _itemRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == true && (x.ItemName.ToLower() == data.ItemName.ToLower()));
+                Item Item = _itemRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.ItemName.ToLower() == data.ItemName.ToLower()));
+
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
-                if (Item != null)
                 {
-                    response.IsSuccess = false;
-                    response.Status = 400;
-                    response.Errors = new List<ErrorDet>();
-
-                    if (Item.ItemName.ToLower() == data.ItemName.ToLower()) 
+                    if (Item != null)
                     {
-                        response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
-                    }
-                    else
-                    {
-                        
-                    }
+                        response.IsSuccess = false;
+                        response.Status = 400;
+                        response.Errors = new List<ErrorDet>();
 
+                        if (Item.ItemName.ToLower() == data.ItemName.ToLower())
+                        {
+                            response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
+                        }
+
+                       
+                        return response;
+
+
+
+                    }
+                    if (response.Errors == null)
+                    {
+                        if (data.Id == 0)
+                        {
+
+                            Item tblItem = _mapper.Map<AddItemModel, Item>(data);
+                            tblItem.CreationDate = DateTime.Now;
+                            tblItem.IsActive = true;
+                            _itemRepository.Insert(tblItem);
+                        }
+                        else
+                        {
+                            Item item = _itemRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
+                            DateTime createdDt = item.CreationDate;
+                            bool isActive = item.IsActive;
+                            item = _mapper.Map<AddItemModel, Item>(data);
+                            item.ModifiedDate = DateTime.Now;
+                            item.CreationDate = createdDt;
+                            item.IsActive = isActive;
+                            _itemRepository.Update(item);
+                        }
+                    }
+                    
+
+                    return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Item") : string.Format(Constants.UpdatedSuccessfully, "Item") };
                 }
-                if ( response.Errors==null)
-                {
-                    if (data.Id == 0)
-                    {
-
-                        Item tblItem = _mapper.Map<AddItemModel, Item>(data);
-                        tblItem.CreationDate = DateTime.Now;
-                        tblItem.IsActive = true;
-                        _itemRepository.Insert(tblItem);
-                    }
-                    else
-                    {
-                        Item item = _itemRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                        DateTime createdDt = item.CreationDate;
-                        bool isActive = item.IsActive;
-                        item = _mapper.Map<AddItemModel, Item>(data);
-                        item.ModifiedDate = DateTime.Now;
-                        item.CreationDate = createdDt;
-                        item.IsActive = isActive;
-                        _itemRepository.Update(item);
-                    }
-                }
-                else
-                {
-                    return response;
-                }
-
-                return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Item") : string.Format(Constants.UpdatedSuccessfully, "Item") };
             }
             catch (Exception)
             {
