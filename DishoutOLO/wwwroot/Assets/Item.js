@@ -88,15 +88,21 @@ function loadAllItem() {
             }
         ]
     })
-}
+}   
+
+
 
 
 $('#CategoryName').on('change', function () {
-   
+
     table.columns(1).search($("#CategoryName option:selected").text().trim());
     table.draw();
-   
+
 });
+
+
+
+    
 
 $('#txtItemName').on('keyup', function () {
     table.columns(2).search($('#txtItemName').val().trim());

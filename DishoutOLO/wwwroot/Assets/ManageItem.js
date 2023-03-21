@@ -19,8 +19,8 @@
         } else {
             Ajaxwithform(retval)
         }
-        
-      
+
+
     })
 });
 
@@ -59,7 +59,9 @@ function Ajaxform(retval) {
             IsVeg: $("#Veg").val() == 'Veg' ? true : false,
             IsTax: $("#t1").val() == 'Yes' ? true : false,
             ItemDescription: $("#ItemDescription").val(),
-            
+            IsVeg: $("#Choices").val() == 'Veg' ? true : false,
+
+
 
         }
         var formData = new FormData();
@@ -71,7 +73,6 @@ function Ajaxform(retval) {
         formData.append("IsCombo", data.IsCombo);
         formData.append("IsTax", data.IsTax);
         formData.append("ItemDescription", data.ItemDescription);
-
 
         $.ajax({
             type: "POST",
@@ -106,6 +107,7 @@ function Ajaxwithform(retval) {
             IsTax: $("#t1").val() == 'Yes' ? true : false,
             ItemDescription: $("#ItemDescription").val()
 
+
         }
         $.ajax({
             type: "POST",
@@ -115,7 +117,7 @@ function Ajaxwithform(retval) {
             success: function (data) {
                 if (!data.isSuccess) {
                     $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
-                    
+
                 }
                 else {
                     window.location.href = '/Item/Index'

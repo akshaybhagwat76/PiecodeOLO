@@ -22,6 +22,8 @@ namespace DishoutOLO.Data
         public string?   TaxName { get; set; }
         public int TaxPercentage { get; set; }
         public bool IsCombo { get; set; }
+
+
         public string?   ItemsAvailable { get; set; }
         public string? AdditionalChoices { get; set; }
     }

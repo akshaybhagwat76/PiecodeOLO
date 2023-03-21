@@ -239,7 +239,7 @@ namespace DishoutOLO.Service
                     obj.IsCombo = item.IsCombo;
                     obj.ItemDescription = item.ItemDescription;
                     obj.CategoryId = item.CategoryId;
-                    obj.ItemImage= item.ItemImage;  
+                    obj.ItemImage= item.ItemImage;
 
 
                     return obj;
