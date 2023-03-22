@@ -16,7 +16,7 @@
     }
     public class ErrorDet
     {
-        public string ErrorField { get; set; }
+        public string ErrorField {  get; set; }
         public string ErrorDescription { get; set; }
     }
 

@@ -24,6 +24,7 @@ namespace DishoutOLO.ViewModel
         public bool IsTax { get; set; }
         public bool IsActive { get; set; }
 
+
         public string ItemDescription { get; set; }
 
 
@@ -67,6 +68,9 @@ namespace DishoutOLO.ViewModel
         public bool IsVeg { get; set; }
         public bool IsTax { get; set; }
         public bool IsActive { get; set; }
+
+
+
 
     }
 

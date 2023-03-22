@@ -26,7 +26,7 @@ namespace DishoutOLO.Service
 
         #region Crud Methods
         public DishoutOLOResponseModel AddOrUpdateMenu(AddMenuModel data, string imgPath = "")
-        {
+            {
             try
             {
                 Menu Menu = _menuRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.MenuName.ToLower() == data.MenuName.ToLower()));
@@ -58,7 +58,7 @@ namespace DishoutOLO.Service
                     menu = _mapper.Map<AddMenuModel, Menu>(data);
                     menu.CreationDate = CreationDate;
                     menu.ModifiedDate = DateTime.Now;
-                    menu.Image = imgPath;
+                    menu.Image = !string.IsNullOrEmpty(imgPath)?imgPath:menu.Image;
                     _menuRepository.Update(menu);
                 }
                 return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "category") : string.Format(Constants.UpdatedSuccessfully, "category") };
@@ -135,7 +135,8 @@ namespace DishoutOLO.Service
                 IEnumerable<ListMenuModel> data = (from ct in _categoryRepository.GetAll()
                             join mn in _menuRepository.GetAll() on
                             ct.Id equals mn.CategoryId
-                            where ct.IsActive=true
+
+                            where  mn.IsActive==true
                             select new ListMenuModel
                             {
                                 CategoryName = ct.CategoryName,
@@ -193,11 +194,6 @@ namespace DishoutOLO.Service
                 filter.recordsTotal = totalCount;
                 filter.recordsFiltered = filteredCount;
                 data = data.ToList();
-
-
-
-
-
                 filter.data = data.Skip(filter.start).Take(filter.length).ToList();
 
                 return filter;

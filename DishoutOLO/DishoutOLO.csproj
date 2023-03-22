@@ -81,4 +81,9 @@
     <ProjectReference Include="..\DishoutOLO.ViewModel\DishoutOLO.ViewModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Content\Item\" />
+    <Folder Include="wwwroot\Content\Menu\" />
+  </ItemGroup>
+
 </Project>

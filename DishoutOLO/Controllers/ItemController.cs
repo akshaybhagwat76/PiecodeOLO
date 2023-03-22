@@ -92,6 +92,22 @@ namespace DishoutOLO.Controllers
             return Json(_ItemService.AddOrUpdateItem(itemVM));
 
         }
+        public JsonResult AddOrUpdateItemSimple(AddItemModel itemVM)
+        {
+            try
+                {
+                AddItemModel itemModel = new AddItemModel();
+
+            }
+            catch (Exception ex)
+            {
+                _loggerProvider.logmsg(ex.Message);
+
+            }
+            return Json(_ItemService.AddOrUpdateItem(itemVM));
+
+        }
+
         /// <summary>
         /// Delete Item
         /// </summary>
@@ -147,7 +163,7 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName", id);
-
+                
             }
 
             catch (Exception ex)

@@ -8,11 +8,12 @@ namespace DishoutOLO.Service.Interface
     {
         public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data);
 
+
         public DishoutOLOResponseModel DeleteItem(int data);
         public DataTableFilterModel GetItemList(DataTableFilterModel filter);
 
         public AddItemModel GetItem(int Id);
 
-        public DishoutOLOResponseModel GetAllCategories();
+        public DishoutOLOResponseModel GetAllItems();
     }
 }

@@ -5,11 +5,11 @@
 
 
 <div class="row">
-
     <div class="col-xl-8 order-xl-3 ">
         <div class="card">
-            <form id="myForm" action="javascript:;">    
+            <form id="myForm" action="javascript:;">
                 @Html.HiddenFor(mode=>mode.Id)
+                @Html.HiddenFor(mode=>mode.Image)
                 @Html.HiddenFor(mode=>mode.IsActive)
 
                 <div class="card-header">
@@ -17,12 +17,10 @@
                         <div class="col-12">
                             <h3 class="mb-0">Manage Menu</h3>
                         </div>
-                    </div>  
+                    </div>
                 </div>
 
                 <div class="card-body">
-
-
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-md-12">
@@ -35,28 +33,33 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CategoryId,new {@class="form-control-label"})
                                     @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList, "---SELECT---", new { @class = "form-control required" })
-                                        
-                                    
+
+
                                 </div>
                             </div>
-                            </div>
-                            
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.MenuPrice,new {@class="form-control-label"})
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MenuPrice,new {@class="form-control-label"})
                                 @Html.EditorFor(model => model.MenuPrice, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Menu Price" } })
+                            </div>
+                        </div>
 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <img src="~/Content/Menu/@Model.Image" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Image,new {@class="form-control-label"})
+                                <input type="file" name="file" id="menuId" />
 
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Image,new {@class="form-control-label"})
-                                    <input type="file" name="file" id="menuId" />
-
-                                </div>
-                            </div>
-                      </div>
-               </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="card-footer">
@@ -65,7 +68,7 @@
                             <button type="submit" id="btn-submit" class="btn btn-md btn-primary">
                                 Save
                             </button>
-                            <a href="/Item/Index" class="btn btn-default">Cancel</a>
+                            <a href="/Menu/Index" class="btn btn-default">Cancel</a>
                             <label id="lblError" class="inline"></label>
 
 

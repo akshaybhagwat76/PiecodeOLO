@@ -60,7 +60,7 @@ function loadAllItem() {
                 "data": function (full) {
 
                     var imgPath = '/Content/Item/' + full.itemImage;
-                    return "<img src=" + imgPath + " height='50'width='90'>";
+                    return "<img src=" + imgPath + " height='60'width='100'>";
                 }
             },
             { 
@@ -88,15 +88,21 @@ function loadAllItem() {
             }
         ]
     })
-}
+}   
+
+
 
 
 $('#CategoryName').on('change', function () {
-   
+
     table.columns(1).search($("#CategoryName option:selected").text().trim());
     table.draw();
-   
+
 });
+
+
+
+    
 
 $('#txtItemName').on('keyup', function () {
     table.columns(2).search($('#txtItemName').val().trim());

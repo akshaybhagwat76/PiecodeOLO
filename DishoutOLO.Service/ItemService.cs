@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using DishoutOLO.Data;
+using DishoutOLO.Repo;
 using DishoutOLO.Repo.Interface;
 using DishoutOLO.Service.Interface;
 using DishoutOLO.ViewModel;
 using DishoutOLO.ViewModel.Helper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DishoutOLO.Service
 {
@@ -16,8 +18,6 @@ namespace DishoutOLO.Service
         private IRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
         #endregion
-
-
         #region Constructor
         public ItemService(IRepository<Item> itemRepository, IMapper mapper, IRepository<Category> categoryRepository)
         {
@@ -29,52 +29,61 @@ namespace DishoutOLO.Service
 
 
         #endregion
+
         #region Crud Methods
 
         public DishoutOLOResponseModel AddOrUpdateItem(AddItemModel data)
         {
             try
             {
-                Item Item = _itemRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == false && (x.ItemName.ToLower() == data.ItemName.ToLower()));
+                Item Item = _itemRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.ItemName.ToLower() == data.ItemName.ToLower()));
+
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
-                if (Item != null)
                 {
-                    response.IsSuccess = false;
-                    response.Status = 400;
-                    response.Errors = new List<ErrorDet>();
-                    if (Item.ItemName.ToLower() == data.ItemName.ToLower())
+                    if (Item != null)
                     {
-                        response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
-                    }
+                        response.IsSuccess = false;
+                        response.Status = 400;
+                        response.Errors = new List<ErrorDet>();
 
-                }
-                if ( response.Errors==null)
-                {
-                    if (data.Id == 0)
+                        if (Item.ItemName.ToLower() == data.ItemName.ToLower())
+                        {
+                            response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
+                        }
+
+                       
+                        return response;
+
+
+
+                    }
+                    if (response.Errors == null)
                     {
+                        if (data.Id == 0)
+                        {
 
-                        Item tblItem = _mapper.Map<AddItemModel, Item>(data);
-                        tblItem.CreationDate = DateTime.Now;
-                        tblItem.IsActive = true;
-                        _itemRepository.Insert(tblItem);
+                            Item tblItem = _mapper.Map<AddItemModel, Item>(data);
+                            tblItem.CreationDate = DateTime.Now;
+                            tblItem.IsActive = true;
+                            _itemRepository.Insert(tblItem);
+                        }
+                        else
+                        {
+                            Item item = _itemRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
+                            DateTime createdDt = item.CreationDate;
+                            bool isActive = item.IsActive;
+                            item = _mapper.Map<AddItemModel, Item>(data);
+                            item.ModifiedDate = DateTime.Now;
+                            item.CreationDate = createdDt;
+                            item.IsActive = isActive;
+                            _itemRepository.Update(item);
+                        }
                     }
-                    else
-                    {
-                        Item item = _itemRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                        DateTime createdDt = item.CreationDate;
-                        bool isActive = item.IsActive;
-                        item = _mapper.Map<AddItemModel, Item>(data);
-                        item.ModifiedDate = DateTime.Now; item.CreationDate = createdDt; item.IsActive = isActive;
-                        _itemRepository.Update(item);
-                    }
-                }
-                else
-                {
-                    return response;
-                }
+                    
 
-                return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Item") : string.Format(Constants.UpdatedSuccessfully, "Item") };
+                    return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Item") : string.Format(Constants.UpdatedSuccessfully, "Item") };
+                }
             }
             catch (Exception)
             {
@@ -113,7 +122,7 @@ namespace DishoutOLO.Service
                 IEnumerable<ListItemModel> data = (from ct in _categoryRepository.GetAll()
                                                    join it in _itemRepository.GetAll() on
                                                    ct.Id equals it.CategoryId
-                                                   where it.IsActive =true
+                                                   where it.IsActive ==true
                                                   
                                                    select new ListItemModel
                                                    {
@@ -195,7 +204,7 @@ namespace DishoutOLO.Service
 
         }
 
-        public DishoutOLOResponseModel GetAllCategories()
+        public DishoutOLOResponseModel GetAllItems()
         {
             try
             {
@@ -217,7 +226,7 @@ namespace DishoutOLO.Service
                ListItemModel item = _itemRepository.GetListByPredicate(x => x.IsActive  && x.Id == Id
                                      )
                                      .Select(y => new ListItemModel()
-                                     { Id = y.Id, ItemName = y.ItemName, IsCombo = y.IsCombo, IsTax = y.IsTax, IsVeg = y.IsVeg, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription }
+                                     { Id = y.Id, ItemName = y.ItemName, IsCombo = y.IsCombo, IsTax = y.IsTax, IsVeg = y.IsVeg, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription,ItemImage=y.ItemImage }
                                      ).FirstOrDefault();
 
                 if (item != null)
@@ -230,6 +239,8 @@ namespace DishoutOLO.Service
                     obj.IsCombo = item.IsCombo;
                     obj.ItemDescription = item.ItemDescription;
                     obj.CategoryId = item.CategoryId;
+                    obj.ItemImage= item.ItemImage;
+
 
                     return obj;
                 }
