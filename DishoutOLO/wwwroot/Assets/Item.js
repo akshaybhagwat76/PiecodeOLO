@@ -96,6 +96,7 @@ function loadAllItem() {
 $('#CategoryName').on('change', function () {
 
     table.columns(1).search($("#CategoryName option:selected").text().trim());
+   
     table.draw();
 
 });

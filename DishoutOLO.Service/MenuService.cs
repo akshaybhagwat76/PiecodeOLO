@@ -54,7 +54,7 @@ namespace DishoutOLO.Service
                 else
                 {
                     Menu menu = _menuRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                    DateTime CreationDate = menu.CreationDate;
+                    DateTime CreationDate = menu.CreationDate ?? new DateTime();
                     menu = _mapper.Map<AddMenuModel, Menu>(data);
                     menu.CreationDate = CreationDate;
                     menu.ModifiedDate = DateTime.Now;

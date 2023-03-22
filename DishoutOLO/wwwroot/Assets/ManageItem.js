@@ -19,12 +19,11 @@
         } else {
             Ajaxwithform(retval)
         }
+            
 
 
     })
 });
-
-
 
 $(document).ready(function () {
 
@@ -60,10 +59,10 @@ function Ajaxform(retval) {
             IsTax: $("#t1").val() == 'Yes' ? true : false,
             ItemDescription: $("#ItemDescription").val(),
             IsVeg: $("#Choices").val() == 'Veg' ? true : false,
+            IsChooseChoice: $(".ChoiceType1").val() == 'rdYesType' ? true : false
 
-
-
-        }
+    }
+    }
         var formData = new FormData();
         formData.append("Id", data.id);
         formData.append("CategoryId", data.CategoryId);
@@ -72,8 +71,8 @@ function Ajaxform(retval) {
         formData.append("IsVeg", data.IsVeg);
         formData.append("IsCombo", data.IsCombo);
         formData.append("IsTax", data.IsTax);
-        formData.append("ItemDescription", data.ItemDescription);
-
+    formData.append("ItemDescription", data.ItemDescription);
+    formData.append("IsChooseChoice", data.IsChooseChoice)
         $.ajax({
             type: "POST",
             url: "/Item/AddOrUpdateItem",
@@ -93,10 +92,11 @@ function Ajaxform(retval) {
             }
         });
     }
-}
+
 
 function Ajaxwithform(retval) {
     if (retval) {
+        
         var data = {
             id: $("#Id").val(),
             CategoryId: $("#CategoryId").val(),
@@ -105,31 +105,36 @@ function Ajaxwithform(retval) {
             IsCombo: $("#IsCombo").is(':checked') ? true : false,
             IsVeg: $("#Veg").val() == 'Veg' ? true : false,
             IsTax: $("#t1").val() == 'Yes' ? true : false,
-            ItemDescription: $("#ItemDescription").val()
-
+            ItemDescription: $("#ItemDescription").val(),
+            IsChooseChoice: $(".ChoiceType1").val() == 'rdYesType' ? true : false,
+            MayonnaiseOption: $('#MayonnaiseOption').val(),
+            extraChickenOption: $('#extraChickenOption').val(),
+            extraCheeseOption: $('#extraCheeseOption').val()
+    }
 
         }
-        $.ajax({
-            type: "POST",
-            url: "/Item/AddOrUpdateItemSimple",
-            data: data,
-            cache: false,
-            success: function (data) {
-                if (!data.isSuccess) {
-                    $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
 
-                }
-                else {
-                    window.location.href = '/Item/Index'
+        console.log(data);  
+                $.ajax({
+                    type: "POST",
+                url: "/Item/AddOrUpdateItemSimple",
+                data: data,
+                cache: false,
+                success: function (data) {
+                    if (!data.isSuccess) {
+                        $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
 
+                    }
+                    else {
+                        window.location.href = '/Item/Index'
+
+                    }
                 }
-            }
-        });
+            });
     }
 
 
 
 
-}
-
+ 
 

@@ -51,7 +51,7 @@ namespace DishoutOLO.Service
                 else
                 {
                     Category categoryModify = _categoryRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                    DateTime createdDt = categoryModify.CreationDate; bool isActive = categoryModify.IsActive;
+                    DateTime createdDt = categoryModify.CreationDate ?? new DateTime() ; bool isActive = categoryModify.IsActive;
                     categoryModify = _mapper.Map<AddCategoryModel, Category>(data);
                     categoryModify.ModifiedDate = DateTime.Now; categoryModify.CreationDate = createdDt; categoryModify.IsActive = isActive;
                     _categoryRepository.Update(categoryModify);

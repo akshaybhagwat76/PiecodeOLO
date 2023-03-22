@@ -101,8 +101,9 @@ namespace DishoutOLO.Service
                 if (!string.IsNullOrWhiteSpace(filter.search.value))
                 {
                     var searchText = filter.search.value.ToLower();
-                    data = data.Where(p => p.ItemGroup.ToLower().Contains(searchText));
+                    data = data.Where(p => p.ItemGroup.ToLower().Contains(searchText)|| p.DisplayOrder.ToString().ToLower().Contains(searchText));
                 }
+               
                 var filteredCount = data.Count();
                 filter.recordsTotal = totalCount;
                 filter.recordsFiltered = filteredCount;
@@ -161,7 +162,9 @@ namespace DishoutOLO.Service
         {
             try
             {
-                ItemGroups Item = _itemgroupRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == false && (x.ItemGroup.ToLower() == data.ItemGroup.ToLower()));
+                //ItemGroups Item = _itemgroupRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == false && (x.ItemGroup.ToLower() == data.ItemGroup.ToLower()));
+                ItemGroups Item = _itemgroupRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.ItemGroup.ToLower() == data.ItemGroup.ToLower() || x.DisplayOrder == data.DisplayOrder));
+
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
                 if (Item != null)
@@ -173,6 +176,12 @@ namespace DishoutOLO.Service
                     {
                         response.Errors.Add(new ErrorDet() { ErrorField = "ItemGroup", ErrorDescription = "ItemGroup already exist" });
                     }
+
+                    if (Item.DisplayOrder == data.DisplayOrder)
+                    {
+                        response.Errors.Add(new ErrorDet() { ErrorField = "DisplayOrder", ErrorDescription = "DisplayOrder already exist" });
+                    }
+                    return response;
 
                 }
                 if (response.Errors == null)
@@ -188,7 +197,7 @@ namespace DishoutOLO.Service
                     else
                     {
                         ItemGroups item = _itemgroupRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                       DateTime createdDt = item.CreationDate;
+                       DateTime createdDt = item.CreationDate ?? new DateTime();
                         bool isActive = item.IsActive;
                         item = _mapper.Map<AddItemgroupsModel, ItemGroups>(data);
                         item.ModifiedDate = DateTime.Now; 

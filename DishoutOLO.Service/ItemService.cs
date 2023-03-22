@@ -51,27 +51,23 @@ namespace DishoutOLO.Service
                         {
                             response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
                         }
-
-                       
-                        return response;
-
-
-
+                                              
+                       return response;
                     }
                     if (response.Errors == null)
                     {
                         if (data.Id == 0)
                         {
-
                             Item tblItem = _mapper.Map<AddItemModel, Item>(data);
+                            tblItem.CreatedBy = 21;
                             tblItem.CreationDate = DateTime.Now;
                             tblItem.IsActive = true;
                             _itemRepository.Insert(tblItem);
-                        }
+                            }
                         else
                         {
                             Item item = _itemRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                            DateTime createdDt = item.CreationDate;
+                            DateTime createdDt = item.CreationDate ?? new DateTime();
                             bool isActive = item.IsActive;
                             item = _mapper.Map<AddItemModel, Item>(data);
                             item.ModifiedDate = DateTime.Now;
@@ -131,7 +127,8 @@ namespace DishoutOLO.Service
                                                        ItemImage = it.ItemImage,
                                                        IsCombo = it.IsCombo,
                                                        IsActive = it.IsActive,
-                                                       Id = it.Id,
+
+                                                       Id = it.Id
 
                                                    }).AsEnumerable();
 
@@ -182,7 +179,7 @@ namespace DishoutOLO.Service
                 var filteredCount = data.Count();
                 filter.recordsTotal = totalCount;
                 filter.recordsFiltered = filteredCount;
-                if (!string.IsNullOrEmpty(filter.CategoryName))
+                if (!string.IsNullOrEmpty(filter.CategoryName) && filter.CategoryName != "---SELECT---")
                 {
                     data = data.Where(x => x.CategoryName == filter.CategoryName).ToList();
                 }
@@ -219,14 +216,14 @@ namespace DishoutOLO.Service
         }
 
 
-        public AddItemModel GetItem(int Id)
+        public AddItemModel GetItem(int Id) 
         {
             try
             {
                ListItemModel item = _itemRepository.GetListByPredicate(x => x.IsActive  && x.Id == Id
                                      )
                                      .Select(y => new ListItemModel()
-                                     { Id = y.Id, ItemName = y.ItemName, IsCombo = y.IsCombo, IsTax = y.IsTax, IsVeg = y.IsVeg, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription,ItemImage=y.ItemImage }
+                                     { Id = y.Id, ItemName = y.ItemName, IsCombo = y.IsCombo,IsChooseChoices=y.IsChooseChoices, IsTax = y.IsTax, IsVeg = y.IsVeg, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription,ItemImage=y.ItemImage }
                                      ).FirstOrDefault();
 
                 if (item != null)
@@ -240,6 +237,7 @@ namespace DishoutOLO.Service
                     obj.ItemDescription = item.ItemDescription;
                     obj.CategoryId = item.CategoryId;
                     obj.ItemImage= item.ItemImage;
+                    obj.IsChooseChoices = item.IsChooseChoices??false;
 
 
                     return obj;

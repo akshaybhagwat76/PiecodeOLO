@@ -14,18 +14,25 @@ namespace DishoutOLO.Data
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
-        public string ItemName { get; set; }
+        public string    ItemName { get; set; }
         public string? ItemDescription { get; set; }
 
         public string ItemImage { get; set; }
         public bool IsTax { get; set; }
-        public string?   TaxName { get; set; }
+        public string? TaxName { get; set; }
         public int TaxPercentage { get; set; }
         public bool IsCombo { get; set; }
 
-
-        public string?   ItemsAvailable { get; set; }
+        public string? ItemsAvailable { get; set; }
         public string? AdditionalChoices { get; set; }
+
+        public bool? IsChooseChoices {get; set;}
+
+        public int extraCheeseOption { get; set; }
+
+        public int extraChickenOption { get; set; }
+
+        public int MayonnaiseOption { get; set; }
     }
 
 }
