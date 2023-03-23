@@ -50,8 +50,8 @@ namespace DishoutOLO.Service
                 }
                 else
                 {
-                    Article article = _articleRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                    DateTime createdDt = article.CreationDate; bool isActive = article.IsActive;
+                    Article article = _articleRepository.GetByPredicate(x =>    x.Id == data.Id && x.IsActive);
+                    DateTime createdDt = article.CreationDate ?? new DateTime(); bool isActive = article.IsActive;
                     article = _mapper.Map<AddArticleModel, Article>(data);
                     article.ModifiedDate = DateTime.Now; article.CreationDate = createdDt; article.IsActive = isActive;
                     _articleRepository.Update(article);

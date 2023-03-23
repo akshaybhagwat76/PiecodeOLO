@@ -20,12 +20,23 @@ namespace DishoutOLO.ViewModel
 
         public IFormFile File { get; set; }
         public bool IsCombo { get; set; }
-        public bool IsVeg { get; set; }
-        public bool IsTax { get; set; }
+        public bool  IsVeg { get; set; }
+        public bool  IsTax { get; set; }
         public bool IsActive { get; set; }
 
+        public bool IsChooseChoices { get; set; }
 
         public string ItemDescription { get; set; }
+
+
+        public int extraCheeseOption { get; set; }
+
+        public int extraChickenOption { get; set; }
+
+        public int MayonnaiseOption { get; set; }
+
+
+
 
 
     }
@@ -36,18 +47,20 @@ namespace DishoutOLO.ViewModel
         public string CategoryName { get; set; }
         [DisplayName("Category")]
 
-        public int CategoryId { get; set; }
+        public int   CategoryId { get; set; }
 
         public string ItemName { get; set; }
         public string ItemImage { get; set; }
 
         public IFormFile File { get; set; }
-        public bool IsCombo { get; set; }
+        public bool  IsCombo { get; set; }
         public bool IsActive { get; set; }
-        public bool IsVeg { get; set; }
-        public bool IsTax { get; set; }
+        public bool   IsVeg { get; set; }
+        public bool  IsTax { get; set; }
 
         public string ItemDescription { get; set; }
+        public bool? IsChooseChoices { get; set; }
+
 
     }
     public class UpdateItemModel
@@ -68,7 +81,7 @@ namespace DishoutOLO.ViewModel
         public bool IsVeg { get; set; }
         public bool IsTax { get; set; }
         public bool IsActive { get; set; }
-
+        public bool IsChooseChoices { get; set; }
 
 
 

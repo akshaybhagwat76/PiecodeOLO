@@ -29,7 +29,7 @@ namespace DishoutOLO.ViewModel.Helper
         public OrderInfo[] order { get; set; }
         public ColumnInfo[] columns { get; set; }
         public Nullable<int> BaseId { get; set; }
-        public IEnumerable<dynamic> data { get; set; }
+        public IEnumerable<dynamic  > data { get; set; }
         public int recordsTotal { get; set; }
         public int recordsFiltered { get; set; }
         public int UserId { get; set; }
