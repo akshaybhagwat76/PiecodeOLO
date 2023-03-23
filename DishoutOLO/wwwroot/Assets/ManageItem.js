@@ -17,9 +17,9 @@
         if ($('#itemId').val().length > 0) {
             Ajaxform(retval)
         } else {
-            Ajaxwithform(retval)
+            Ajaxwithform(retval);
         }
-            
+
 
 
     })
@@ -50,7 +50,7 @@ $(document).ready(function () {
 function Ajaxform(retval) {
     if (retval) {
         var data = {
-            id: $("#Id").val(),
+            Id: $("#Id").val(),
             CategoryId: $("#CategoryId").val(),
             ItemName: $("#ItemName").val(),
             ItemImage: $("#ItemImage").val(),
@@ -61,42 +61,48 @@ function Ajaxform(retval) {
             IsVeg: $("#Choices").val() == 'Veg' ? true : false,
             IsChooseChoice: $(".ChoiceType1").val() == 'rdYesType' ? true : false
 
+        }
     }
+    var taxName = $("#TaxName").val().trim();
+    if (data.IsTax && taxName!=null &&taxName.length>0) {
+        alerts = { ...alerts, 3: { app: 'hey there', message: 'another message' } }
     }
-        var formData = new FormData();
-        formData.append("Id", data.id);
-        formData.append("CategoryId", data.CategoryId);
-        formData.append("ItemName", data.ItemName);
-        formData.append("File", $("#itemId")[0].files[0]);
-        formData.append("IsVeg", data.IsVeg);
-        formData.append("IsCombo", data.IsCombo);
-        formData.append("IsTax", data.IsTax);
+
+    var formData = new FormData();
+    formData.append("Id", data.Id);
+    formData.append("CategoryId", data.CategoryId);
+    formData.append("ItemName", data.ItemName);
+    formData.append("File", $("#itemId")[0].files[0]);
+    formData.append("IsVeg", data.IsVeg);
+    formData.append("IsCombo", data.IsCombo);
+    formData.append("IsTax", data.IsTax);
     formData.append("ItemDescription", data.ItemDescription);
-    formData.append("IsChooseChoice", data.IsChooseChoice)
-        $.ajax({
-            type: "POST",
-            url: "/Item/AddOrUpdateItem",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (!data.isSuccess) {
-                    $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
+    formData.append("IsChooseChoice", data.IsChooseChoice);
 
-                }
-                else {
-                    window.location.href = '/Item/Index'
+    $.ajax({
+        type: "POST",
+        url: "/Item/AddOrUpdateItem",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (!data.isSuccess) {
+                $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
 
-                }
             }
-        });
-    }
+            else {
+                window.location.href = '/Item/Index'
+
+            }
+        }
+    });
+}
 
 
 function Ajaxwithform(retval) {
     if (retval) {
-        
+
         var data = {
             id: $("#Id").val(),
             CategoryId: $("#CategoryId").val(),
@@ -110,31 +116,31 @@ function Ajaxwithform(retval) {
             MayonnaiseOption: $('#MayonnaiseOption').val(),
             extraChickenOption: $('#extraChickenOption').val(),
             extraCheeseOption: $('#extraCheeseOption').val()
-    }
-
         }
 
-        console.log(data);  
-                $.ajax({
-                    type: "POST",
-                url: "/Item/AddOrUpdateItemSimple",
-                data: data,
-                cache: false,
-                success: function (data) {
-                    if (!data.isSuccess) {
-                        $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
-
-                    }
-                    else {
-                        window.location.href = '/Item/Index'
-
-                    }
-                }
-            });
     }
 
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        url: "/Item/AddOrUpdateItemSimple",
+        data: data,
+        cache: false,
+        success: function (data) {
+            if (!data.isSuccess) {
+                $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
+
+            }
+            else {
+                window.location.href = '/Item/Index'
+
+            }
+        }
+    });
+}
 
 
 
- 
+
+
 

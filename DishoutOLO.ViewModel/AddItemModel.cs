@@ -24,6 +24,8 @@ namespace DishoutOLO.ViewModel
         public bool  IsTax { get; set; }
         public bool IsActive { get; set; }
 
+        public String TaxName { get; set; }
+        public int TaxPercentage { get; set; }
         public bool IsChooseChoices { get; set; }
 
         public string ItemDescription { get; set; }

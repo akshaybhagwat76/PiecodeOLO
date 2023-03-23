@@ -22,6 +22,10 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IitemgroupService, ItemgroupService>();
 builder.Services.AddScoped<IitemgroupRepository, ItemgroupRepository>();
+builder.Services.AddScoped<IModifierService, ModifierService>();
+builder.Services.AddScoped<IModifierRepository, ModifierRepository>();
+builder.Services.AddScoped<IModifierGroupService, ModifierGroupService>();
+builder.Services.AddScoped<IModifierGroupRepository, ModifierGroupRepository>();
 builder.Services.AddScoped<LoggerProvider>();
 
 

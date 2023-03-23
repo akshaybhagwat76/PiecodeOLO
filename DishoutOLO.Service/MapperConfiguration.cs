@@ -17,6 +17,9 @@ namespace DishoutOLO
             CreateMap<Category,AddCategoryModel>().ReverseMap();
             CreateMap<Article,AddArticleModel>().ReverseMap();
             CreateMap<ItemGroups, AddItemgroupsModel>().ReverseMap();
+            CreateMap<Modifier, AddModifierModel>().ReverseMap();
+            CreateMap<ModifierGroup, AddModifierGroupModel>().ReverseMap();
+
 
             CreateMap<Item,AddItemModel>()
                 .ForMember(entity => entity.File, options => options.Ignore()).ReverseMap();
