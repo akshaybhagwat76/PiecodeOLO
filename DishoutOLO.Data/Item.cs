@@ -8,7 +8,7 @@ namespace DishoutOLO.Data
 
     public class Item : BaseEntity
     {
-        public bool IsVeg { get; set; }
+        
         [Required]
         [ForeignKey("ItemId")]
         public int CategoryId { get; set; }
@@ -18,21 +18,20 @@ namespace DishoutOLO.Data
         public string? ItemDescription { get; set; }
 
         public string ItemImage { get; set; }
-        public bool IsTax { get; set; }
-        public string? TaxName { get; set; }
-        public int TaxPercentage { get; set; }
-        public bool IsCombo { get; set; }
+        
+        public int UnitCost { get; set; }
 
-        public string? ItemsAvailable { get; set; }
-        public string? AdditionalChoices { get; set; }
+        public int  MSRP { get; set; }
 
-        public bool? IsChooseChoices {get; set;}
-
-        public int extraCheeseOption { get; set; }
-
-        public int extraChickenOption { get; set; }
-
-        public int MayonnaiseOption { get; set; }
+        public string taxrate1 { get; set; }    
+        public string taxrate2 { get; set; }
+        public string taxrate3 { get; set; }
+        public string taxrate4 { get; set;}
     }
+ }
 
-}
+
+
+
+    
+

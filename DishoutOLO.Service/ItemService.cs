@@ -125,8 +125,7 @@ namespace DishoutOLO.Service
                                                        CategoryName = ct.CategoryName,
                                                        ItemName = it.ItemName,
                                                        ItemImage = it.ItemImage,
-                                                       IsCombo = it.IsCombo,
-                                                       IsActive = it.IsActive,
+                                                      IsActive = it.IsActive,
 
                                                        Id = it.Id
 
@@ -205,7 +204,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _itemRepository.GetAll().Where(x => x.IsCombo).ToList() };
+                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _itemRepository.GetAll().Where(x => x.IsActive).ToList() };
 
             }
             catch (Exception)
@@ -223,7 +222,7 @@ namespace DishoutOLO.Service
                ListItemModel item = _itemRepository.GetListByPredicate(x => x.IsActive  && x.Id == Id
                                      )
                                      .Select(y => new ListItemModel()
-                                     { Id = y.Id, ItemName = y.ItemName, IsCombo = y.IsCombo,IsChooseChoices=y.IsChooseChoices, IsTax = y.IsTax, IsVeg = y.IsVeg, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription,ItemImage=y.ItemImage }
+                                     { Id = y.Id, ItemName = y.ItemName, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription,ItemImage=y.ItemImage }
                                      ).FirstOrDefault();
 
                 if (item != null)
@@ -231,13 +230,10 @@ namespace DishoutOLO.Service
                     AddItemModel obj = new AddItemModel();
                     obj.Id = item.Id;
                     obj.ItemName = item.ItemName;
-                    obj.IsVeg = item.IsVeg;
-                    obj.IsTax = item.IsTax;
-                    obj.IsCombo = item.IsCombo;
                     obj.ItemDescription = item.ItemDescription;
                     obj.CategoryId = item.CategoryId;
                     obj.ItemImage= item.ItemImage;
-                    obj.IsChooseChoices = item.IsChooseChoices??false;
+                   
 
 
                     return obj;

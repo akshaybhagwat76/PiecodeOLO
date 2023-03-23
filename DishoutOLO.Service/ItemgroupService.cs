@@ -30,7 +30,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _itemRepository.GetAll().Where(x => x.IsCombo).ToList() };
+                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _itemRepository.GetAll().Where(x => x.IsActive).ToList() };
 
             }
             catch (Exception)
@@ -112,7 +112,7 @@ namespace DishoutOLO.Service
 
                 return filter;
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             {
                 return filter;
             }

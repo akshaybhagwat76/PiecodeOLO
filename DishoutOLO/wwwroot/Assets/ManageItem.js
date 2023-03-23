@@ -25,27 +25,7 @@
     })
 });
 
-$(document).ready(function () {
 
-    $(".Taxmenu").hide();
-    $("#TaxYes").click(function () {
-        $(".Taxmenu").show();
-    });
-    $("#TaxNo").click(function () {
-        $(".Taxmenu").hide();
-    });
-});
-
-$(document).ready(function () {
-
-    $(".txtchoice").hide();
-    $("#rdYesType").click(function () {
-        $(".txtchoice").show();
-    });
-    $("#rdNoType").click(function () {
-        $(".txtchoice").hide();
-    });
-});
 
 function Ajaxform(retval) {
     if (retval) {
@@ -54,30 +34,18 @@ function Ajaxform(retval) {
             CategoryId: $("#CategoryId").val(),
             ItemName: $("#ItemName").val(),
             ItemImage: $("#ItemImage").val(),
-            IsCombo: $("#IsCombo").is(':checked') ? true : false,
-            IsVeg: $("#Veg").val() == 'Veg' ? true : false,
-            IsTax: $("#t1").val() == 'Yes' ? true : false,
-            ItemDescription: $("#ItemDescription").val(),
-            IsVeg: $("#Choices").val() == 'Veg' ? true : false,
-            IsChooseChoice: $(".ChoiceType1").val() == 'rdYesType' ? true : false
-
+           ItemDescription: $("#ItemDescription").val(),
+           
         }
     }
-    var taxName = $("#TaxName").val().trim();
-    if (data.IsTax && taxName!=null &&taxName.length>0) {
-        alerts = { ...alerts, 3: { app: 'hey there', message: 'another message' } }
-    }
-
+    
     var formData = new FormData();
     formData.append("Id", data.Id);
     formData.append("CategoryId", data.CategoryId);
     formData.append("ItemName", data.ItemName);
     formData.append("File", $("#itemId")[0].files[0]);
-    formData.append("IsVeg", data.IsVeg);
-    formData.append("IsCombo", data.IsCombo);
-    formData.append("IsTax", data.IsTax);
     formData.append("ItemDescription", data.ItemDescription);
-    formData.append("IsChooseChoice", data.IsChooseChoice);
+    
 
     $.ajax({
         type: "POST",
@@ -108,14 +76,8 @@ function Ajaxwithform(retval) {
             CategoryId: $("#CategoryId").val(),
             ItemName: $("#ItemName").val(),
             ItemImage: $("#ItemImage").val(),
-            IsCombo: $("#IsCombo").is(':checked') ? true : false,
-            IsVeg: $("#Veg").val() == 'Veg' ? true : false,
-            IsTax: $("#t1").val() == 'Yes' ? true : false,
-            ItemDescription: $("#ItemDescription").val(),
-            IsChooseChoice: $(".ChoiceType1").val() == 'rdYesType' ? true : false,
-            MayonnaiseOption: $('#MayonnaiseOption').val(),
-            extraChickenOption: $('#extraChickenOption').val(),
-            extraCheeseOption: $('#extraCheeseOption').val()
+           ItemDescription: $("#ItemDescription").val(),
+            
         }
 
     }
