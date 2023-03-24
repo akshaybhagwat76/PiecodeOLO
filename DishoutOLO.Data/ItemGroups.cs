@@ -7,11 +7,11 @@ namespace DishoutOLO.Data
     {
 
         public string ItemGroup { get; set; }
-        [Required]
-        [ForeignKey("ItemId")]
-        public virtual ItemGroups ItemGroups1 { get; set; }
-
+        //[Required]
+        //[ForeignKey("ItemId")]
+        //public virtual ItemGroups ItemGroups1 { get; set; }
         public int ItemId { get; set; }
+
         public int DisplayOrder { get; set; }
 
         [NotMapped]

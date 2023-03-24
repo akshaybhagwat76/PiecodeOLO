@@ -16,92 +16,87 @@
                 </div>
                 <div class="card-body">
                     <div class="pl-lg-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                @Html.Label("Item Name", null,htmlAttributes: new { @class = "ml-1" })
-                                @Html.Editor("ItemName", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "Item Name" } })
-                                                         
+                       <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.Label("Item Name", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.Editor("ItemName", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "Item Name" } })
+
+                                </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CategoryId,new {@class="form-control-label"})
                                     @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList,"---SELECT-----", new { @class = "form-control required" })
                                 </div>
                             </div>
-                           <div class="col-md-12">
-                                    <div class="form-group">
-
-                                        @Html.Label("Item Description", null,htmlAttributes: new { @class = "ml-1" })
-
-                                        @Html.TextArea("ItemDescription",new { @class = "form-control required" })
-                                    </div>
-                                </div>
-
-
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div class="form-group">
-                                        @Html.Label("taxrate1", null,htmlAttributes: new { @class = "ml-1" })
-                                        @Html.Editor("taxrate1", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "taxrate1" } })
-
-                                    </div>  
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        @Html.Label("taxrate2", null,htmlAttributes: new { @class = "ml-1" })
-                                        @Html.Editor("taxrate2", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "taxrate2" } })
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div class="form-group">
-                                        @Html.Label("taxrate3", null,htmlAttributes: new { @class = "ml-1" })
-                                        @Html.Editor("taxrate3", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "taxrate3" } })
-
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        @Html.Label("taxrate4", null,htmlAttributes: new { @class = "ml-1" })
-                                        @Html.Editor("taxrate4", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "taxrate4" } })
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
                                 <div class="form-group">
                                     @Html.Label("UnitCost", null,htmlAttributes: new { @class = "ml-1" })
                                     @Html.Editor("UnitCost", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "Unicost" } })
-
                                 </div>
                             </div>
-
-
-                            <div class="col-md-12">
+                            <div class="col">
                                 <div class="form-group">
                                     @Html.Label("MSRP", null,htmlAttributes: new { @class = "ml-1" })
                                     @Html.Editor("MSRP", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "MSRP" } })
 
                                 </div>
                             </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.Label("TaxRate1", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.Editor("TaxRate1", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate1" } })
 
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.Label("TaxRate2", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.Editor("TaxRate2", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate2" } })
 
+                                </div>
+                            </div>
+                        </div>
 
-                            <div class="col-md-12">
-                                                                  
-                                        <img src="~/Content/Item/@Model.ItemImage" />
-                                                                   
-                                    </div>
-                                <div class="col-md-12">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.Label("TaxRate3", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.Editor("TaxRate3", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate3" } })
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.Label("TaxRate4", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.Editor("TaxRate4", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate4" } })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.Label("Item Description", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.TextArea("ItemDescription",new { @class = "form-control required" })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="col mt-4">
+                                    <img src="~/Content/Item/@Model.ItemImage" id="imageurl"/>
+                                </div>
+                                <div class="col mt-4">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.ItemImage,new {@class="form-control-label"})
                                         <input type="file" name="file" id="itemId"  />
                                     </div>
                                 </div>
-                            
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -120,11 +115,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 
 @section Scripts{
     <script src="~/Assets/ManageItem.js" asp-append-version="true"></script>

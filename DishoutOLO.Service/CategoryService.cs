@@ -51,7 +51,8 @@ namespace DishoutOLO.Service
                 else
                 {
                     Category categoryModify = _categoryRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                    DateTime createdDt = categoryModify.CreationDate ?? new DateTime() ; bool isActive = categoryModify.IsActive;
+                    DateTime createdDt = categoryModify.CreationDate ?? new DateTime() ; 
+                    bool isActive = categoryModify.IsActive;
                     categoryModify = _mapper.Map<AddCategoryModel, Category>(data);
                     categoryModify.ModifiedDate = DateTime.Now; categoryModify.CreationDate = createdDt; categoryModify.IsActive = isActive;
                     _categoryRepository.Update(categoryModify);
@@ -94,7 +95,7 @@ namespace DishoutOLO.Service
                 IEnumerable<ListCategoryModel> data = _categoryRepository.GetListByPredicate(x => x.IsActive == true
                                      )
                                      .Select(y => new ListCategoryModel()
-                                     { Id = y.Id, CategoryName = y.CategoryName, IsActive = y.IsActive }
+                                     { Id = y.Id, CategoryName = y.CategoryName, IsActive = y.IsActive,Status=y.Status }
                                      ).Distinct().OrderByDescending(x => x.Id).AsEnumerable();
 
                 var sortColumn = string.Empty;
@@ -177,7 +178,8 @@ namespace DishoutOLO.Service
                ListCategoryModel category = _categoryRepository.GetListByPredicate(x => x.IsActive == true && x.Id == Id
                                      )
                                      .Select(y => new ListCategoryModel()
-                                     { Id = y.Id, CategoryName = y.CategoryName, IsActive = y.IsActive }
+                                     { Id = y.Id, CategoryName = y.CategoryName, IsActive = y.IsActive ,Status = y.Status
+                                        }
                                      ).FirstOrDefault();
 
                 if (category != null)
@@ -185,6 +187,7 @@ namespace DishoutOLO.Service
                     AddCategoryModel obj = new AddCategoryModel();
                     obj.Id = category.Id;
                     obj.CategoryName = category.CategoryName;
+                    obj.Status = category.Status;
                     return obj;
                 }
                 return new AddCategoryModel();

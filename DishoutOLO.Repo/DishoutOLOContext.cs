@@ -7,8 +7,18 @@ namespace DishoutOLO.Repo
     {
         public DishoutOLOContext(DbContextOptions<DishoutOLOContext> options) : base(options)
         {
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
-            
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+        }
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Menu> Menus { get; set; }

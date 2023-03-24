@@ -13,7 +13,24 @@ $("document").ready(function () {
         toastr.success('Status Has Been Changed!')
     })
 });
+$("#customerTbl").on("change", "#back", function () {
+    var id = $(this).data('id');
+    //var checked = $(this).is(':checked') == true;
+    if ($(this).is(':checked') == true) {
+       
+        $('#deactivemodel').data('id', id).modal('show');
+        $('#deactivemodel').modal('show');
+        
+       
+    }
+    else {
+        $('#activemodel').data('id', id).modal('show');
+        $('#activemodel').modal('show');
+    
+    }
 
+
+});
 function loadAllCustomer() {
 
     var url = "/Customer/GetAllCustomer"
@@ -59,22 +76,7 @@ function loadAllCustomer() {
             },
 
         ],
-        "fnDrawCallback": function () {
-
-            $('#back').on('change', function () {
-                if ($(this).is(":checked")) {
-                    $('#deactivemodel').modal('toggle');
-                      
-                }
-                else {
-                    $('#activemodel').modal('toggle');
-                }
-            })
-
-            
-            
-        }
-
+       
     }); 
          
     
@@ -82,5 +84,13 @@ function loadAllCustomer() {
 }
 
 
- 
-    
+$('#back').change(function () {
+    if ($('#back').is(':checked') == true) {
+        $('#customerTbl').prop('disabled', true);
+
+    } else {
+        $('#customerTbl').val('').prop('disabled', false);
+
+    }
+
+});

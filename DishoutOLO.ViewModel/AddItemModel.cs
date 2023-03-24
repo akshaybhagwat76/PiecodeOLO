@@ -27,10 +27,10 @@ namespace DishoutOLO.ViewModel
 
         public int MSRP { get; set; }
 
-        public string taxrate1 { get; set; }
-        public string taxrate2 { get; set; }
-        public string taxrate3 { get; set; }
-        public string taxrate4 { get; set; }
+        public string TaxRate1 { get; set; }
+        public string TaxRate2 { get; set; }
+        public string TaxRate3 { get; set; }
+        public string TaxRate4 { get; set; }
 
     }
     public class ListItemModel
@@ -54,10 +54,10 @@ namespace DishoutOLO.ViewModel
 
         public int MSRP { get; set; }
 
-        public string taxrate1 { get; set; }
-        public string taxrate2 { get; set; }
-        public string taxrate3 { get; set; }
-        public string taxrate4 { get; set; }
+        public string TaxRate1 { get; set; }
+        public string TaxRate2 { get; set; }
+        public string TaxRate3 { get; set; }
+        public string TaxRate4 { get; set; }
 
 
     }
@@ -81,10 +81,10 @@ namespace DishoutOLO.ViewModel
 
         public int MSRP { get; set; }
 
-        public string taxrate1 { get; set; }
-        public string taxrate2 { get; set; }
-        public string taxrate3 { get; set; }
-        public string taxrate4 { get; set; }
+        public string TaxRate1 { get; set; }
+        public string TaxRate2 { get; set; }
+        public string TaxRate3 { get; set; }
+        public string TaxRate4 { get; set; }
     }
 
     public class DeleteItemModel

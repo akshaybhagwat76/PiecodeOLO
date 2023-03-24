@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
+   
 
-    $("#btn-Add").on("click", function () {
+    $("#btn-Add ").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
         $("#myForm .required").each(function () {
@@ -9,19 +10,17 @@
                 $(this).addClass("error");
                 retval = false;
             }
-            else {  
+            else {
                 $(this).removeClass("error");
             }
         });
-
         if (retval) {
             var data = {
                 id: $("#Id").val(),
-                ArticleName: $("#ArticleName").val().trim(),
+                ArticleName: $("#ArticleName").val(),
                 ArticleDescription: $("#ArticleDescription").val(),
                 IsActive: $("#IsActive").val() == "true" ? true : false
             }
-            //StartProcess();
             $.ajax({
                 type: "POST",
                 url: "/Article/AddOrUpdateArticle",
@@ -36,5 +35,8 @@
                 }
             });
         }
+
     })
+   
+
 });

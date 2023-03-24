@@ -76,8 +76,8 @@ namespace DishoutOLO.Service
                             _itemRepository.Update(item);
                         }
                     }
-                    
 
+           
                     return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Item") : string.Format(Constants.UpdatedSuccessfully, "Item") };
                 }
             }
@@ -126,7 +126,12 @@ namespace DishoutOLO.Service
                                                        ItemName = it.ItemName,
                                                        ItemImage = it.ItemImage,
                                                       IsActive = it.IsActive,
-
+                                                      UnitCost= it.UnitCost,
+                                                      MSRP = it.MSRP,
+                                                      TaxRate1 = it.TaxRate1,
+                                                      TaxRate2 = it.TaxRate2,
+                                                      TaxRate3  =it.TaxRate3,
+                                                      TaxRate4 =it.TaxRate4,
                                                        Id = it.Id
 
                                                    }).AsEnumerable();
@@ -222,7 +227,16 @@ namespace DishoutOLO.Service
                ListItemModel item = _itemRepository.GetListByPredicate(x => x.IsActive  && x.Id == Id
                                      )
                                      .Select(y => new ListItemModel()
-                                     { Id = y.Id, ItemName = y.ItemName, IsActive = y.IsActive, CategoryId = y.CategoryId, ItemDescription = y.ItemDescription,ItemImage=y.ItemImage }
+                                     { Id = y.Id, ItemName = y.ItemName, IsActive = y.IsActive, 
+                                         CategoryId = y.CategoryId,
+                                         ItemDescription = y.ItemDescription,
+                                         ItemImage=y.ItemImage ,
+                                         UnitCost=y.UnitCost,
+                                         MSRP=y.MSRP,
+                                         TaxRate1=y.TaxRate1,
+                                         TaxRate2=y.TaxRate2,
+                                         TaxRate3 =y.TaxRate3,
+                                         TaxRate4 =y.TaxRate4}
                                      ).FirstOrDefault();
 
                 if (item != null)
@@ -233,7 +247,13 @@ namespace DishoutOLO.Service
                     obj.ItemDescription = item.ItemDescription;
                     obj.CategoryId = item.CategoryId;
                     obj.ItemImage= item.ItemImage;
-                   
+                    obj.UnitCost = item.UnitCost;   
+                    obj.MSRP = item.MSRP;
+                    obj.TaxRate1=item.TaxRate1;
+                    obj.TaxRate2=item.TaxRate2;
+                    obj.TaxRate3 = item.TaxRate3;
+                    obj.TaxRate4 = item.TaxRate4;
+                        
 
 
                     return obj;

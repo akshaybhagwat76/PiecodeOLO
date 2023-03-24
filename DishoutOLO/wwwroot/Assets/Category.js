@@ -22,7 +22,6 @@ $('#delete-btn').click(function () {
             else {
                 $('#deleteModal').modal('hide');
                 table.ajax.reload()
-            //    funToastr(true, response.message);
             }
         },
         error: function (error) {
@@ -49,7 +48,18 @@ function loadAllCategory() {
         "columns": [
             {
                 "data": "categoryName"
-            },  
+            },
+            {
+                "data": function (show) {
+                    if (show.status == true) {
+                        return "Yes";
+                    }
+                    else {
+                        return "No";
+                    }
+                }
+            },
+            
             
             {
                 orderable: false ,

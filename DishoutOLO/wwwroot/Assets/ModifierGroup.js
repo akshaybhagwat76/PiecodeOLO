@@ -50,13 +50,13 @@ function loadAllModifierGroup() {
             {
                 "data": "modifierGroupName"
             },
-            {
-                "data": "price"
-            },
+            
             {
                 "data":"modifierName"
             },
-
+            {
+                "data": "price"
+            },
 
             {
                 orderable: false,

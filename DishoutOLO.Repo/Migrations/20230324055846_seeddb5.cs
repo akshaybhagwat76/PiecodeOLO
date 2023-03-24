@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DishoutOLO.Repo.Migrations
 {
     /// <inheritdoc />
-    public partial class Modifier : Migration
+    public partial class seeddb5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,6 +37,7 @@ namespace DishoutOLO.Repo.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -89,12 +90,6 @@ namespace DishoutOLO.Repo.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ItemGroups", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ItemGroups_ItemGroups_ItemId",
-                        column: x => x.ItemId,
-                        principalTable: "ItemGroups",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -122,21 +117,16 @@ namespace DishoutOLO.Repo.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IsVeg = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     ItemName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ItemDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ItemImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsTax = table.Column<bool>(type: "bit", nullable: false),
-                    TaxName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TaxPercentage = table.Column<int>(type: "int", nullable: false),
-                    IsCombo = table.Column<bool>(type: "bit", nullable: false),
-                    ItemsAvailable = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdditionalChoices = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsChooseChoices = table.Column<bool>(type: "bit", nullable: true),
-                    extraCheeseOption = table.Column<int>(type: "int", nullable: false),
-                    extraChickenOption = table.Column<int>(type: "int", nullable: false),
-                    MayonnaiseOption = table.Column<int>(type: "int", nullable: false),
+                    UnitCost = table.Column<int>(type: "int", nullable: false),
+                    MSRP = table.Column<int>(type: "int", nullable: false),
+                    TaxRate1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaxRate2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaxRate3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaxRate4 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -151,7 +141,7 @@ namespace DishoutOLO.Repo.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,7 +168,7 @@ namespace DishoutOLO.Repo.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -204,13 +194,8 @@ namespace DishoutOLO.Repo.Migrations
                         column: x => x.ModifierId,
                         principalTable: "Modifiers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemGroups_ItemId",
-                table: "ItemGroups",
-                column: "ItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_CategoryId",

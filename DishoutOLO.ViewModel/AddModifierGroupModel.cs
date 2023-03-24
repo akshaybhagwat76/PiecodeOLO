@@ -16,7 +16,7 @@ namespace DishoutOLO.ViewModel
 
         public string ModifierName { get; set; }
 
-        [DisplayName("ModifierGroup Name")]
+        [DisplayName("Modifier Group Name")]
         public string ModifierGroupName { get; set; }
     }
     public class UpdateModifierGroupModel
