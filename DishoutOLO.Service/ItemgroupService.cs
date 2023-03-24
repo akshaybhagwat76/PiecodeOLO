@@ -30,7 +30,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _itemRepository.GetAll().Where(x => x.IsCombo).ToList() };
+                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _itemRepository.GetAll().Where(x => x.IsActive).ToList() };
 
             }
             catch (Exception)
@@ -112,7 +112,7 @@ namespace DishoutOLO.Service
 
                 return filter;
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             {
                 return filter;
             }
@@ -162,7 +162,6 @@ namespace DishoutOLO.Service
         {
             try
             {
-                //ItemGroups Item = _itemgroupRepository.GetAllAsQuerable().FirstOrDefault(x => x.IsActive == false && (x.ItemGroup.ToLower() == data.ItemGroup.ToLower()));
                 ItemGroups Item = _itemgroupRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.ItemGroup.ToLower() == data.ItemGroup.ToLower() || x.DisplayOrder == data.DisplayOrder));
 
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();

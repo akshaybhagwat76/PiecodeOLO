@@ -18,5 +18,10 @@ namespace DishoutOLO.Repo
 
         public DbSet<ItemGroups> ItemGroup { get; set; }    
         public DbSet<Customer> Customers { get; set; }  
+
+        public DbSet<Modifier> Modifiers { get; set; }
+
+        public DbSet<ModifierGroup> ModifierGroups { get; set; }
+
     }
 }

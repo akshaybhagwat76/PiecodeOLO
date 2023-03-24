@@ -63,16 +63,7 @@ function loadAllItem() {
                     return "<img src=" + imgPath + " height='60'width='100'>";
                 }
             },
-            { 
-                "data": function (show) {
-                    if (show.isCombo == true) {
-                        return "Yes";
-                    }
-                    else {
-                        return "No";
-                    }
-                }
-            },
+            
             {
                 orderable: false,
                 "render": function (data, type, full, meta) {

@@ -19,25 +19,18 @@ namespace DishoutOLO.ViewModel
         public string ItemImage { get; set; }
 
         public IFormFile File { get; set; }
-        public bool IsCombo { get; set; }
-        public bool  IsVeg { get; set; }
-        public bool  IsTax { get; set; }
+       
         public bool IsActive { get; set; }
 
-        public bool IsChooseChoices { get; set; }
+       public string ItemDescription { get; set; }
+        public int UnitCost { get; set; }
 
-        public string ItemDescription { get; set; }
+        public int MSRP { get; set; }
 
-
-        public int extraCheeseOption { get; set; }
-
-        public int extraChickenOption { get; set; }
-
-        public int MayonnaiseOption { get; set; }
-
-
-
-
+        public string taxrate1 { get; set; }
+        public string taxrate2 { get; set; }
+        public string taxrate3 { get; set; }
+        public string taxrate4 { get; set; }
 
     }
     public class ListItemModel
@@ -53,13 +46,18 @@ namespace DishoutOLO.ViewModel
         public string ItemImage { get; set; }
 
         public IFormFile File { get; set; }
-        public bool  IsCombo { get; set; }
+      
         public bool IsActive { get; set; }
-        public bool   IsVeg { get; set; }
-        public bool  IsTax { get; set; }
-
+        
         public string ItemDescription { get; set; }
-        public bool? IsChooseChoices { get; set; }
+        public int UnitCost { get; set; }
+
+        public int MSRP { get; set; }
+
+        public string taxrate1 { get; set; }
+        public string taxrate2 { get; set; }
+        public string taxrate3 { get; set; }
+        public string taxrate4 { get; set; }
 
 
     }
@@ -75,16 +73,18 @@ namespace DishoutOLO.ViewModel
         public string ItemImage { get; set; }
 
         public IFormFile File { get; set; }
-        public bool IsCombo { get; set; }
+     
         public string ItemDescription { get; set; }
 
-        public bool IsVeg { get; set; }
-        public bool IsTax { get; set; }
         public bool IsActive { get; set; }
-        public bool IsChooseChoices { get; set; }
+        public int UnitCost { get; set; }
 
+        public int MSRP { get; set; }
 
-
+        public string taxrate1 { get; set; }
+        public string taxrate2 { get; set; }
+        public string taxrate3 { get; set; }
+        public string taxrate4 { get; set; }
     }
 
     public class DeleteItemModel
