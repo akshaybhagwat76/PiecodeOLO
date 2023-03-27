@@ -15,17 +15,17 @@ $("document").ready(function () {
 });
 $("#customerTbl").on("change", "#back", function () {
     var id = $(this).data('id');
-    //var checked = $(this).is(':checked') == true;
     if ($(this).is(':checked') == true) {
        
         $('#deactivemodel').data('id', id).modal('show');
         $('#deactivemodel').modal('show');
-        
-       
+        this.checked == true;
+              
     }
     else {
         $('#activemodel').data('id', id).modal('show');
         $('#activemodel').modal('show');
+        this.checked == false;
     
     }
 
@@ -67,10 +67,9 @@ function loadAllCustomer() {
             },
             {
                 orderable: false,
-                "render": function () {
-
-                    return ` <input type="checkbox" name="option" id="back">`
-                                                               
+                "render": function (data, type, row, meta) {
+                    
+                    return '<input type="checkbox" data-id="'+row.id+'" '+ (row.isActive ? ' checked' : '') + '/>';
 
                 }
             },
@@ -84,13 +83,8 @@ function loadAllCustomer() {
 }
 
 
-$('#back').change(function () {
-    if ($('#back').is(':checked') == true) {
-        $('#customerTbl').prop('disabled', true);
 
-    } else {
-        $('#customerTbl').val('').prop('disabled', false);
 
-    }
 
-});
+
+    

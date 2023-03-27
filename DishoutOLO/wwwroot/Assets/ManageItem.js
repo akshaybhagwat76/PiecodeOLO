@@ -120,5 +120,16 @@ function Ajaxwithform(retval) {
 
     
 
+//$(document).ready(function () {
+//    $('.btn-sm').on("click", function (e) {
+//        $('#imageurl').toggle('show');
+//    });
+//});
 
-
+$(document).ready(function () {
+    $("#imageurl").hide();
+    $("#btn-img").click(function () {
+        $("#imageurl").show();
+    });
+   
+});

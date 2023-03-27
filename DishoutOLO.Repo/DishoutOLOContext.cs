@@ -32,6 +32,8 @@ namespace DishoutOLO.Repo
         public DbSet<Modifier> Modifiers { get; set; }
 
         public DbSet<ModifierGroup> ModifierGroups { get; set; }
+        public DbSet<Program> Programs { get; set; }
+
 
     }
 }

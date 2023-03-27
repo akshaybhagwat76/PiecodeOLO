@@ -32,8 +32,7 @@ namespace DishoutOLO.Service
             try
             {
 
-                var data = _customerRepository.GetListByPredicate(x => x.IsActive == true
-                                      )
+                var data = _customerRepository.GetAll()
                                       .Select(y => new ListCustomerModel()
                                       {
                                           Id = y.Id,

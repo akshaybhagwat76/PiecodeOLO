@@ -22,46 +22,62 @@
 
                 <div class="card-body">
                     <div class="pl-lg-4">
-                        <div class="row">
-                            <div class="col-md-12">
+                        <div class="row mb-4">
+                            <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.MenuName,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.MenuName, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Menu Name" } })
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MenuPrice,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.MenuPrice, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Menu Price" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ProgramId,new {@class="form-control-label"})
+                                    @Html.DropDownListFor(model=>model.ProgramId, ViewBag.ProgramList as SelectList, "---SELECT---",   new { @class = "form-control required",multiple = "multiple" })
+
+
+                                </div>
+                            </div>
+                            <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CategoryId,new {@class="form-control-label"})
                                     @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList, "---SELECT---", new { @class = "form-control required" })
-
 
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.MenuPrice,new {@class="form-control-label"})
-                                @Html.EditorFor(model => model.MenuPrice, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Menu Price" } })
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model=>model.Description,new {@class="form-control-label"})
+                                    @Html.TextAreaFor(model=>model.Description,new { @class = "form-control"} )
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <img src="~/Content/Menu/@Model.Image" />
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Image,new {@class="form-control-label"})
+                                        <input type="file" name="file" id="menuId" />
+
+                                    </div>
+                            </div>
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <img src="~/Content/Menu/@Model.Image" />
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Image,new {@class="form-control-label"})
-                                <input type="file" name="file" id="menuId" />
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                                </div>
                 <div class="card-footer">
                     <div class="row align-items-center">
                         <div class="col-12 text-center">

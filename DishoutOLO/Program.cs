@@ -26,6 +26,9 @@ builder.Services.AddScoped<IModifierService, ModifierService>();
 builder.Services.AddScoped<IModifierRepository, ModifierRepository>();
 builder.Services.AddScoped<IModifierGroupService, ModifierGroupService>();
 builder.Services.AddScoped<IModifierGroupRepository, ModifierGroupRepository>();
+builder.Services.AddScoped<IProgramService, ProgramService>();
+builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
+
 builder.Services.AddScoped<LoggerProvider>();
 
 

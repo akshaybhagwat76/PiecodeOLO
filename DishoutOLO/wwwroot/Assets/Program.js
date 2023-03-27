@@ -1,29 +1,27 @@
-﻿//const { data } = require("jquery");
-
-var table;
+﻿var table;
 $("document").ready(function () {
-    loadAllArticles();
-
+    loadAllProgram();
 })
-$("#articleTbl").on("click", "a#btn-delete", function () {
+$("#programTbl").on("click", "a#btn-delete", function () {
     var id = $(this).data('id');
     $('#deleteModal').data('id', id).modal('show');
     $('#deleteModal').modal('show');
 });
+
 $('#delete-btn').click(function () {
     var id = $('#deleteModal').data('id');
     $.ajax({
         type: "GET",
-        url: "/Article/DeleteArticle",
+        url: "/Program/DeleteProgram",
         data: { id: id },
         success: function (response) {
             if (!response.isSuccess) {
                 $('#deleteModal').modal('hide');
+                table.ajax.reload()
             }
             else {
                 $('#deleteModal').modal('hide');
                 table.ajax.reload()
-                //    funToastr(true, response.message);
             }
         },
         error: function (error) {
@@ -32,12 +30,10 @@ $('#delete-btn').click(function () {
 });
 
 
+function loadAllProgram() {
+    var url = "/Program/GetAllProgram"
 
-
-function loadAllArticles() {
-    
-    var url = "/Article/GetAllArticle"
-    table = $("#articleTbl").DataTable({
+    table = $("#programTbl").DataTable({
 
         "searching": true,
         "serverSide": true,
@@ -51,13 +47,15 @@ function loadAllArticles() {
 
         "columns": [
             {
-                "data": "articleName"
+                "data": "programName"
             },
+            
+
 
             {
                 orderable: false,
                 "render": function (data, type, full, meta) {
-                    return ` <a href="/Article/Edit/` + full.id + `" data-id="` + full.id + `" onclick="show()" class="btn btn-success btn-sm" title="Edit">
+                    return ` <a href="/Program/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm" title="Edit">
                                     <i class="fa fa-edit"></i>
                              </a>
                              <a href="javascript:void(0)" id="btn-delete" data-id="`+ full.id + `" class="btn btn-danger btn-sm" title="Delete">
