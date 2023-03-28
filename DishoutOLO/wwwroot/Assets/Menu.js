@@ -57,6 +57,7 @@ function loadAllMenu() {
             {
                 "data": "menuPrice"
             },
+            
             {
                 orderable: false,
 

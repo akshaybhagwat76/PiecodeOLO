@@ -30,6 +30,7 @@ namespace DishoutOLO.ViewModel
         public string ProgramName    { get; set; }
 
         public bool IsActive { get; set; }
+       
     }
 
     public class DeleteProgramModel
