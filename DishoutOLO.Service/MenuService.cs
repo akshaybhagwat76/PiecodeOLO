@@ -26,7 +26,7 @@ namespace DishoutOLO.Service
 
         #region Crud Methods
         public DishoutOLOResponseModel AddOrUpdateMenu(AddMenuModel data, string imgPath = "")
-            {
+        {
             try
             {
                 Menu Menu = _menuRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.MenuName.ToLower() == data.MenuName.ToLower()));
@@ -58,7 +58,6 @@ namespace DishoutOLO.Service
                     menu = _mapper.Map<AddMenuModel, Menu>(data);
                     menu.CreationDate = CreationDate;
                     menu.ModifiedDate = DateTime.Now;
-                    menu.Image = !string.IsNullOrEmpty(imgPath)?imgPath:menu.Image;
                     _menuRepository.Update(menu);
                 }
                 return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "category") : string.Format(Constants.UpdatedSuccessfully, "category") };
@@ -82,7 +81,7 @@ namespace DishoutOLO.Service
                     _menuRepository.SaveChanges();
                 }
 
-                return new DishoutOLOResponseModel { IsSuccess = true, Data = menu.Image, Message = string.Format(Constants.DeletedSuccessfully, "Menu") };
+                return new DishoutOLOResponseModel { IsSuccess = true, Message = string.Format(Constants.DeletedSuccessfully, "Menu") };
             }
             catch (Exception ex)
             {
@@ -96,17 +95,18 @@ namespace DishoutOLO.Service
         {
             try
             {
-               ListMenuModel menu = _menuRepository.GetListByPredicate(x => x.IsActive == true && x.Id == Id).Select(y => new ListMenuModel()
+                ListMenuModel menu = _menuRepository.GetListByPredicate(x => x.IsActive == true && x.Id == Id).Select(y => new ListMenuModel()
                 {
-                Id = y.Id,
-                MenuName = y.MenuName,
-                MenuPrice = y.MenuPrice,
-                CategoryId = y.CategoryId,
-                Image = y.Image,
-                IsActive = y.IsActive,
-                CategoryName = y.CategoryName
+                    Id = y.Id,
+                    MenuName = y.MenuName,
+                    MenuPrice = y.MenuPrice,
+                    CategoryId = y.CategoryId,
+                    IsActive = y.IsActive,
+                    ProgramId = y.ProgramId,
+                    Description = y.Description,
+                    CategoryName = y.CategoryName
                 }).FirstOrDefault();
-                
+
                 if (menu != null)
                 {
                     AddMenuModel obj = new AddMenuModel();
@@ -115,7 +115,8 @@ namespace DishoutOLO.Service
                     obj.MenuPrice = menu.MenuPrice;
                     obj.IsActive = menu.IsActive;
                     obj.CategoryId = menu.CategoryId;
-                    obj.Image = menu.Image;
+                    obj.ProgramId = menu.ProgramId;
+                    obj.Description = menu.Description;
 
                     return obj;
                 }
@@ -133,18 +134,19 @@ namespace DishoutOLO.Service
             {
 
                 IEnumerable<ListMenuModel> data = (from ct in _categoryRepository.GetAll()
-                            join mn in _menuRepository.GetAll() on
-                            ct.Id equals mn.CategoryId
+                                                   join mn in _menuRepository.GetAll() on
+                                                   ct.Id equals mn.CategoryId
 
-                            where  mn.IsActive==true
-                            select new ListMenuModel
-                            {
-                                CategoryName = ct.CategoryName,
-                                MenuName = mn.MenuName,
-                                MenuPrice = mn.MenuPrice,
-                                Image = mn.Image,
-                                Id = mn.Id,
-                            }).AsEnumerable();
+                                                   where mn.IsActive == true
+                                                   select new ListMenuModel
+                                                   {
+                                                       CategoryName = ct.CategoryName,
+                                                       MenuName = mn.MenuName,
+                                                       MenuPrice = mn.MenuPrice,
+                                                       ProgramId = mn.ProgramId,
+                                                       Description = mn.Description,
+                                                       Id = mn.Id,
+                                                   }).AsEnumerable();
 
 
                 var sortColumn = string.Empty;
@@ -204,7 +206,7 @@ namespace DishoutOLO.Service
             }
 
         }
-      
+
 
         #endregion
 

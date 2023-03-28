@@ -1,10 +1,13 @@
-﻿using DishoutOLO.Helpers;
+﻿using DishoutOLO.Data;
+using DishoutOLO.Helpers;
 using DishoutOLO.Helpers.Provider;
+using DishoutOLO.Repo.Migrations;
 using DishoutOLO.Service.Interface;
 using DishoutOLO.ViewModel;
 using DishoutOLO.ViewModel.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Collections;
 
 namespace DishoutOLO.Controllers
@@ -49,9 +52,6 @@ namespace DishoutOLO.Controllers
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
                 ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
-              // ViewBag.groupdata = new Program().programList();
-
-
             }
             catch (Exception ex)
             {
@@ -89,15 +89,16 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
-                ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
 
+                ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
+                                                          
             }
             catch (Exception ex)
             {
                 _loggerProvider.logmsg(ex.Message);
             }
             return View("ManageMenu", _menuService.GetMenu(id));
-        }
+            }
         #endregion
 
         #region Crud Methods
@@ -111,16 +112,6 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                AddMenuModel menuModel = new AddMenuModel();
-                if (file != null)
-                {
-                    string fileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(file.FileName)}";
-                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Content/Menu", fileName);
-                    Utility.SaveFile(file, path);
-
-                    menuVM.Image = fileName;
-                }
-                
             }
             catch (Exception ex)
             {

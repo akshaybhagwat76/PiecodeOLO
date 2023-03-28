@@ -20,13 +20,10 @@ namespace DishoutOLO
             CreateMap<Modifier, AddModifierModel>().ReverseMap();
             CreateMap<ModifierGroup, AddModifierGroupModel>().ReverseMap();
             CreateMap<Program, AddProgramModel>().ReverseMap();
-
+            CreateMap<Menu, AddMenuModel>().ReverseMap();
 
             CreateMap<Item,AddItemModel>()
                 .ForMember(entity => entity.File, options => options.Ignore()).ReverseMap();
-
-            CreateMap<Menu, AddMenuModel>()
-             .ForMember(entity => entity.File, options => options.Ignore()).ReverseMap();
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel;
+using System.Web.Mvc;
 
 namespace DishoutOLO.ViewModel
 {
@@ -17,14 +18,13 @@ namespace DishoutOLO.ViewModel
         [DisplayName("Category ")]
         public int CategoryId { get; set; }
         public string ProgramName { get; set; }
-        [DisplayName("Program")]
-        public IFormFile File { get; set; }
-        public string Image { get; set; }
         public bool IsActive { get; set; }
 
-        public int ProgramId { get; set; }
+        [DisplayName("Program")]
+        public string ProgramId { get; set; }
         public string Description { get; set; }
 
+        
 
     }
 
@@ -47,7 +47,7 @@ namespace DishoutOLO.ViewModel
         [DisplayName("Program")]
 
         public bool IsActive { get; set; }
-        public int ProgramId { get; set; }
+        public string ProgramId { get; set; }
         public string Description { get; set; }
 
     }
@@ -67,10 +67,11 @@ namespace DishoutOLO.ViewModel
 
         public string Image { get; set; }
 
-        public int ProgramId { get; set; }
+        public string ProgramId { get; set; }
 
         public string Description { get; set; }
         public string ProgramName { get; set; }
+       
 
     }
 
