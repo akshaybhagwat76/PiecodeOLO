@@ -67,7 +67,7 @@ function loadAllItem() {
             {
                 orderable: false,
                 "render": function (data, type, full, meta) {
-                    return ` <a href="/Item/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm  " title="Edit">
+                    return ` <a href="/Item/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm" title="Edit">
                  <i class="fa fa-edit"></i>
                  </a>
 
@@ -91,10 +91,7 @@ $('#CategoryName').on('change', function () {
     table.draw();
 
 });
-
-
-
-    
+   
 
 $('#txtItemName').on('keyup', function () {
     table.columns(2).search($('#txtItemName').val().trim());

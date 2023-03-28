@@ -16,10 +16,15 @@ namespace DishoutOLO.ViewModel
         public string CategoryName { get; set; }
         [DisplayName("Category ")]
         public int CategoryId { get; set; }
-      
+        public string ProgramName { get; set; }
+        [DisplayName("Program")]
         public IFormFile File { get; set; }
         public string Image { get; set; }
         public bool IsActive { get; set; }
+
+        public int ProgramId { get; set; }
+        public string Description { get; set; }
+
 
     }
 
@@ -38,8 +43,13 @@ namespace DishoutOLO.ViewModel
 
         public int CategoryId { get; set; }
         public string Image { get; set; }
+        public string ProgramName { get; set; }
+        [DisplayName("Program")]
 
         public bool IsActive { get; set; }
+        public int ProgramId { get; set; }
+        public string Description { get; set; }
+
     }
 
     public class UpdateMenuModel
@@ -56,6 +66,11 @@ namespace DishoutOLO.ViewModel
         public bool IsActive { get; set; }
 
         public string Image { get; set; }
+
+        public int ProgramId { get; set; }
+
+        public string Description { get; set; }
+        public string ProgramName { get; set; }
 
     }
 

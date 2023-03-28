@@ -19,6 +19,7 @@ namespace DishoutOLO
             CreateMap<ItemGroups, AddItemgroupsModel>().ReverseMap();
             CreateMap<Modifier, AddModifierModel>().ReverseMap();
             CreateMap<ModifierGroup, AddModifierGroupModel>().ReverseMap();
+            CreateMap<Program, AddProgramModel>().ReverseMap();
 
 
             CreateMap<Item,AddItemModel>()

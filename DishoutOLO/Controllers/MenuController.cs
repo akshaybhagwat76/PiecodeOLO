@@ -16,16 +16,18 @@ namespace DishoutOLO.Controllers
         private readonly IMenuService _menuService;
         private readonly ICategoryService _categoryService;
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IProgramService _programService;   
         private readonly ILogger _logger;
         private LoggerProvider _loggerProvider;
         #endregion
 
         #region Constructor
 
-        public MenuController(IMenuService menuService, ICategoryService categoryService, IWebHostEnvironment hostingEnvironment,LoggerProvider loggerProvider)
+        public MenuController(IMenuService menuService, ICategoryService categoryService, IWebHostEnvironment hostingEnvironment,LoggerProvider loggerProvider, IProgramService programService)
         {
             _categoryService = categoryService;
             _menuService = menuService;
+            _programService = programService;   
             _hostingEnvironment = hostingEnvironment;
             _loggerProvider= loggerProvider;
         }
@@ -46,6 +48,9 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
+                ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
+              // ViewBag.groupdata = new Program().programList();
+
 
             }
             catch (Exception ex)
@@ -84,6 +89,7 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
+                ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
 
             }
             catch (Exception ex)

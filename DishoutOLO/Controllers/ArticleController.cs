@@ -4,6 +4,7 @@ using DishoutOLO.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using DishoutOLO.Data;
 using DishoutOLO.Helpers.Provider;
+using DishoutOLO.Service;
 
 namespace DishoutOLO.Controllers
 {
@@ -60,13 +61,12 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                _articleService.GetArticle(id);
             }
             catch (Exception ex)
             {
                 _loggerProvider.logmsg(ex.Message);
             }
-            return View("ManageArticle");
+            return View("ManageArticle", _articleService.GetArticle(id));
         }
         #endregion
 
@@ -81,13 +81,13 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                _articleService.AddOrUpdateArticle(articleVM);
+                return Json(_articleService.AddOrUpdateArticle(articleVM));
             }
             catch (Exception ex)
             {
                 _loggerProvider.logmsg(ex.Message);
-
             }
+
             return Json(articleVM);
         }
         /// <summary>

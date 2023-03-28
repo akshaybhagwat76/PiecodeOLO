@@ -32,6 +32,8 @@ $('#delete-btn').click(function () {
 });
 
 
+
+
 function loadAllArticles() {
     
     var url = "/Article/GetAllArticle"
@@ -55,7 +57,7 @@ function loadAllArticles() {
             {
                 orderable: false,
                 "render": function (data, type, full, meta) {
-                    return ` <a href="/Article/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm" title="Edit">
+                    return ` <a href="/Article/Edit/` + full.id + `" data-id="` + full.id + `" onclick="show()" class="btn btn-success btn-sm" title="Edit">
                                     <i class="fa fa-edit"></i>
                              </a>
                              <a href="javascript:void(0)" id="btn-delete" data-id="`+ full.id + `" class="btn btn-danger btn-sm" title="Delete">

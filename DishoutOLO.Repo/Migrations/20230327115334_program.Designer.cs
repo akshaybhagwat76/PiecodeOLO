@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DishoutOLO.Repo.Migrations
 {
     [DbContext(typeof(DishoutOLOContext))]
-    [Migration("20230323053227_Modifier")]
-    partial class Modifier
+    [Migration("20230327115334_program")]
+    partial class program
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,6 +88,9 @@ namespace DishoutOLO.Repo.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
@@ -153,9 +156,6 @@ namespace DishoutOLO.Repo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AdditionalChoices")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -168,18 +168,6 @@ namespace DishoutOLO.Repo.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsChooseChoices")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsCombo")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsTax")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsVeg")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ItemDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -188,13 +176,9 @@ namespace DishoutOLO.Repo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ItemName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ItemsAvailable")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MayonnaiseOption")
+                    b.Property<int>("MSRP")
                         .HasColumnType("int");
 
                     b.Property<int?>("ModifiedBy")
@@ -203,16 +187,19 @@ namespace DishoutOLO.Repo.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TaxName")
+                    b.Property<string>("TaxRate1")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TaxPercentage")
-                        .HasColumnType("int");
+                    b.Property<string>("TaxRate2")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("extraCheeseOption")
-                        .HasColumnType("int");
+                    b.Property<string>("TaxRate3")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("extraChickenOption")
+                    b.Property<string>("TaxRate4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UnitCost")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -257,8 +244,6 @@ namespace DishoutOLO.Repo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
-
                     b.ToTable("ItemGroups");
                 });
 
@@ -278,6 +263,10 @@ namespace DishoutOLO.Repo.Migrations
 
                     b.Property<DateTime?>("CreationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -299,9 +288,14 @@ namespace DishoutOLO.Repo.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ProgramId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProgramId");
 
                     b.ToTable("Menus");
                 });
@@ -381,26 +375,47 @@ namespace DishoutOLO.Repo.Migrations
                     b.ToTable("ModifierGroups");
                 });
 
+            modelBuilder.Entity("DishoutOLO.Data.Program", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProgramName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Programs");
+                });
+
             modelBuilder.Entity("DishoutOLO.Data.Item", b =>
                 {
                     b.HasOne("DishoutOLO.Data.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("DishoutOLO.Data.ItemGroups", b =>
-                {
-                    b.HasOne("DishoutOLO.Data.ItemGroups", "ItemGroups1")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ItemGroups1");
                 });
 
             modelBuilder.Entity("DishoutOLO.Data.Menu", b =>
@@ -408,10 +423,18 @@ namespace DishoutOLO.Repo.Migrations
                     b.HasOne("DishoutOLO.Data.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DishoutOLO.Data.Program", "Program")
+                        .WithMany()
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Program");
                 });
 
             modelBuilder.Entity("DishoutOLO.Data.ModifierGroup", b =>
@@ -419,7 +442,7 @@ namespace DishoutOLO.Repo.Migrations
                     b.HasOne("DishoutOLO.Data.Modifier", "Modifier")
                         .WithMany()
                         .HasForeignKey("ModifierId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Modifier");

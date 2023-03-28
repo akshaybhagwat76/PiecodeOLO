@@ -23,6 +23,11 @@
             
         
     })
+
+    $('#ProgramId').select2();   
+
+
+    
 });
 
 function Ajaxform(retval) {

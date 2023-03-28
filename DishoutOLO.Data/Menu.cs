@@ -14,6 +14,12 @@ namespace DishoutOLO.Data
         public int MenuPrice { get; set; }
         public string Image { get; set; }
 
+        [ForeignKey("Program")]
+        public int ProgramId { get; set; }
+
+        public virtual Program Program { get; set; }
+
+        public string Description { get; set; } 
         [NotMapped]
         public string CategoryName { get; set; }    
     }

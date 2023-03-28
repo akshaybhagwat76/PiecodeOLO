@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
+    if ($("#hdnStatus").val() == 'true') {
+        $("#Status").attr('checked', true);
+    }
+    $(".lblStatusTxt").text($("#Status").is(':checked') ? "Yes" : "No");
+
+
 
     $("#btn-Add").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
@@ -17,6 +23,7 @@
             var data = {
                 id: $("#Id").val(),
                 CategoryName: $("#CategoryName").val(),
+                Status: $("#Status").is(':checked'),
                 IsActive: $("#IsActive").val() == "true" ? true : false
             }
             $.ajax({
@@ -33,5 +40,10 @@
                 }
             });
         }
+       
     })
+    $("#Status").change(function (e) {
+        $(".lblStatusTxt").text($("#Status").is(':checked') ? "Yes" : "No")
+    })
+
 });

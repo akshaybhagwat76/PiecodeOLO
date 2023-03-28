@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Program";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Program</h3>
+                    <div class="col-lg-12 text-right">
+                        <a href="/Program/Create" class="btn btn-md btn-warning">
+                            Add Program
+                        </a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="programTbl" class="table table-bordered table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" class="sort" data-sort="name">Program Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<partial name="_CommonResponseModel" />
+
+@section Scripts {
+
+    <script src="~/Assets/Program.js" asp-append-version="true "></script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

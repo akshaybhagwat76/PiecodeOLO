@@ -9,6 +9,9 @@ namespace DishoutOLO.ViewModel
         [DisplayName("Category Name")]
         public string CategoryName { get; set; }
 
+        [DisplayName("Status")]
+        public bool Status { get; set; }
+
         public bool IsActive { get; set; }
     }
     public class ListCategoryModel
@@ -16,6 +19,7 @@ namespace DishoutOLO.ViewModel
         public int Id { get; set; }
 
         public string CategoryName { get; set; }
+        public bool Status { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -25,6 +29,7 @@ namespace DishoutOLO.ViewModel
             public int Id { get; set; }
 
             public string CategoryName { get; set; }
+            public bool Status { get; set; }
 
             public bool IsActive { get; set; }
 
