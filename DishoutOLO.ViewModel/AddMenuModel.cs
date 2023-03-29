@@ -23,9 +23,16 @@ namespace DishoutOLO.ViewModel
         [DisplayName("Program")]
         public string ProgramId { get; set; }
         public string Description { get; set; }
-
+        public List<MenuAvaliblities> lstAval { get; set; }
         
 
+    }
+    public class MenuAvaliblities
+    {
+        public string endtime { get; set; }
+        public string fromtime { get; set; }
+        public string week { get; set; }
+            
     }
 
     public class ListMenuModel

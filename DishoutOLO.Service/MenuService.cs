@@ -11,6 +11,7 @@ namespace DishoutOLO.Service
         #region Declarations
         private readonly IMapper _mapper;
         private IRepository<Menu> _menuRepository;
+
         private IRepository<Category> _categoryRepository;
 
         #endregion
@@ -25,7 +26,7 @@ namespace DishoutOLO.Service
         #endregion
 
         #region Crud Methods
-        public DishoutOLOResponseModel AddOrUpdateMenu(AddMenuModel data, string imgPath = "")
+        public DishoutOLOResponseModel AddOrUpdateMenu(AddMenuModel data)
         {
             try
             {
@@ -43,6 +44,7 @@ namespace DishoutOLO.Service
                         response.Errors.Add(new ErrorDet() { ErrorField = "MenuName", ErrorDescription = "Menu already exist" });
                     }
 
+
                 }
                 if (data.Id == 0)
                 {
@@ -50,6 +52,7 @@ namespace DishoutOLO.Service
                     tblMenu.CreationDate = DateTime.Now;
                     tblMenu.IsActive = true;
                     _menuRepository.Insert(tblMenu);
+
                 }
                 else
                 {
