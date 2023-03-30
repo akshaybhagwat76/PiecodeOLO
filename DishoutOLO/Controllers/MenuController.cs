@@ -1,13 +1,11 @@
 ﻿using DishoutOLO.Data;
-using DishoutOLO.Helpers;
 using DishoutOLO.Helpers.Provider;
-using DishoutOLO.Repo.Migrations;
+using DishoutOLO.Repo.Interface;
 using DishoutOLO.Service.Interface;
 using DishoutOLO.ViewModel;
 using DishoutOLO.ViewModel.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Collections;
 
 namespace DishoutOLO.Controllers
@@ -17,22 +15,26 @@ namespace DishoutOLO.Controllers
     {
         #region Declarations
         private readonly IMenuService _menuService;
+        private IRepository<MenuAvailabilities> _menuAvailabilitiesRepository;
+
         private readonly ICategoryService _categoryService;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IProgramService _programService;   
+        
         private readonly ILogger _logger;
         private LoggerProvider _loggerProvider;
         #endregion
 
         #region Constructor
 
-        public MenuController(IMenuService menuService, ICategoryService categoryService, IWebHostEnvironment hostingEnvironment,LoggerProvider loggerProvider, IProgramService programService)
+        public MenuController(IMenuService menuService, ICategoryService categoryService, IWebHostEnvironment hostingEnvironment,LoggerProvider loggerProvider, IProgramService programService,IRepository<MenuAvailabilities> repository)
         {
             _categoryService = categoryService;
             _menuService = menuService;
             _programService = programService;   
             _hostingEnvironment = hostingEnvironment;
             _loggerProvider= loggerProvider;
+            _menuAvailabilitiesRepository = repository; 
         }
 
         #endregion
@@ -108,10 +110,11 @@ namespace DishoutOLO.Controllers
         /// <param name="menuVM"></param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public JsonResult AddOrUpdateMenu(AddMenuModel menuVM, IFormFile file)
+        public JsonResult AddOrUpdateMenu(AddMenuModel menuVM)
         {
             try
             {
+                
             }
             catch (Exception ex)
             {
@@ -120,20 +123,9 @@ namespace DishoutOLO.Controllers
             return Json(_menuService.AddOrUpdateMenu(menuVM));
         }
 
-        public JsonResult AddOrUpdateMenuSimple(AddMenuModel menuVM)
-        {
-            try
-            {
-                AddMenuModel menuModel = new AddMenuModel();
-               
-            }
-            catch (Exception ex)
-            {
-                _loggerProvider.logmsg(ex.Message);
-            }
-            return Json(_menuService.AddOrUpdateMenu(menuVM));
-        }
         
+
+
         /// <summary>
         /// Delete Menu
         /// </summary>

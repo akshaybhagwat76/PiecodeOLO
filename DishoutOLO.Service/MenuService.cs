@@ -11,16 +11,17 @@ namespace DishoutOLO.Service
         #region Declarations
         private readonly IMapper _mapper;
         private IRepository<Menu> _menuRepository;
-
+        private IRepository<MenuAvailabilities> _menuAvailabilitiesRepository;
         private IRepository<Category> _categoryRepository;
 
         #endregion
         #region Constructor
-        public MenuService(IRepository<Menu> menuRepository, IRepository<Category> categoryRepository, IMapper mapper)
+        public MenuService(IRepository<Menu> menuRepository, IRepository<Category> categoryRepository, IMapper mapper, IRepository<MenuAvailabilities> menuAvailabilitiesRepository)
         {
             _menuRepository = menuRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _menuAvailabilitiesRepository = menuAvailabilitiesRepository;
         }
 
         #endregion
@@ -53,6 +54,7 @@ namespace DishoutOLO.Service
                     tblMenu.IsActive = true;
                     _menuRepository.Insert(tblMenu);
 
+                   
                 }
                 else
                 {

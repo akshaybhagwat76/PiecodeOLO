@@ -1,8 +1,5 @@
 ﻿var retvalDetails = true;
-
 var MenuAvailabilities = [];
-
-
 
 $('#deletebtn').click(function () { $('.table tbody').empty(); $('.table thead').hide(); })
 
@@ -28,8 +25,7 @@ $("#btn-submit").on("click", function () {
             $(this).removeClass("error");
         }
     });
-
-    
+       
     if (retval) {
         
         var data = {
@@ -67,17 +63,25 @@ $(document).ready(function () {
         $('#ProgramId').select2().val($("#programIds").val().split(',').map(Number)).trigger("change")
     }
 })
+$('#btn-check').click(function () {
+    if ($('.chooseplus').is(':hidden')) {
+        $('.chooseplus').show();
+        } else {
+        $('.chooseplus ').hide();
+        }
+    });
 
 
 $('#dataupload').on('click', function () {
+    debugger
     $("thead").show();
 
     $("#lblError").removeClass("success").removeClass("error").text('');
-   
+
     var week = $('#week').val();
     var fromtime = $('#fromtime').val();
     var endtime = $('#endtime').val();
-   
+
     var obj = {
         "week": week,
         "fromtime": fromtime,
@@ -85,32 +89,36 @@ $('#dataupload').on('click', function () {
     }
     if (retvalDetails) {
         MenuAvailabilities.push(obj);
-        if (week != '---SelectName---' && fromtime != '' && endtime != '') {
-
-         var data = '<tr class="trpolicy" data-id=' + MenuAvailabilities.length + '><td>' + week + '</td> <td>' + fromtime + '</td> <td> ' + endtime + '</td><td><a class="deletepolicy" href="#"> <i class="fa fa-times" aria-hidden="true"></i> </a></td></tr>';
-        debugger
-        $('tbody').append(data);
 
         $('#week').val('');
         $('#fromtime').val('');
         $("#endtime").val('');
 
-        }
+    
+            if (week != '---SelectName---' && fromtime != '' && endtime != '') {
+                $('#deletebtn').show();
+               // var data = '<tr class="trpolicy" data-id=' + MenuAvailabilities.length + '><td>' + week + '</td> <td>' + fromtime + '</td> <td> ' + endtime + '</td><td><a class="deletepolicy" href="#"> <i class="fa fa-times" aria-hidden="true"></i> </a></td></tr>';
+               //var  t = $('#weektbl').DataTable();
+
+                var data= '<tr class="trpolicy" data-id=' + MenuAvailabilities.length + '><td>' +
+                    week + '</td> <td>' + fromtime + '</td> <td> ' +endtime
+                     + '</td><td><a class="deletepolicy" href="#"> <i class="fa fa-times" aria-hidden="true"></i> </a></td></tr>';
+
+                $('tbody').append(data);
+                
+            }
+           
+        
         $('.deletepolicy').on('click', function () {
             var rowIndex = $(this).find("tr.trpolicy").data("id");
+            debugger
             console.log($(this).parent().parent().remove())
             delete MenuAvailabilities[parseInt($(this).closest('tr').attr('data-id'))];
         })
-        
+                  
+
     }
-}); 
-
-
-
-
-
-
-
+});
 
 
     
