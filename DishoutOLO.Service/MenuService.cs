@@ -13,15 +13,17 @@ namespace DishoutOLO.Service
         private IRepository<Menu> _menuRepository;
         private IRepository<MenuAvailabilities> _menuAvailabilitiesRepository;
         private IRepository<Category> _categoryRepository;
+        private IMenuAvailabilityService _userService;
 
         #endregion
         #region Constructor
-        public MenuService(IRepository<Menu> menuRepository, IRepository<Category> categoryRepository, IMapper mapper, IRepository<MenuAvailabilities> menuAvailabilitiesRepository)
+        public MenuService(IRepository<Menu> menuRepository, IMenuAvailabilityService userService, IRepository<Category> categoryRepository, IMapper mapper, IRepository<MenuAvailabilities> menuAvailabilitiesRepository)
         {
             _menuRepository = menuRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
             _menuAvailabilitiesRepository = menuAvailabilitiesRepository;
+            _userService = userService;
         }
 
         #endregion
@@ -52,8 +54,23 @@ namespace DishoutOLO.Service
                     Menu tblMenu = _mapper.Map<AddMenuModel, Menu>(data);
                     tblMenu.CreationDate = DateTime.Now;
                     tblMenu.IsActive = true;
-                    _menuRepository.Insert(tblMenu);
+                    int menuId = _menuRepository.InsertAndGetId(tblMenu);
+                    if (menuId > 0)
+                    {
+                        if (data.lstAval != null && data.lstAval.Count > 0)
+                        {
+                            foreach (AddMenuAvaliblities item in data.lstAval)
+                            {
+                                //MenuAvailabilities menuAvailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(dataitem;
+                                //menuAvailabilities.CreationDate = DateTime.Now;menuAvailabilities.IsActive = true;
+                                item.MenuId = menuId;
+                                _userService.AddOrUpdateMenuAvailabilities(item);
+                                
 
+                            }
+                        }
+                        
+                    }
                    
                 }
                 else
@@ -64,6 +81,20 @@ namespace DishoutOLO.Service
                     menu.CreationDate = CreationDate;
                     menu.ModifiedDate = DateTime.Now;
                     _menuRepository.Update(menu);
+
+                    if (menu.Id > 0)
+                    {
+                        if (data.lstAval != null && data.lstAval.Count > 0)
+                        {
+                            foreach (AddMenuAvaliblities item in data.lstAval)
+                            {
+                                item.MenuId = menu.Id;
+                                _userService.AddOrUpdateMenuAvailabilities(item);
+                            }
+                        }
+
+                    }
+
                 }
                 return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "category") : string.Format(Constants.UpdatedSuccessfully, "category") };
             }

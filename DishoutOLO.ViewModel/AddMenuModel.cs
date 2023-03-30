@@ -24,17 +24,18 @@ namespace DishoutOLO.ViewModel
         public string ProgramId { get; set; }
         public string Description { get; set; }
         public List<AddMenuAvaliblities> lstAval { get; set; }
-        
+
 
     }
     public class AddMenuAvaliblities
     {
-                public int Id { get; set; }
-     public bool IsActive { get; set; }
+        public int Id { get; set; }
+        public bool IsActive { get; set; }
         public string? endtime { get; set; }
         public string? fromtime { get; set; }
         public string? week { get; set; }
-            
+        public int? MenuId { get; set; }
+
     }
 
     public class ListMenuModel
@@ -42,7 +43,7 @@ namespace DishoutOLO.ViewModel
         public int Id { get; set; }
 
         public string MenuName { get; set; }
-        
+
         public string CategoryName { get; set; }
         [DisplayName("CategorY")]
 
@@ -80,13 +81,13 @@ namespace DishoutOLO.ViewModel
 
         public string Description { get; set; }
         public string ProgramName { get; set; }
-       
+
 
     }
 
     public class DeleteMenuModel
     {
-        public int Id { get; set;    }
+        public int Id { get; set; }
     }
 
 }

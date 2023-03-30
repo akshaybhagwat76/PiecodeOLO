@@ -13,6 +13,7 @@ namespace DishoutOLO.Repo.Interface
         void Update(T entity);
         void Delete(T entity);
         void Remove(T entity);
+        int InsertAndGetId(T entity);
         void SaveChanges();
     }
 }

@@ -38,6 +38,16 @@ namespace DishoutOLO.Repo
             context.SaveChanges();
         }
 
+        public int InsertAndGetId(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            entities.Add(entity);
+            context.SaveChanges();
+            return entity.Id;
+        }
         public void Update(T entity)
         {
             var local = context.Set<T>()
