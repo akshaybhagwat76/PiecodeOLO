@@ -17,10 +17,10 @@ namespace DishoutOLO.Repo.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    utC_FromTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    utC_ToTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    fromtime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    endtime  = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MenuId = table.Column<int>(type: "int", nullable: false),
-                    daysList = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    week = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),

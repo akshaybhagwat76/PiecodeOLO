@@ -22,7 +22,14 @@ label#lblError {
 }
 
 input.error, select.error, div.error, textarea.error, label.error {
-    border: 1px dotted #cc5965;
+    border: 2px dotted #cc5965;
+}
+
+
+label.error {
+    color: #cc5965;
+    display: inline-block;
+    margin-left: 5px;
 }
 
 label.success {

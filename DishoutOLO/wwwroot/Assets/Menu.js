@@ -58,14 +58,7 @@ function loadAllMenu() {
                 "data": "menuPrice"
             },
             
-            {
-                orderable: false,
-
-                "data": function (full) {
-                    var imgPath = '/Content/Menu/' + full.image;
-                    return "<img src=" + imgPath +" height='60'width='100'>";
-                }   
-            },
+           
             {
                 orderable: false,
                 "render": function (data, type, full, meta) {
