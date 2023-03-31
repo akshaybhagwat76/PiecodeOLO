@@ -25,6 +25,10 @@ input.error, select.error, div.error, textarea.error, label.error {
     border: 2px dotted #cc5965;
 }
 
+input.adderror, textarea.adderror, select.adderror, div.adderror {
+    border: 2px dotted #cc5965;
+}
+
 
 label.error {
     color: #cc5965;

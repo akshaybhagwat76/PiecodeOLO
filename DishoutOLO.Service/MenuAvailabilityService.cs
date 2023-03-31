@@ -58,11 +58,12 @@ namespace DishoutOLO.Service
                     menuavailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(data);
                     menuavailabilities.CreationDate = CreationDate;
                     menuavailabilities.ModifiedDate = DateTime.Now;
+                    menuavailabilities.IsActive = false;
                     _menuAvailabilitiesRepository.Update(menuavailabilities);
                 }
             
                                       
-                return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "category") : string.Format(Constants.UpdatedSuccessfully, "menuavailabilities") };
+                return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "menuavailabilities") : string.Format(Constants.UpdatedSuccessfully, "menuavailabilities") };
             }
             catch (Exception ex)
             {

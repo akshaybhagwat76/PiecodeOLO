@@ -13,7 +13,7 @@ namespace DishoutOLO.Service
         private IRepository<Menu> _menuRepository;
         private IRepository<MenuAvailabilities> _menuAvailabilitiesRepository;
         private IRepository<Category> _categoryRepository;
-        private IMenuAvailabilityService _userService;
+        private IMenuAvailabilityService _menuAvailabilitiesService;
 
         #endregion
         #region Constructor
@@ -23,7 +23,7 @@ namespace DishoutOLO.Service
             _categoryRepository = categoryRepository;
             _mapper = mapper;
             _menuAvailabilitiesRepository = menuAvailabilitiesRepository;
-            _userService = userService;
+            _menuAvailabilitiesService = userService;
         }
 
         #endregion
@@ -46,55 +46,59 @@ namespace DishoutOLO.Service
                     {
                         response.Errors.Add(new ErrorDet() { ErrorField = "MenuName", ErrorDescription = "Menu already exist" });
                     }
-
+                    return response;
 
                 }
-                if (data.Id == 0)
+                if (response.Errors == null)
                 {
-                    Menu tblMenu = _mapper.Map<AddMenuModel, Menu>(data);
-                    tblMenu.CreationDate = DateTime.Now;
-                    tblMenu.IsActive = true;
-                    int menuId = _menuRepository.InsertAndGetId(tblMenu);
-                    if (menuId > 0)
-                    {
-                        if (data.lstAval != null && data.lstAval.Count > 0)
-                        {
-                            foreach (AddMenuAvaliblities item in data.lstAval)
-                            {
-                                //MenuAvailabilities menuAvailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(dataitem;
-                                //menuAvailabilities.CreationDate = DateTime.Now;menuAvailabilities.IsActive = true;
-                                item.MenuId = menuId;
-                                _userService.AddOrUpdateMenuAvailabilities(item);
-                                
 
-                            }
-                        }
-                        
-                    }
-                   
-                }
-                else
-                {
-                    Menu menu = _menuRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                    DateTime CreationDate = menu.CreationDate ?? new DateTime();
-                    menu = _mapper.Map<AddMenuModel, Menu>(data);
-                    menu.CreationDate = CreationDate;
-                    menu.ModifiedDate = DateTime.Now;
-                    _menuRepository.Update(menu);
-
-                    if (menu.Id > 0)
+                    if (data.Id == 0)
                     {
-                        if (data.lstAval != null && data.lstAval.Count > 0)
+                        Menu tblMenu = _mapper.Map<AddMenuModel, Menu>(data);
+                        tblMenu.CreationDate = DateTime.Now;
+                        tblMenu.IsActive = true;
+                        int menuId = _menuRepository.InsertAndGetId(tblMenu);
+                        if (menuId > 0)
                         {
-                            foreach (AddMenuAvaliblities item in data.lstAval)
+                            if (data.lstAval != null && data.lstAval.Count > 0)
                             {
-                                item.MenuId = menu.Id;
-                                _userService.AddOrUpdateMenuAvailabilities(item);
+                                foreach (AddMenuAvaliblities item in data.lstAval)
+                                {
+                                    //MenuAvailabilities menuAvailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(dataitem;
+                                    //menuAvailabilities.CreationDate = DateTime.Now;menuAvailabilities.IsActive = true;
+                                    item.MenuId = menuId;
+                                    _menuAvailabilitiesService.AddOrUpdateMenuAvailabilities(item);
+
+
+                                }
                             }
+
                         }
 
-                    }
+                        else
+                        {
+                            Menu menu = _menuRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
+                            DateTime CreationDate = menu.CreationDate ?? new DateTime();
+                            menu = _mapper.Map<AddMenuModel, Menu>(data);
+                            menu.CreationDate = CreationDate;
+                            menu.ModifiedDate = DateTime.Now;
+                            _menuRepository.Update(menu);
 
+                            if (menu.Id > 0)
+                            {
+                                if (data.lstAval != null && data.lstAval.Count > 0)
+                                {
+                                    foreach (AddMenuAvaliblities item in data.lstAval)
+                                    {
+                                        item.MenuId = menu.Id;
+                                        _menuAvailabilitiesService.AddOrUpdateMenuAvailabilities(item);
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
                 }
                 return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "category") : string.Format(Constants.UpdatedSuccessfully, "category") };
             }
@@ -127,6 +131,12 @@ namespace DishoutOLO.Service
         #endregion
 
         #region  Get methods
+
+        public List<MenuAvailabilities> GetMenuAvailabilitiesById(int Id)
+        {
+            var menuAvailabilities = _menuAvailabilitiesRepository.GetListByPredicate(x => x.IsActive && x.MenuId == Id).ToList();
+            return menuAvailabilities;
+        }
         public AddMenuModel GetMenu(int Id)
         {
             try
@@ -143,6 +153,12 @@ namespace DishoutOLO.Service
                     CategoryName = y.CategoryName
                 }).FirstOrDefault();
 
+
+                var menuAvailabilities = _menuAvailabilitiesRepository.GetListByPredicate(x => x.IsActive && x.MenuId == Id).ToList();
+                var addMenuAvaliblities = _mapper.Map<List<MenuAvailabilities>, List<AddMenuAvaliblities>>(menuAvailabilities);
+
+
+
                 if (menu != null)
                 {
                     AddMenuModel obj = new AddMenuModel();
@@ -152,7 +168,12 @@ namespace DishoutOLO.Service
                     obj.IsActive = menu.IsActive;
                     obj.CategoryId = menu.CategoryId;
                     obj.ProgramId = menu.ProgramId;
+                    obj.ProgramName = menu.ProgramName;
                     obj.Description = menu.Description;
+                    obj.CategoryName = menu.CategoryName;
+
+
+
 
                     return obj;
                 }
@@ -180,6 +201,7 @@ namespace DishoutOLO.Service
                                                        MenuName = mn.MenuName,
                                                        MenuPrice = mn.MenuPrice,
                                                        ProgramId = mn.ProgramId,
+
                                                        Description = mn.Description,
                                                        Id = mn.Id,
                                                    }).AsEnumerable();

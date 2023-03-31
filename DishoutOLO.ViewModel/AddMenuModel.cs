@@ -81,6 +81,7 @@ namespace DishoutOLO.ViewModel
 
         public string Description { get; set; }
         public string ProgramName { get; set; }
+        public List<AddMenuAvaliblities> lstAval { get; set; }
 
 
     }

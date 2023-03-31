@@ -34,13 +34,13 @@
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-group">
-                                    @Html.Label("UnitCost", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.Label("UnitCost", null,htmlAttributes: new { @class = "ml-1 requiredLabel" })
                                     @Html.Editor("UnitCost", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "Unicost" } })
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    @Html.Label("MSRP", null,htmlAttributes: new { @class = "ml-1" })
+                                    @Html.Label("MSRP", null,htmlAttributes: new { @class = "ml-1 requiredLabel" })
                                     @Html.Editor("MSRP", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "MSRP" } })
 
                                 </div>

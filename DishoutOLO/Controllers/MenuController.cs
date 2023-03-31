@@ -87,11 +87,10 @@ namespace DishoutOLO.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult Edit(int id)
-        {
+            {
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
-
                 ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
                                                           
             }
@@ -121,6 +120,7 @@ namespace DishoutOLO.Controllers
                 _loggerProvider.logmsg(ex.Message);
             }
             return Json(_menuService.AddOrUpdateMenu(menuVM));
+
         }
 
         

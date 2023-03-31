@@ -15,6 +15,11 @@ namespace DishoutOLO.Data
         public string ProgramId { get; set; }
         public string Description { get; set; } 
         [NotMapped]
-        public string CategoryName { get; set; }    
+        public string CategoryName { get; set; }
+
+        [NotMapped]
+        public string ProgramName { get; set; }
+
+
     }
 }

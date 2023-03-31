@@ -46,7 +46,6 @@ namespace DishoutOLO.Service
                         response.IsSuccess = false;
                         response.Status = 400;
                         response.Errors = new List<ErrorDet>();
-
                         if (Item.ItemName.ToLower() == data.ItemName.ToLower())
                         {
                             response.Errors.Add(new ErrorDet() { ErrorField = "ItemName", ErrorDescription = "Item already exist" });
@@ -63,7 +62,7 @@ namespace DishoutOLO.Service
                             tblItem.CreationDate = DateTime.Now;
                             tblItem.IsActive = true;
                             _itemRepository.Insert(tblItem);
-                            }
+                        }
                         else
                         {
                             Item item = _itemRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
@@ -76,8 +75,7 @@ namespace DishoutOLO.Service
                             _itemRepository.Update(item);
                         }
                     }
-
-           
+                    
                     return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Item") : string.Format(Constants.UpdatedSuccessfully, "Item") };
                 }
             }
@@ -246,6 +244,7 @@ namespace DishoutOLO.Service
                     obj.ItemName = item.ItemName;
                     obj.ItemDescription = item.ItemDescription;
                     obj.CategoryId = item.CategoryId;
+                    obj.CategoryName = item.CategoryName;   
                     obj.ItemImage= item.ItemImage;
                     obj.UnitCost = item.UnitCost;   
                     obj.MSRP = item.MSRP;
