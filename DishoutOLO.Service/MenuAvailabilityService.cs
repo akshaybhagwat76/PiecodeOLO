@@ -27,22 +27,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                //MenuAvailabilities Menuavailabilities = _menuAvailabilitiesRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.week.ToLower() == data.week.ToLower()));
-
-                //DishoutOLOResponseModel response = new DishoutOLOResponseModel();
-
-                //if (Menuavailabilities != null)
-                //{
-                //    response.IsSuccess = false;
-                //    response.Status = 400;
-                //    response.Errors = new List<ErrorDet>();
-                //    if (Menuavailabilities.week.ToLower() == data.week.ToLower())
-                //    {
-                //        response.Errors.Add(new ErrorDet() { ErrorField = "Week", ErrorDescription = "Week already exist" });
-                //    }
-
-
-                //}
+                
                 if (data.Id == 0)
                 {
                     MenuAvailabilities menuAvailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(data);
@@ -58,7 +43,7 @@ namespace DishoutOLO.Service
                     menuavailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(data);
                     menuavailabilities.CreationDate = CreationDate;
                     menuavailabilities.ModifiedDate = DateTime.Now;
-                    menuavailabilities.IsActive = false;
+                    menuavailabilities.IsActive = true;
                     _menuAvailabilitiesRepository.Update(menuavailabilities);
                 }
             

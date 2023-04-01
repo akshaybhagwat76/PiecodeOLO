@@ -1,5 +1,6 @@
 ﻿var retvalDetails = true;
 var MenuAvailabilities = [];
+
 $(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
 $("#btn-submit").on("click", function () {
@@ -26,7 +27,7 @@ $("#btn-submit").on("click", function () {
             ProgramId: $("#ProgramId").select2('data').map(x => x.id).toString(),
             Description: $("#Description").val(),
             IsActive: $("#IsActive").val() == "True" ? true : false,
-            lstAval: MenuAvailabilities
+            ListAvaliblities: MenuAvailabilities
         }
 
         $.ajax({
@@ -47,13 +48,10 @@ $("#btn-submit").on("click", function () {
 });
 $('#deletebtn').click(function () { $('.table tbody').empty(); $('.table thead').hide(); })
 
-
 $(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
     $('#ProgramId').select2();
 });
-
-
 
 $(document).ready(function () {
 
@@ -72,7 +70,7 @@ $('#btn-check').click(function () {
 
 
 $('#dataupload').on('click', function () {
-    debugger
+   
      $("thead").show();
     var week = $('#week').val();
     var fromtime = $('#fromtime').val();

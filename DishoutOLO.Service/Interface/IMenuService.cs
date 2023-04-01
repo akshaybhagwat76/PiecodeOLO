@@ -14,7 +14,10 @@ namespace DishoutOLO.Service.Interface
         public AddMenuModel GetMenu(int Id);
 
         public DataTableFilterModel GetMenuList(DataTableFilterModel filter);
+        
 
-       
+
+
+
     }
 }

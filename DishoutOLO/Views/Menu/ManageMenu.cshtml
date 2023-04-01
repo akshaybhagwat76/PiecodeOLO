@@ -2,8 +2,6 @@
 @{
     ViewData["Title"] = "Manage Menu";
 }
-
-
 <div class="row">
     <div class="col-xl-12 order-xl-3 ">
         <div class="card">
@@ -56,104 +54,122 @@
                                 </div>
                             </div>
                         </div>
-                  </div>
                     </div>
-                     </form>
-                    <div class="card-footer">
-                        <div class="row align-items-center">
-                            <div class="col-12 text-center">
-                                <label href="#" class="col-form-label col-form-label-sm">MenuAvailabilities</label>
-                                <button type="button" id="btn-check" class="btn btn-md btn-success">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+            </form>
+            <div class="card-footer">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <label href="#" class="col-form-label col-form-label-sm">MenuAvailabilities</label>
+                        <button type="button" id="btn-check" class="btn btn-md btn-success">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
 
-                                </button>
-                            </div>
-                        </div>
+                        </button>
                     </div>
+                </div>
+            </div>
 
 
 
 
             <form id="form" class="ml-5" action="javascript">
-                        <div class="row chooseplus mt-5" >
-                            <div class="col-md-3">
-                                <div class="form-group row">
-                                    <label for="colFormLabelSm" class="col-sm-2  col-form-label mt-1 col-form-label-sm" required>Days</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" required id="week" name="week" style="height: 40px;">
-                                            <option value="">---selectweek---</option>
-                                            <option value="sunday">Sunday</option>
-                                            <option value="monday">Monday</option>
-                                            <option value="tuesday">Tuesday</option>
-                                            <option value="wednesday">Wednesday</option>
-                                            <option value="thursday">Thursday</option>
-                                            <option value="friday">Friday</option>
-                                            <option value="saturday">Saturday</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label for="colFormLabelSm" required class="col-sm-2  col-form-label mt-1 col-form-label-sm">Form-time</label>
-                                    <div class="col-sm-10">
-                                        <input type="time" class="form-control " required id="fromtime" name="fromtime" style="height: 40px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group row">
-                                    <label for="colFormLabelSm" required class="col-sm-2  col-form-label mt-1 col-form-label-sm ">To-time</label>
-                                    <div class="col-sm-10">
-                                        <input type="time" class="form-control" id="endtime" required name="endtime" style="height: 40px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group row">
-                                    <button type="submit" id="dataupload" class="btn btn-md btn-success">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" id="deletebtn" class="btn btn-md btn-danger ml-2">
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </form>
-                                       
-                   <table class="table" id="weektbl">
-                        <thead>
-                            <tr>
-                                <th scope="col">Day Name</th>
-                                <th scope="col">From Time</th>
-                                <th scope="col">End Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                                        
-                    <div class="card-footer">
-                        <div class="row align-items-center">
-                            <div class="col-12 text-center">
-                                <button type="submit" id="btn-submit" class="btn btn-md btn-primary">
-                                    Save
-                                </button>
-                                <a href="/Menu/Index" class="btn btn-default">Cancel</a>
-                                <label id="lblError" class="inline"></label>
+                <div class="row chooseplus mt-5">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2  col-form-label mt-1 col-form-label-sm" required>Days</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" required id="week" name="week" style="height: 40px;">
+                                    <option value="">---Day---</option>
+                                    <option value="sunday">Sunday</option>
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursday</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" required class="col-sm-2  col-form-label mt-1 col-form-label-sm">Form-time</label>
+                            <div class="col-sm-10">
+                                <input type="time" class="form-control " required id="fromtime" name="fromtime" style="height: 40px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" required class="col-sm-2  col-form-label mt-1 col-form-label-sm ">To-time</label>
+                            <div class="col-sm-10">
+                                <input type="time" class="form-control" id="endtime" required name="endtime" style="height: 40px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group row">
+                            <button type="submit" id="dataupload" class="btn btn-md btn-success">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" id="deletebtn" class="btn btn-md btn-danger ml-2">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-           </div>
+
+            </form>
+
+            <table class="table" id="weektbl">
+                <thead>
+                    <tr>
+                        <th scope="col">Day Name</th>
+                        <th scope="col">From Time</th>
+                        <th scope="col">End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListAvaliblities != null && Model.ListAvaliblities.Count > 0)
+                    {
+                        foreach (var item in Model.ListAvaliblities)
+                        {
+                            <tr class="trpolicy" data-id="@item.Id">
+                                <td>@item.week</td>
+                                <td>@item.fromtime</td>
+                                <td>@item.endtime</td>
+                                <td>
+                                    <a class="deletepolicy" href="#">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                      
+                    }
+                </tbody>
+            </table>
+
+            <div class="card-footer">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <button type="submit" id="btn-submit" class="btn btn-md btn-primary">
+                            Save
+                        </button>
+                        <a href="/Menu/Index" class="btn btn-default">Cancel</a>
+                        <label id="lblError" class="inline"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 
 
-    
+
 @section Scripts{
+
     <script src="~/Assets/ManageMenu.js" asp-append-version="true"></script>
 }
 
