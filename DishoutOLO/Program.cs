@@ -28,7 +28,9 @@ builder.Services.AddScoped<IModifierGroupService, ModifierGroupService>();
 builder.Services.AddScoped<IModifierGroupRepository, ModifierGroupRepository>();
 builder.Services.AddScoped<IProgramService, ProgramService>();
 builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
-builder.Services.AddScoped<IMenuAvailabilitiesRepository, MenuAvailabilitiesRepository>();  
+builder.Services.AddScoped<IMenuAvailabilitiesRepository, MenuAvailabilitiesRepository>(); 
+builder.Services.AddScoped<IMenuAvailabilityService, MenuAvailabilityService>();
+
 
 builder.Services.AddScoped<LoggerProvider>();
 

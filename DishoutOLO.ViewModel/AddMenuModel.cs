@@ -22,9 +22,9 @@ namespace DishoutOLO.ViewModel
 
         [DisplayName("Program")]
         public string ProgramId { get; set; }
-        public string Description { get; set; }
-        public List<AddMenuAvaliblities> lstAval { get; set; }
+        public List<AddMenuAvaliblities>? ListAvaliblities { get; set; }
 
+        public string Description { get; set; }
 
     }
     public class AddMenuAvaliblities
@@ -57,6 +57,8 @@ namespace DishoutOLO.ViewModel
         [DisplayName("Program")]
 
         public bool IsActive { get; set; }
+        public List<AddMenuAvaliblities>? ListAvaliblities { get; set; }
+
         public string ProgramId { get; set; }
         public string Description { get; set; }
 
@@ -81,6 +83,7 @@ namespace DishoutOLO.ViewModel
 
         public string Description { get; set; }
         public string ProgramName { get; set; }
+        public List<AddMenuAvaliblities> lstAval { get; set; }
 
 
     }

@@ -15,6 +15,6 @@ namespace DishoutOLO.Data
         public int DisplayOrder { get; set; }
 
         [NotMapped]
-        public string ItemName { get; set; }
+        public string? ItemName { get; set; }
     }
 }

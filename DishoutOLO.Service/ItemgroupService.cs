@@ -128,7 +128,7 @@ namespace DishoutOLO.Service
                                       DisplayOrder=y.DisplayOrder,
                                       ItemGroup=y.ItemGroup,
                                       ItemId=y.ItemId,
-                                      ItemName=y.ItemName
+                                      ItemName=y.ItemName,
                                       }
                                       ).FirstOrDefault();
 
@@ -136,10 +136,10 @@ namespace DishoutOLO.Service
                 {
                     AddItemgroupsModel obj = new  AddItemgroupsModel();
                     obj.Id = item.Id;
-                    obj.ItemName = item.ItemName;
                     obj.ItemGroup = item.ItemGroup;
                     obj.DisplayOrder = item.DisplayOrder;
                     obj.ItemId = item.ItemId;
+                    obj.ItemName = item.ItemName;
                     obj.IsActive = item.IsActive;
 
                     return obj;

@@ -16,7 +16,7 @@ namespace DishoutOLO.Controllers
         #region Declarations
         private readonly IMenuService _menuService;
         private IRepository<MenuAvailabilities> _menuAvailabilitiesRepository;
-
+        private readonly IMenuAvailabilityService _menuAvailabilityService;
         private readonly ICategoryService _categoryService;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IProgramService _programService;   
@@ -27,13 +27,14 @@ namespace DishoutOLO.Controllers
 
         #region Constructor
 
-        public MenuController(IMenuService menuService, ICategoryService categoryService, IWebHostEnvironment hostingEnvironment,LoggerProvider loggerProvider, IProgramService programService,IRepository<MenuAvailabilities> repository)
+        public MenuController(IMenuService menuService, ICategoryService categoryService, IWebHostEnvironment hostingEnvironment,LoggerProvider loggerProvider, IProgramService programService,IRepository<MenuAvailabilities> repository, IMenuAvailabilityService menuAvailabilityService)
         {
             _categoryService = categoryService;
             _menuService = menuService;
             _programService = programService;   
             _hostingEnvironment = hostingEnvironment;
             _loggerProvider= loggerProvider;
+            _menuAvailabilityService = menuAvailabilityService; 
             _menuAvailabilitiesRepository = repository; 
         }
 
@@ -87,11 +88,10 @@ namespace DishoutOLO.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult Edit(int id)
-        {
+            {
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
-
                 ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
                                                           
             }
@@ -114,13 +114,14 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                
+               
             }
             catch (Exception ex)
             {
                 _loggerProvider.logmsg(ex.Message);
             }
             return Json(_menuService.AddOrUpdateMenu(menuVM));
+
         }
 
         

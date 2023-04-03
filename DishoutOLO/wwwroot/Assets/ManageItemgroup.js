@@ -36,7 +36,7 @@
             });
         }
     });
-    $("#dataupload").click(function () {
+    //$("#dataupload").click(function () {
 
-    });
+    //});
 });

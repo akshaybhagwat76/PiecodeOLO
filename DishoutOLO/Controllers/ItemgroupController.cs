@@ -123,7 +123,7 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                ViewBag.ItemList = new SelectList((IList)_ItemService.GetAllItems().Data, "Id", "ItemName", id);
+                ViewBag.ItemList = new SelectList((IList)_ItemService.GetAllItems().Data, "Id", "ItemName");
 
             }
 

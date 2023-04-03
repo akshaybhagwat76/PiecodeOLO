@@ -170,7 +170,7 @@ namespace DishoutOLO.Service
             }
             catch (Exception)
             {
-                return new DishoutOLOResponseModel() { IsSuccess = false, Data = null };
+                return new DishoutOLOResponseModel() { IsSuccess = false };
 
             }
         }
