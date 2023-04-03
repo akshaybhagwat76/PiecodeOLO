@@ -54,7 +54,7 @@ namespace DishoutOLO.Service
             {
                 return new DishoutOLOResponseModel() { IsSuccess = false, Message = Constants.GetDetailError };
             }
-        }
+            }
 
 
         public DishoutOLOResponseModel DeleteMenuAvailabilities(int data)
@@ -70,7 +70,7 @@ namespace DishoutOLO.Service
                     _menuAvailabilitiesRepository.SaveChanges();
                 }
 
-                return new DishoutOLOResponseModel { IsSuccess = true, Message = string.Format(Constants.DeletedSuccessfully, "Menu") };
+                return new DishoutOLOResponseModel { IsSuccess = true, Message = string.Format(Constants.DeletedSuccessfully, "MenuAvailabilities") };
             }
             catch (Exception ex)
             {

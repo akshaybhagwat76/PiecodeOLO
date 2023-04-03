@@ -4,7 +4,7 @@ $("document").ready(function () {
     loadAllMenu();
     
 })
-$("#menuTbl").on("click", "a#btn-delete", function () {
+$("#menuTbl").on("click", "a#btn-delete", function () { 
     var id = $(this).data('id');
     $('#deleteModal').data('id', id).modal('show');
     $('#deleteModal').modal('show');
@@ -76,4 +76,6 @@ function loadAllMenu() {
     });
 
 }
+
+
 

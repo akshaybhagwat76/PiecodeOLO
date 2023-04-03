@@ -70,12 +70,12 @@ namespace DishoutOLO.Controllers
         /// <param name="itemVM"></param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public JsonResult AddOrUpdateItem(AddItemModel itemVM, IFormFile file)
+        public JsonResult AddOrUpdateItem(AddItemModel itemVM)
         {
             try
             {
                 AddItemModel itemModel = new AddItemModel();
-
+                var file = Request.Form.Files!=null && Request.Form.Files.Count>0 ? Request.Form.Files[0]:null;
                 if (file != null)
                 {
                     string fileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(file.FileName)}";
@@ -92,22 +92,7 @@ namespace DishoutOLO.Controllers
             return Json(_ItemService.AddOrUpdateItem(itemVM));
 
         }
-        public JsonResult AddOrUpdateItemSimple(AddItemModel itemVM)
-        {
-            try
-                {
-                AddItemModel itemModel = new AddItemModel();
-
-            }
-            catch (Exception ex)
-            {
-                _loggerProvider.logmsg(ex.Message);
-
-            }
-            return Json(_ItemService.AddOrUpdateItem(itemVM));
-
-        }
-
+        
         /// <summary>
         /// Delete Item
         /// </summary>

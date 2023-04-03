@@ -22,7 +22,7 @@ namespace DishoutOLO.ViewModel
 
         [DisplayName("Program")]
         public string ProgramId { get; set; }
-        public List<AddMenuAvaliblities>? ListAvaliblities { get; set; }
+        public List<AddMenuAvaliblities> ListAvaliblities { get; set; }
 
         public string Description { get; set; }
 

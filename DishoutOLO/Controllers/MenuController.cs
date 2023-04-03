@@ -146,7 +146,25 @@ namespace DishoutOLO.Controllers
             return Json(id);
         }
 
+
+        public IActionResult DeleteMenuAvailabilities(int id)   
+        {
+            try
+            {
+                    var list = _menuAvailabilityService.DeleteMenuAvailabilities(id);
+            }
+            catch (Exception ex) 
+            {
+                _loggerProvider.logmsg(ex.Message);
+                throw;
+            }
+
+            return Json(id);
+        }
+             
         #endregion
 
+
     }
+
 }

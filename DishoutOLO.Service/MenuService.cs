@@ -66,7 +66,7 @@ namespace DishoutOLO.Service
                         if (menuId > 0)
                         {
 
-                            var menuavailableity  = _menuAvailabilitiesRepository.GetListByPredicate(x => x.IsActive && x.week == data.ListAvaliblities[0].week).ToList();
+                            var menuavailableity = _menuAvailabilitiesRepository.GetListByPredicate(x => x.IsActive && x.week == data.ListAvaliblities[0].week).ToList();
                             int flag = 0;
                             if (data.ListAvaliblities != null && data.ListAvaliblities.Count > 0)
                             {
@@ -74,18 +74,18 @@ namespace DishoutOLO.Service
                                 {
                                     var menuAvailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(item);
 
-                                    menuAvailabilities.CreationDate = DateTime.Now;menuAvailabilities.IsActive = true;
                                     item.MenuId = menuId;
-                                   foreach(var d in menuavailableity)
-                                    {
-                                         if(Convert.ToInt32(item.fromtime)>=Convert.ToInt32(d.fromtime) && Convert.ToInt32(item.endtime) <= Convert.ToInt32( d.endtime))
-                                        {
-                                            flag = 1;
-                                        }
-                                    }
-
-                                   if(flag==0)
                                     _menuAvailabilitiesService.AddOrUpdateMenuAvailabilities(item);
+                                    //foreach (var d in menuavailableity)
+                                    //{
+                                    //    if (Convert.ToInt32(item.fromtime) >= Convert.ToInt32(d.fromtime) && Convert.ToInt32(item.endtime) <= Convert.ToInt32(d.endtime))
+                                    //    {
+                                    //        flag = 1;
+                                    //    }
+                                    //}
+
+                                    //if (flag == 0)
+                                    //_menuAvailabilitiesService.AddOrUpdateMenuAvailabilities(item);
 
 
                                 }
@@ -124,7 +124,7 @@ namespace DishoutOLO.Service
             {
                 return new DishoutOLOResponseModel() { IsSuccess = false, Message = Constants.GetDetailError };
             }
-         }
+        }
 
         public DishoutOLOResponseModel DeleteMenu(int data)
         {
@@ -138,6 +138,7 @@ namespace DishoutOLO.Service
                     _menuRepository.Update(menu);
                     _menuRepository.SaveChanges();
                 }
+
 
                 return new DishoutOLOResponseModel { IsSuccess = true, Message = string.Format(Constants.DeletedSuccessfully, "Menu") };
             }

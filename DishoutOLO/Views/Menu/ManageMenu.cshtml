@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group row">
-                            <button type="submit" id="dataupload" class="btn btn-md btn-success">
+                            <button type="button" id="dataupload" class="btn btn-md btn-success">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </button>
                             <button type="button" id="deletebtn" class="btn btn-md btn-danger ml-2">
@@ -139,7 +139,7 @@
                                 <td>@item.fromtime</td>
                                 <td>@item.endtime</td>
                                 <td>
-                                    <a class="deletepolicy" href="#">
+                                    <a class="deletepolicy" onclick="deletemenuAvaliblities(@item.Id)">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -165,7 +165,7 @@
     </div>
 </div>
 
-
+<partial name="_CommonResponseModel" />
 
 
 @section Scripts{
