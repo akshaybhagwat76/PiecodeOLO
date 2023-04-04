@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DishoutOLO.Data\DishoutOLO.Data.csproj" />
+    <ProjectReference Include="..\DishoutOLO.ViewModel\DishoutOLO.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

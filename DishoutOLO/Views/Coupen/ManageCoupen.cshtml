@@ -1,0 +1,120 @@
+﻿@model DishoutOLO.ViewModel.AddCoupenModel
+@{
+    ViewData["Title"] = "Manage Coupen";
+}
+
+<div class="row">
+
+    <div class="col-xl-8 order-xl-3 ">
+        <div class="card">
+            <form id="myForm" action="javascript:;">
+                @Html.HiddenFor(mode=>mode.Id)
+                @Html.HiddenFor(mode=>mode.IsActive)
+
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <h3 class="mb-0">Manage Coupen</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="pl-lg-4">
+                        <div class="row mb-4">
+                            <div class="col">
+                               <div class="form-group">
+                                    @Html.LabelFor(model => model.CouponName,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.CouponName, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Coupon Name" } })
+                                </div>
+                            </div>
+                        <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CouponCode,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.CouponCode, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Coupon Code" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MinOrderAmount,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.MinOrderAmount, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Min Order Amount" } })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StartDate,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.StartDate,"{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control required",@type="date", @Placeholder = "StartDate" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EndDate,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.EndDate,"{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control required",@type="date", @Placeholder = "EndDate" } })
+                                </div>
+                            </div>
+                            <div class="col">
+                            <div class="form-group">
+                                    @Html.LabelFor(model => model.Discount,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Discount" } })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RedemptionType,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.RedemptionType, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Redemption Type" } })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DiscountTypePercentageval,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.DiscountTypePercentageval, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Discount Type Percentageval" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description,new {@class="form-control-label"})
+                                    @Html.TextAreaFor(model => model.Description,  new { @class = "form-control required", @Placeholder = "Description" } )
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card-footer">
+                    <div class="row align-items-center">
+                        <div class="col-12 text-center">
+                            <button type="submit" id="btn-Add" class="btn btn-md btn-primary">
+                                Save
+                            </button>
+                            <a href="/Coupen/Index" class="btn btn-default">Cancel</a>
+                            <label id="lblError" class="inline"></label>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Assets/ManageCoupen.js" asp-append-version="true"></script>
+}

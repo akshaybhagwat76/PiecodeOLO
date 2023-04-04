@@ -54,27 +54,9 @@ $('#deletebtn').click(function () { $('.table tbody').empty(); $('.table thead')
 $(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
     $('#ProgramId').select2();
-}); $('#delete-btn').click(function () {
-    var id = $('#deleteModal').data('id');
-    $.ajax({
-
-        type: "GET",
-        url: "/Menu/DeleteMenuAvailabilities",
-        data: { id: id },
-        success: function (response) {
-            if (!response.isSuccess) {
-                $('#deleteModal').modal('hide');
-                table.ajax.reload()
-            }
-            else {
-                $('#deleteModal').modal('hide');
-                loadAllMenu();
-            }
-        },
-        error: function (error) {
-        }
-    });
 });
+
+
 
 
 $(document).ready(function () {
@@ -91,8 +73,6 @@ $('#btn-check').click(function () {
         $('.chooseplus ').hide();
     }
 });
-
-
 $('#dataupload').on('click', function () {
 
     $("thead").show();
@@ -138,28 +118,36 @@ $('#dataupload').on('click', function () {
 
 });
 
-let menuAvailId = 0;
-function deletemenuAvaliblities() {
-    $('#delete-btn').on('click', function () {
-        debugger
-        var rowIndex = $(this).find("tr.trpolicy").data("id");
-         menuAvailId = $(this).parent().parent().data("id");
-        if (menuAvailId.length > 0) {
-            menuAvailId = parseInt(menuAvailId);
-        }
-        console.log($(this).parent().parent().remove())
-        delete MenuAvailabilities[parseInt($(this).closest('tr').attr('data-id'))];
-        
-
-    })
-
-   
-}
-
 $("#weektbl").on("click", "a.deletepolicy", function () {
-    $('#deleteModal').data('id', menuAvailId).modal('show');
+    var id = $(this).data('id');
+    $('#deleteModal').data('id', id).modal('show');
     $('#deleteModal').modal('show');
 });
+let menuavailid = 0;
+function deletemenuAvaliblities(id) {
+    debugger
+    $.ajax({
+
+        type: "GET",
+        url: "/Menu/DeleteMenuAvailabilities?id=" + id,
+        data: { id: id },
+        success: function (response) {
+            if (!response.isSuccess) {
+                $('#deleteModal').modal('hide');
+                table.ajax.reload();
+            }
+            else {
+                $('#deleteModal').modal('hide');
+
+            }
+        },
+        error: function (error) {
+        }
+    });
+    console.log($(this).parent().parent().remove())
+}
+
+
 
 
 

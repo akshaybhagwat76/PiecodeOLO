@@ -8,6 +8,7 @@ namespace DishoutOLO.Service.Interface
     {
         public DishoutOLOResponseModel AddOrUpdateMenuAvailabilities(AddMenuAvaliblities data);
         public DishoutOLOResponseModel DeleteMenuAvailabilities(int data);
+         
 
 
     }
