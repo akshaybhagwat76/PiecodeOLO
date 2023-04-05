@@ -66,12 +66,14 @@ namespace DishoutOLO.Service
                         else
                         {
                             Item item = _itemRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
+                            string itemImg = item.ItemImage;
                             DateTime createdDt = item.CreationDate ?? new DateTime();
                             bool isActive = item.IsActive;
                             item = _mapper.Map<AddItemModel, Item>(data);
                             item.ModifiedDate = DateTime.Now;
                             item.CreationDate = createdDt;
                             item.IsActive = isActive;
+                            item.ItemImage = itemImg;
                             _itemRepository.Update(item);
                         }
                     }

@@ -9,6 +9,7 @@ $("#itemTbl").on("click", "a#btn-delete", function () {
     $('#deleteModal').data('id', id).modal('show');
     $('#deleteModal').modal('show');
 });
+
 $('#delete-btn').click(function () {
     var id = $('#deleteModal').data('id');
     $.ajax({

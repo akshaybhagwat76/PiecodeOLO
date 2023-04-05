@@ -1,10 +1,11 @@
-﻿
+﻿//const { data } = require("jquery");
+
 var table;
 $("document").ready(function () {
-    loadAllMenu();
-    
+    loadAllCoupens();
+
 })
-$("#menuTbl").on("click", "a#btn-delete", function () { 
+$("#coupenTbl").on("click", "a#btn-delete", function () {
     var id = $(this).data('id');
     $('#deleteModal').data('id', id).modal('show');
     $('#deleteModal').modal('show');
@@ -12,18 +13,17 @@ $("#menuTbl").on("click", "a#btn-delete", function () {
 $('#delete-btn').click(function () {
     var id = $('#deleteModal').data('id');
     $.ajax({
-
         type: "GET",
-        url: "/Menu/DeleteMenu",
+        url: "/Coupen/DeleteCoupen",
         data: { id: id },
         success: function (response) {
             if (!response.isSuccess) {
                 $('#deleteModal').modal('hide');
-                table.ajax.reload()
-                }
+            }
             else {
                 $('#deleteModal').modal('hide');
-                loadAllMenu();
+                table.ajax.reload()
+                //    funToastr(true, response.message);
             }
         },
         error: function (error) {
@@ -32,10 +32,12 @@ $('#delete-btn').click(function () {
 });
 
 
-function loadAllMenu() {
-    var url = "/Menu/GetAllMenu"
 
-    table = $("#menuTbl").DataTable({
+
+function loadAllCoupens() {
+
+    var url = "/Coupen/GetAllCoupen"
+    table = $("#coupenTbl").DataTable({
 
         "searching": true,
         "serverSide": true,
@@ -49,20 +51,28 @@ function loadAllMenu() {
 
         "columns": [
             {
-                "data": "menuName"
+                "data": "couponName"
             },
             {
-                "data": "categoryName"
-            },
-            {
-                "data": "menuPrice"
+                "data": "couponCode"
             },
             
+            {
+                "data": "startDate"
+            },
+                       
+            {
+                "data": "endDate"
+            },
+            {
+                "data": "discount"
+            },
            
+
             {
                 orderable: false,
                 "render": function (data, type, full, meta) {
-                    return ` <a href="/Menu/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm" title="Edit">
+                    return ` <a href="/Coupen/Edit/` + full.id + `" data-id="` + full.id + `" onclick="show()" class="btn btn-success btn-sm" title="Edit">
                                     <i class="fa fa-edit"></i>
                              </a>
                              <a href="javascript:void(0)" id="btn-delete" data-id="`+ full.id + `" class="btn btn-danger btn-sm" title="Delete">
@@ -76,6 +86,4 @@ function loadAllMenu() {
     });
 
 }
-
-
 

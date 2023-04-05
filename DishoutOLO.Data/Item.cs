@@ -19,10 +19,10 @@ namespace DishoutOLO.Data
 
         public int MSRP { get; set; }
 
-        public string? TaxRate1 { get; set; }
-        public string? TaxRate2 { get; set; }
-        public string? TaxRate3 { get; set; }
-        public string? TaxRate4 { get; set; }
+        public decimal TaxRate1 { get; set; }
+        public decimal TaxRate2 { get; set; }
+        public decimal TaxRate3 { get; set; }
+        public decimal TaxRate4 { get; set; }
     }
 }
 

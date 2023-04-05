@@ -30,7 +30,8 @@ builder.Services.AddScoped<IProgramService, ProgramService>();
 builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
 builder.Services.AddScoped<IMenuAvailabilitiesRepository, MenuAvailabilitiesRepository>(); 
 builder.Services.AddScoped<IMenuAvailabilityService, MenuAvailabilityService>();
-
+builder.Services.AddScoped<ICoupenRepository, CoupenRepository>();
+builder.Services.AddScoped<ICoupenService, CoupenService>();
 
 builder.Services.AddScoped<LoggerProvider>();
 
