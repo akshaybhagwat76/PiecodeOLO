@@ -46,7 +46,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.StartDate,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.StartDate,"{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control required",@type="date", @Placeholder = "StartDate" } })
+                                    @Html.EditorFor(model => model.StartDate,new { htmlAttributes = new
+                                    { @class = "form-control datetimepicker-input required",@type="date" }  })
                                 </div>
                             </div>
                         </div>
@@ -55,7 +56,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.EndDate,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.EndDate,"{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control required",@type="date", @Placeholder = "EndDate" } })
+                                    @Html.EditorFor(model => model.EndDate,new { htmlAttributes = new
+                                    { @class = "form-control datetimepicker-input required",@type="date" } })
                                 </div>
                             </div>
                             <div class="col">
