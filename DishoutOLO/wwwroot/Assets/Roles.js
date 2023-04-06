@@ -1,8 +1,8 @@
 ﻿var table;
 $("document").ready(function () {
-    loadAllCategory();
+    loadAllRoles();
 })
-$("#categoryTbl").on("click", "a#btn-delete", function () {
+$("#rolesTbl").on("click", "a#btn-delete", function () {
     var id = $(this).data('id');
     $('#deleteModal').data('id', id).modal('show');
     $('#deleteModal').modal('show');
@@ -12,7 +12,7 @@ $('#delete-btn').click(function () {
     var id = $('#deleteModal').data('id');
     $.ajax({
         type: "GET",
-        url: "/Category/DeleteCategory",
+        url: "/Roles/DeleteRoles",
         data: { id: id },
         success: function (response) {
             if (!response.isSuccess) {
@@ -30,11 +30,11 @@ $('#delete-btn').click(function () {
 });
 
 
-function loadAllCategory() {
-    var url = "/Category/GetAllCategory"
-   
-    table = $("#categoryTbl").DataTable({
-        
+function loadAllRoles() {
+    var url = "/Roles/GetAllRoles"
+
+    table = $("#rolesTbl").DataTable({
+
         "searching": true,
         "serverSide": true,
         "bFilter": true,
@@ -44,38 +44,27 @@ function loadAllCategory() {
             type: "POST",
             datatype: "json"
         },
-        
+
         "columns": [
             {
-                "data": "categoryName"
+                "data": "rolesName"
             },
+           
             {
-                "data": function (show) {
-                    if (show.status == true) {
-                        return "Active";
-                    }
-                    else {
-                        return "Deactive";
-                    }
-                }
-            },
-            
-            
-            {
-                orderable: false ,
-                "render":function(data,type,full,meta) {
-                    return ` <a href="/Category/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm" title="Edit">
+                orderable: false,
+                "render": function (data, type, full, meta) {
+                    return ` <a href="/Roles/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm" title="Edit">
                                     <i class="fa fa-edit"></i>
                              </a>
                              <a href="javascript:void(0)" id="btn-delete" data-id="`+ full.id + `" class="btn btn-danger btn-sm" title="Delete">
                                     <i class="fa fa-trash"></i>
-                             </a>`; 
+                             </a>`;
                 }
             }
 
         ],
-       
+
     });
-    
+
 }
 

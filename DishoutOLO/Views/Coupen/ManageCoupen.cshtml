@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.StartDate,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.StartDate,new { htmlAttributes = new
-                                    { @class = "form-control datetimepicker-input required",@type="date" }  })
+                                    { @class = "form-control  required",@id="Startdate", @type="text" ,autocomplete = "off"}  })
                                 </div>
                             </div>
                         </div>
@@ -57,13 +57,13 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.EndDate,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.EndDate,new { htmlAttributes = new
-                                    { @class = "form-control datetimepicker-input required",@type="date" } })
+                                    { @class = "form-control  required" ,@id="Enddate", @type="text", autocomplete = "off"} })
                                 </div>
                             </div>
                             <div class="col">
                             <div class="form-group">
                                     @Html.LabelFor(model => model.Discount,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Discount" } })
+                                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control required",autocomplete = "off", @Placeholder = "Discount" } })
                                 </div>
                             </div>
                         </div>
@@ -73,13 +73,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.RedemptionType,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.RedemptionType, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Redemption Type" } })
+                                    @Html.EditorFor(model => model.RedemptionType, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Redemption Type",autocomplete = "off" } })
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DiscountTypePercentageval,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.DiscountTypePercentageval, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Discount Type Percentageval" } })
+                                    @Html.EditorFor(model => model.DiscountTypePercentageval, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Discount Type Percentageval",autocomplete = "off" } })
                                 </div>
                             </div>
                         </div>

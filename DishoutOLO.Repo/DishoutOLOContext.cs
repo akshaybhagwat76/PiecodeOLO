@@ -36,7 +36,8 @@ namespace DishoutOLO.Repo
         public DbSet<MenuAvailabilities> MenuAvailabilities { get; set; }
         public DbSet<Coupen> Coupens { get; set; }
 
-
+        public DbSet<Roles> Roles { get; set; } 
+        public DbSet<Order> Orders { get; set; }
 
     }
 }

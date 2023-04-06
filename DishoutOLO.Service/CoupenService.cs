@@ -41,8 +41,10 @@ namespace DishoutOLO.Service
                     response.Errors = new List<ErrorDet>();
                     if (Coupen.CouponName.ToLower() == data.CouponName.ToLower())
                     {
-                        response.Errors.Add(new ErrorDet() { ErrorField = "couponName", ErrorDescription = "Coupon already exist" });
+                        response.Errors.Add(new ErrorDet() { ErrorField = "CouponName", ErrorDescription = "Coupon already exist" });
                     }
+
+                    return response;
                 }
                 if (response.Errors == null)
                 {
@@ -52,8 +54,7 @@ namespace DishoutOLO.Service
                         tblCoupen.CreationDate = DateTime.Now;
                         tblCoupen.IsActive = true;
                         _coupenRepository.Insert(tblCoupen);
-                        
-                        
+
                     }
                     else
                     {
@@ -66,9 +67,11 @@ namespace DishoutOLO.Service
                         coupen.IsActive = isActive;
                         _coupenRepository.Update(coupen);
                     }
-                    return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Coupen") : string.Format(Constants.UpdatedSuccessfully, "Coupen") };
+
                 }
-                return response;
+                    return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "Coupen") : string.Format(Constants.UpdatedSuccessfully, "Coupen") };
+                
+               
             }
             catch (Exception)
             {
@@ -135,23 +138,20 @@ namespace DishoutOLO.Service
                     {
                         if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)) && data.Count() > 0)
                         {
-                            //if (sortcolumn.length > 0)
-                            //{
-                            //    sortcolumn = sortcolumn.first().tostring().toupper() + sortcolumn.substring(1);
-                            //    if (sortcolumndirection == "asc")
-                            //    {
+                            sortColumn = sortColumn.First().ToString().ToUpper() + sortColumn.Substring(1);
+                            if (sortColumnDirection == "asc")
+                            {
 
-                            //        data = data.orderbydescending(p => p.gettype()
-                            //                .getproperty(sortcolumn)
-                            //                .getvalue(p, null)).tolist();
-                            //    }
-                            //    else
-                            //    {
-                            //        data = data.orderby(p => p.gettype()
-                            //               .getproperty(sortcolumn)
-                            //               .getvalue(p, null)).tolist();
-                            //    }
-                            //}
+                                data = data.OrderByDescending(p => p.GetType()
+                                        .GetProperty(sortColumn)
+                                        .GetValue(p, null)).ToList();
+                            }
+                            else
+                            {
+                                data = data.OrderBy(p => p.GetType()
+                                       .GetProperty(sortColumn)
+                                       .GetValue(p, null)).ToList();
+                            }
                         }
                     }
                 }
@@ -208,7 +208,7 @@ namespace DishoutOLO.Service
                     obj.Discount = coupen.Discount; 
                     obj.RedemptionType = coupen.RedemptionType;
                     obj.Description = coupen.Description;
-                    obj.DiscountTypePercentageval = coupen.DiscountTypePercentageval    ;
+                    obj.DiscountTypePercentageval = coupen.DiscountTypePercentageval;
                     obj.StartDate = coupen.StartDate;
                     obj.EndDate = coupen.EndDate;
                     obj.MinOrderAmount = coupen.MinOrderAmount;

@@ -1,13 +1,8 @@
 ﻿using DishoutOLO.Data;
 
-
 namespace DishoutOLO.Repo.Interface
 {
-    public interface ICoupenRepository:IRepository<Coupen>
+    public interface IRolesRepository : IRepository<Roles>
     {
-        
-
-
-
     }
 }

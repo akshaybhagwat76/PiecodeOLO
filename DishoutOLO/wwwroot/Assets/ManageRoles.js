@@ -1,12 +1,6 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
-    if ($("#hdnStatus").val() == 'true') {
-        $("#Status").attr('checked', true);
-    }
-    $(".lblStatusTxt").text($("#Status").is(':checked') ? "Active" : "Deactive");
-
-
-
+    
     $("#btn-Add").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
@@ -15,35 +9,32 @@
                 $(this).addClass("error");
                 retval = false;
             }
-            else {  
+            else {
                 $(this).removeClass("error");
             }
         });
         if (retval) {
             var data = {
                 id: $("#Id").val(),
-                CategoryName: $("#CategoryName").val(),
-                Status: $("#Status").is(':checked'),
+                RolesName: $("#RolesName").val(),
                 IsActive: $("#IsActive").val() == "true" ? true : false
             }
             $.ajax({
                 type: "POST",
-                url: "/Category/AddOrUpdateCategory",
-                data: { categoryVM: data },
+                url: "/Roles/AddOrUpdateRoles",
+                data: { rolesVM: data },
                 success: function (data) {
                     if (!data.isSuccess) {
                         $("#lblError").addClass("error").text(data.message.toString()).show();
                     }
                     else {
-                        window.location.href = '/Category/Index'
+                        window.location.href = '/Roles/Index'
                     }
                 }
             });
         }
-       
+
     })
-    $("#Status").change(function (e) {
-        $(".lblStatusTxt").text($("#Status").is(':checked') ? "Active" : "Deactive")
-    })
+    
 
 });

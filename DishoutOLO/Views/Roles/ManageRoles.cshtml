@@ -1,6 +1,6 @@
-﻿@model DishoutOLO.ViewModel.AddArticleModel
+﻿@model DishoutOLO.ViewModel.AddRolesModel
 @{
-    ViewData["Title"] = "Manage Article";
+    ViewData["Title"] = "Manage Roles";
 }
 
 <div class="row">
@@ -10,44 +10,32 @@
             <form id="myForm" action="javascript:;">
                 @Html.HiddenFor(mode=>mode.Id)
                 @Html.HiddenFor(mode=>mode.IsActive)
-
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-12">
-                            <h3 class="mb-0">Manage Article</h3>
+                            <h3 class="mb-0">Manage Roles</h3>
                         </div>
                     </div>
                 </div>
-
                 <div class="card-body">
-
-
-                    <div class="pl-lg-4">   
+                    <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.ArticleName,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.ArticleName, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Article Name" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ArticleDescription,new {@class="form-control-label"})
-                                    @Html.TextAreaFor(model => model.ArticleDescription,  new { @class = "form-control required summernote", rows="10",@id="summernote"} )
+                                    @Html.LabelFor(model => model.RolesName,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.RolesName, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Roles Name" } })
                                 </div>
                             </div>
                         </div>
                     </div>
-              </div>
+                </div>
                 <div class="card-footer">
                     <div class="row align-items-center">
                         <div class="col-12 text-center">
                             <button type="submit" id="btn-Add" class="btn btn-md btn-primary">
                                 Save
                             </button>
-                            <a href="/Article/Index" class="btn btn-default">Cancel</a>
+                            <a href="/Roles/Index" class="btn btn-default">Cancel</a>
                             <label id="lblError" class="inline"></label>
 
 
@@ -63,5 +51,5 @@
     </div>
 </div>
 @section Scripts{
-    <script src="~/Assets/ManageArticle.js" asp-append-version="true"></script>
+    <script src="~/Assets/ManageRoles.js" asp-append-version="true"></script>
 }

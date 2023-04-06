@@ -10,20 +10,17 @@ namespace DishoutOLO.ViewModel
         public int Id { get; set; }
 
         [DisplayName("Coupon Name")]
-        public string? CouponName { get; set; }
+        public string CouponName { get; set; }
 
 
         [DisplayName("Coupon Code")]
         public string? CouponCode { get; set; }
 
+        [DisplayName("MinOrder Amount")]
         public decimal MinOrderAmount { get; set; }
-
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayName("Start Date")]
         public DateTime StartDate { get; set; }
-
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayName("End Date")]
         public DateTime EndDate { get; set; }
 
         public decimal Discount { get; set; }

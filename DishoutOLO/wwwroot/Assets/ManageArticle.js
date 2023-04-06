@@ -40,3 +40,43 @@
    
 
 });
+
+
+$(document).ready(function () {
+    var editor = $('#summernote');
+    editor.summernote({
+        height: ($(window).height() - 250),
+        focus: false,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['view', ['fullscreen', 'codeview']],
+        ],
+        oninit: function () {
+            // Add "open" - "save" buttons
+            var noteBtn = '<button id="makeSnote" type="button" class="btn btn-default btn-sm btn-small" title="Identify a music note" data-event="something" tabindex="-1"><i class="fa fa-music"></i></button>';
+            var fileGroup = '<div class="note-file btn-group">' + noteBtn + '</div>';
+            $(fileGroup).appendTo($('.note-toolbar'));
+            // Button tooltips
+            $('#makeSnote').tooltip({ container: 'body', placement: 'bottom' });
+            // Button events
+            $('#makeSnote').click(function (event) {
+                var highlight = window.getSelection(),
+                    spn = document.createElement('span'),
+                    range = highlight.getRangeAt(0)
+
+                spn.innerHTML = highlight;
+                spn.className = 'snote';
+                spn.style.color = 'blue';
+
+                range.deleteContents();
+                range.insertNode(spn);
+            });
+        },
+
+    });
+
+});
