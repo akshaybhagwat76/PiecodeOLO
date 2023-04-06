@@ -52,10 +52,10 @@ function loadAllCategory() {
             {
                 "data": function (show) {
                     if (show.status == true) {
-                        return "Yes";
+                        return "Active";
                     }
                     else {
-                        return "No";
+                        return "Deactive";
                     }
                 }
             },

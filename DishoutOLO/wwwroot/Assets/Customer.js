@@ -13,20 +13,18 @@ $("document").ready(function () {
         toastr.success('Status Has Been Changed!')
     })
 });
-$("#customerTbl").on("change", "#back", function () {
+$("#customerTbl").on("change", "#checkit", function () {
     var id = $(this).data('id');
     if ($(this).is(':checked') == true) {
-       
+
         $('#deactivemodel').data('id', id).modal('show');
         $('#deactivemodel').modal('show');
-        this.checked == true;
-              
+
     }
     else {
         $('#activemodel').data('id', id).modal('show');
         $('#activemodel').modal('show');
-        this.checked == false;
-    
+
     }
 
 
@@ -68,17 +66,22 @@ function loadAllCustomer() {
             {
                 orderable: false,
                 "render": function (data, type, row, meta) {
-                    
-                    return '<input type="checkbox" data-id="'+row.id+'" '+ (row.isActive ? ' checked' : '') + '/>';
+
+                    return `<label class="switch">
+                            <input type="checkbox" id="checkit">
+                             <span class="slider round"></span>
+                              </label>`
+
+
 
                 }
             },
 
         ],
-       
-    }); 
-         
-    
+
+    });
+
+
 
 }
 
@@ -87,4 +90,4 @@ function loadAllCustomer() {
 
 
 
-    
+

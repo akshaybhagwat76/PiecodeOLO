@@ -3,7 +3,7 @@
     if ($("#hdnStatus").val() == 'true') {
         $("#Status").attr('checked', true);
     }
-    $(".lblStatusTxt").text($("#Status").is(':checked') ? "Yes" : "No");
+    $(".lblStatusTxt").text($("#Status").is(':checked') ? "Active" : "Deactive");
 
 
 
@@ -43,7 +43,7 @@
        
     })
     $("#Status").change(function (e) {
-        $(".lblStatusTxt").text($("#Status").is(':checked') ? "Yes" : "No")
+        $(".lblStatusTxt").text($("#Status").is(':checked') ? "Active" : "Deactive")
     })
 
 });

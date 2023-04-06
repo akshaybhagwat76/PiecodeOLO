@@ -3,7 +3,14 @@
 
     debugger
 
-    $("#btn-Add ").on("click", function () {
+    var id = $("#Id").val();
+    if (id == 0) {
+        $("#Startdate").val("");
+        $("#Enddate").val("");
+    }
+
+
+    $("#btn-Add").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
         $("#myForm .required").each(function () {
@@ -23,8 +30,8 @@
         CouponName: $("#CouponName").val(),
         CouponCode: $("#CouponCode").val(),
         MinOrderAmount: $("#MinOrderAmount").val(),
-        StartDate: $("#StartDate").val(),
-        EndDate: $("#EndDate").val(),
+        Startdate: $("#Startdate").val(),
+        Enddate: $("#Enddate").val(),
         Discount: $("#Discount").val(),
         RedemptionType: $("#RedemptionType").val(),
         Description: $("#Description").val(),
@@ -39,7 +46,9 @@
 
                 success: function (data) {
                     if (!data.isSuccess) {
-                        $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
+                        //$("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
+
+                       $("#lblError").addClass("error").text(data.message.toString()).show();
 
                     }
                     else {
@@ -51,10 +60,23 @@
         
     });
 })
-$(function () {
-    debugger
-    $("#datepicker").datepicker({
-        minDate: new Date(2021, 0, 1), // January 1, 2021
-        maxDate: new Date(2023, 03, 04), // December 31, 2023
+$(document).ready(function () {
+
+    $(function () {
+        $("#Startdate").datepicker({
+            minDate: 0,
+            format: 'DD-MM-YYYY',
+            
+        });
     });
-});
+
+    $(function () {
+        $("#Enddate").datepicker({
+            minDate: 0,
+            format: 'DD-MM-YYYY',
+        });
+      
+    });
+
+   
+})

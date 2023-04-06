@@ -37,6 +37,7 @@ namespace DishoutOLO.Repo
         public DbSet<Coupen> Coupens { get; set; }
 
 
+        public DbSet<Order> Orders { get; set; }
 
     }
 }

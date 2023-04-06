@@ -32,6 +32,8 @@ builder.Services.AddScoped<IMenuAvailabilitiesRepository, MenuAvailabilitiesRepo
 builder.Services.AddScoped<IMenuAvailabilityService, MenuAvailabilityService>();
 builder.Services.AddScoped<ICoupenRepository, CoupenRepository>();
 builder.Services.AddScoped<ICoupenService, CoupenService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();   
 
 builder.Services.AddScoped<LoggerProvider>();
 

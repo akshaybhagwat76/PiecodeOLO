@@ -35,14 +35,12 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ArticleDescription,new {@class="form-control-label"})
-                                    @Html.TextAreaFor(model => model.ArticleDescription,  new { @class = "form-control required", @Placeholder = "Article Description" } )
+                                    @Html.TextAreaFor(model => model.ArticleDescription,  new { @class = "form-control required summernote", rows="10",@id="summernote"} )
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                </div>
+              </div>
                 <div class="card-footer">
                     <div class="row align-items-center">
                         <div class="col-12 text-center">
