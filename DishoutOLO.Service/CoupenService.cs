@@ -5,6 +5,7 @@ using DishoutOLO.Repo.Interface;
 using DishoutOLO.Service.Interface;
 using DishoutOLO.ViewModel;
 using DishoutOLO.ViewModel.Helper;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DishoutOLO.Service
 {
@@ -28,7 +29,7 @@ namespace DishoutOLO.Service
         public DishoutOLOResponseModel AddOrUpdateCoupen(AddCoupenModel data)
         {
             try
-            {
+                {
                 Coupen Coupen = _coupenRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.CouponName.ToLower() == data.CouponName.ToLower()));
 
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
@@ -51,6 +52,8 @@ namespace DishoutOLO.Service
                         tblCoupen.CreationDate = DateTime.Now;
                         tblCoupen.IsActive = true;
                         _coupenRepository.Insert(tblCoupen);
+                        
+                        
                     }
                     else
                     {

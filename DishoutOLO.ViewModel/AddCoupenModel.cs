@@ -1,5 +1,6 @@
 ﻿
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DishoutOLO.ViewModel
@@ -8,8 +9,11 @@ namespace DishoutOLO.ViewModel
     {
         public int Id { get; set; }
 
+        [DisplayName("Coupon Name")]
         public string? CouponName { get; set; }
 
+
+        [DisplayName("Coupon Code")]
         public string? CouponCode { get; set; }
 
         public decimal MinOrderAmount { get; set; }
@@ -18,17 +22,20 @@ namespace DishoutOLO.ViewModel
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime StartDate { get; set; }
 
+
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime EndDate { get; set; }
 
         public decimal Discount { get; set; }
 
+        [DisplayName("Redemption Type")]
         public string? RedemptionType { get; set; }
 
         public string? Description { get; set; }
         public bool IsActive { get; set; }
 
-        public decimal DiscountTypePercentageval { get; set; }
+        [DisplayName("Discount Type Percentageval")]
+       public decimal DiscountTypePercentageval { get; set; }
     }
 
     public class UpdateCoupenModel
