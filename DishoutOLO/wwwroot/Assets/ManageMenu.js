@@ -85,7 +85,7 @@ $('#dataupload').on('click', function () {
         "endtime": endtime,
     }
     if (retvalDetails) {
-        debugger
+        
         var alreadyExist = false;
         if (MenuAvailabilities != null && MenuAvailabilities.length > 0) {
 
@@ -124,7 +124,7 @@ $("#weektbl").on("click", "a.deletepolicy", function () {
 });
 let menuavailid = 0;
 function deletemenuAvaliblities(id) {
-    debugger
+    
     $.ajax({
 
         type: "GET",

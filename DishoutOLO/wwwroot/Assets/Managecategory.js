@@ -5,8 +5,6 @@
     }
     $(".lblStatusTxt").text($("#Status").is(':checked') ? "Active" : "Deactive");
 
-
-
     $("#btn-Add").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;

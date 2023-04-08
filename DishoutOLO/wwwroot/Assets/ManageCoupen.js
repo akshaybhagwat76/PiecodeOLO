@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
 
-    debugger
+    
 
     var id = $("#Id").val();
     if (id == 0) {
@@ -24,7 +24,7 @@
            
         });
 
-        debugger
+        
     var data = {
         id: $("#Id").val(),
         CouponName: $("#CouponName").val(),
@@ -46,7 +46,6 @@
 
                 success: function (data) {
                     if (!data.isSuccess) {
-                        //$("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
 
                        $("#lblError").addClass("error").text(data.message.toString()).show();
 

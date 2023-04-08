@@ -37,6 +37,10 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IRolesRepository, RolesRepository>();
 builder.Services.AddScoped<IRolesService, RolesService>();
 
+builder.Services.AddScoped<IUserStaffRepository, UserStaffRepository>();
+builder.Services.AddScoped<IUserStaffService, UserStaffService>();
+
+
 builder.Services.AddScoped<LoggerProvider>();
 
 
