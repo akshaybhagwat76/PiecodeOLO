@@ -200,6 +200,20 @@ namespace DishoutOLO.Service
             }
 
         }
+
+        public DishoutOLOResponseModel GetAllRoles()
+        {
+            try
+            {
+                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _rolesRepository.GetAll().Where(x => x.IsActive).ToList() };
+
+            }
+            catch (Exception)
+            {
+                return new DishoutOLOResponseModel() { IsSuccess = false, Data = null };
+
+            }
+        }
         #endregion
     }
 }

@@ -42,7 +42,7 @@
         formData.append("TaxRate4", data.TaxRate4);
 
         if (retval) {
-            debugger
+            
             $.ajax({
                 type: "POST",
                 url: "/Item/AddOrUpdateItem",

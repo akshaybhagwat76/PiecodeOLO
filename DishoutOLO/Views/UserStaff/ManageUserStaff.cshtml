@@ -1,0 +1,188 @@
+﻿@model DishoutOLO.ViewModel.AddUserStaffModel
+@{
+    ViewData["Title"] = "Manage User Staff";
+}
+
+<div class="row">
+    <div class="col-xl-8 order-xl-3 ">
+        <div class="card">
+            <form id="myForm" action="javascript:;">
+                @Html.HiddenFor(mode=>mode.Id)
+                @Html.HiddenFor(mode=>mode.IsActive)
+                @Html.HiddenFor(mode=>mode.Password)
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <h3 class="mb-0">Manage User Staff</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="pl-lg-4">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Name",autocomplete = "off" } })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserName,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "User Name" ,autocomplete = "off"} })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Email" ,autocomplete = "off"} })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Phonenumber,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.Phonenumber, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Phone Number",autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RoleId,new {@class="form-control-label"})
+                                    @Html.DropDownListFor(f=>f.RoleId, ViewBag.RolesList as SelectList,"---SELECT-----", new { @class = "form-control required" ,autocomplete = "off"})
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LicensePlate,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.LicensePlate, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "License Plate",autocomplete = "off" } })
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LoginType,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.LoginType, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Login Type" ,autocomplete = "off"} })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DeviceId,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.DeviceId, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "DeviceId",autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.JoiningDate,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.JoiningDate,new { htmlAttributes = new
+                                    { @class = "form-control  required", @type="text",@id="JoiningDate" ,autocomplete = "off"}  })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateOfBirth,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.DateOfBirth,new { htmlAttributes = new
+                                    { @class = "form-control  required", @type="text",@id="DateOfBirth" ,autocomplete = "off"}  })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LicenseExpiration,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.LicenseExpiration,new { htmlAttributes = new
+                                    { @class = "form-control  required", @type="text",@id="LicenseExpiration" ,autocomplete = "off"}  })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.VehicleTypeId,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.VehicleTypeId, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Vehicle TypeId",autocomplete = "off" } })
+                                </div>
+                            </div>
+                            </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DriverLicenseNumber,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.DriverLicenseNumber, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "DriverLicense Number",autocomplete = "off" } })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ContactInfo,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.ContactInfo, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Contact Info",autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+
+                            <hr />
+                            <h4> Address information</h4>
+                            <hr />
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Street,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Street",autocomplete = "off" } })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.State,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "State",autocomplete = "off" } })
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.City,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "City",autocomplete = "off" } })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ZipCode,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Zip Code",autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                                   
+                </div>
+                <div class="card-footer">
+                    <div class="row align-items-center">
+                        <div class="col-12 text-center">
+                            <button type="submit" id="btn-Add" class="btn btn-md btn-primary">
+                                Save
+                            </button>
+                            <a href="/UserStaff/Index" class="btn btn-default">Cancel</a>
+                            <label id="lblError" class="inline"></label>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Assets/ManageUserStaff.js" asp-append-version="true"></script>
+}

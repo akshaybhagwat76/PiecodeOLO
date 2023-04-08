@@ -12,6 +12,8 @@ namespace DishoutOLO.Service.Interface
 
         public DataTableFilterModel GetRolesList(DataTableFilterModel filter);
         public AddRolesModel GetRoles(int Id);
+        public DishoutOLOResponseModel GetAllRoles();
+
 
 
 
