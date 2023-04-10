@@ -61,9 +61,7 @@ function loadAllUserStaff() {
             {
                 "data": "email"
             },
-            
-
-            {
+                {
                 orderable: false,
                 "render": function (data, type, full, meta) {
                     return ` <a href="/UserStaff/Edit/` + full.id + `" data-id="` + full.id + `" class="btn btn-success btn-sm" title="Edit">
