@@ -3,7 +3,12 @@ var table;
 $("document").ready(function () {
     loadAllMenu();
     
+   
+
+    
 })
+
+
 $("#menuTbl").on("click", "a#btn-delete", function () { 
     var id = $(this).data('id');
     $('#deleteModal').data('id', id).modal('show');
@@ -77,5 +82,10 @@ function loadAllMenu() {
 
 }
 
+ 
 
+ 
+
+
+ 
 

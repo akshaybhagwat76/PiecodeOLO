@@ -145,6 +145,23 @@ function deletemenuAvaliblities(id) {
     });
     console.log($(this).parent().parent().remove())
 }
+$('#selectvalue').on('change', function () {
+
+    console.log($(this).val())
+
+    $.get("/Menu/GetMenuAvailability?key=" + $(this).val(), function (data, status) {
+
+        
+        $('#weektbl tbody   ').empty();
+        for (var i = 0; i < data.length; i++) {
+
+            $('#weektbl tbody   ').append('<tr><td>' + data[i].week + '</td><td>' + data[i].fromtime + '</td><td>' + data[i].endtime + '</td> </tr>   ');
+        }
+
+    });
+
+});
+
 
 
 

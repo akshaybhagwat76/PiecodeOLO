@@ -1,12 +1,17 @@
 ﻿var table;
 $("document").ready(function () {
     loadAllItemgroup();
+    
+
+
 })
 $("#itemgroupTbl").on("click", "a#btn-delete", function () {
     var id = $(this).data('id');
     $('#deleteModal').data('id', id).modal('show');
     $('#deleteModal').modal('show');
 });
+
+
 
 $('#delete-btn').click(function () {
     var id = $('#deleteModal').data('id');
