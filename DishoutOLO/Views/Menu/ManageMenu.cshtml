@@ -66,7 +66,8 @@
                     <button type="button" id="btn-check" class="btn btn-md btn-success ml-3">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
-                    <div class="form-group ml-2 mt-3">
+                    <div class="form-group ml-5 mt-n3">
+                        <label class="col-form-label-sm " style="font-size: 15px;">Choose from Existing Menu</label>
                         @Html.DropDownListFor(f=>f.Id, ViewBag.MenuList as SelectList, "---SELECT---", new { @class = "form-control required",@id="selectvalue" })
                     </div>
                 </div>

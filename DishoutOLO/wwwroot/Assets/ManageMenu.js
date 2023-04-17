@@ -152,10 +152,10 @@ $('#selectvalue').on('change', function () {
     $.get("/Menu/GetMenuAvailability?key=" + $(this).val(), function (data, status) {
 
         
-        $('#weektbl tbody   ').empty();
+        $('#weektbl tbody').empty();
         for (var i = 0; i < data.length; i++) {
 
-            $('#weektbl tbody   ').append('<tr><td>' + data[i].week + '</td><td>' + data[i].fromtime + '</td><td>' + data[i].endtime + '</td> </tr>   ');
+            $('#weektbl tbody').append('<tr><td>' + data[i].week + '</td><td>' + data[i].fromtime + '</td><td>' + data[i].endtime + '</td> </tr>   ');
         }
 
     });
