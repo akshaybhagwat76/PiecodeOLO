@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
-
+    $('.DefaultSuccess').click(function () {
+        toastr.success('Item Added Successfully.')
+    });
     $("#btn-submit").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;

@@ -43,7 +43,7 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                var list = _articleService.GetArticleList(filter);
+                DataTableFilterModel list = _articleService.GetArticleList(filter);
                 return Json(list);
             }
             catch (Exception ex)

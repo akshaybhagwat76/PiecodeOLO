@@ -12,7 +12,7 @@ namespace DishoutOLO.Repo
         private DbSet<T> entities;
 
         public Repository(DishoutOLOContext context)
-        {
+            {
             this.context = context;
             entities = context.Set<T>();
         }

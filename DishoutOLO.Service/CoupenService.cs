@@ -57,7 +57,7 @@ namespace DishoutOLO.Service
 
                     }
                     else
-                    {
+                        {
                         Coupen coupen = _coupenRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
                         DateTime createdDt = coupen.CreationDate ?? new DateTime();
                         bool isActive = coupen.IsActive;
