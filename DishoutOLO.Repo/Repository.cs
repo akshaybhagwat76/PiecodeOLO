@@ -1,6 +1,7 @@
 ﻿using DishoutOLO.Data;
 using DishoutOLO.Repo.Interface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 
 namespace DishoutOLO.Repo
@@ -30,56 +31,119 @@ namespace DishoutOLO.Repo
 
         public void Insert(T entity)
         {
+       
+
+
+             try
+            {
+                context.Database.BeginTransaction();
+                entities.Add(entity);
+                context.SaveChanges();
+                context.Database.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                context.Database.RollbackTransaction();
+            }
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-            entities.Add(entity);
-            context.SaveChanges();
+         
         }
 
         public int InsertAndGetId(T entity)
         {
-            if (entity == null)
+
+            try
             {
-                throw new ArgumentNullException("entity");
+                if (entity == null)
+                {
+                    throw new ArgumentNullException("entity");
+                }
+                context.Database.BeginTransaction();
+
+                entities.Add(entity);
+                context.SaveChanges();
+                context.Database.CommitTransaction();
+
+                return entity.Id;
             }
-            entities.Add(entity);
-            context.SaveChanges();
+            catch(Exception ex)
+            {
+                context.Database.RollbackTransaction();
+            }
             return entity.Id;
         }
         public void Update(T entity)
         {
-            var local = context.Set<T>()
-               .Local
-               .FirstOrDefault(entry => entry.Id.Equals(entity.Id));
 
-            if (local != null)
+            try
             {
-                context.Entry(local).State = EntityState.Detached;
-            }
+                var local = context.Set<T>()
+             .Local
+             .FirstOrDefault(entry => entry.Id.Equals(entity.Id));
 
-            context.Set<T>().Attach(entity);
-           context.Entry(entity).State = EntityState.Modified;
-           context.SaveChanges();
+                if (local != null)
+                {
+                    context.Entry(local).State = EntityState.Detached;
+                }
+                context.Database.BeginTransaction();
+
+
+                context.Set<T>().Attach(entity);
+                context.Entry(entity).State = EntityState.Modified;
+                context.SaveChanges();
+                context.Database.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                context.Database.RollbackTransaction();
+            }
+          
 
         }
         public void Delete(T entity)
         {
-            if (entity == null)
+
+            try
             {
-                throw new ArgumentNullException("entity");
+                if (entity == null)
+                {
+                    throw new ArgumentNullException("entity");
+                }
+
+                context.Database.BeginTransaction();
+                entities.Remove(entity);
+                context.SaveChanges();
+                context.Database.CommitTransaction();
+
             }
-            entities.Remove(entity);
-            context.SaveChanges();
+            catch(Exception ex)
+            {
+                context.Database.RollbackTransaction();
+            }
+         
         }
         public void Remove(T entity)
         {
-            if (entity == null)
+
+            try
             {
-                throw new ArgumentNullException("entity");
+                context.Database.BeginTransaction();
+                if (entity == null)
+                {
+                    throw new ArgumentNullException("entity");
+                }
+                entities.Remove(entity);
+                context.Database.CommitTransaction();
             }
-            entities.Remove(entity);
+            catch (Exception ex)
+            {
+                context.Database.RollbackTransaction();
+
+            }
+          
         }
 
         public void SaveChanges()

@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using DishoutOLO.Repo.Migrations;
 using System;
 using MenuAvailabilities = DishoutOLO.Data.MenuAvailabilities;
+using DishoutOLO.Repo;
 
 namespace DishoutOLO.Service
 {
@@ -283,7 +284,19 @@ namespace DishoutOLO.Service
 
         }
 
+        public DishoutOLOResponseModel GetAllMenus()
+        {
+            try
+            {
+                return new DishoutOLOResponseModel() { IsSuccess = true, Data = _menuRepository.GetAll().Where(x => x.IsActive).ToList() };
 
+            }
+            catch (Exception)
+            {
+                return new DishoutOLOResponseModel() { IsSuccess = false };
+
+            }
+        }
         #endregion
 
 

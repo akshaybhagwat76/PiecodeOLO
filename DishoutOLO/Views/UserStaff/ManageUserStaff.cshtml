@@ -22,8 +22,8 @@
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Name,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Name",autocomplete = "off" } })
+                                    @Html.LabelFor(model => model.Email,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Email" ,autocomplete = "off"} })
                                 </div>
                             </div>
                             <div class="col">
@@ -37,9 +37,10 @@
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Email,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Email" ,autocomplete = "off"} })
+                                    @Html.LabelFor(model => model.Name,new {@class="form-control-label"})
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Name",autocomplete = "off" } })
                                 </div>
+
                             </div>
                             <div class="col">
                                 <div class="form-group">
@@ -62,7 +63,7 @@
                                     @Html.EditorFor(model => model.LicensePlate, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "License Plate",autocomplete = "off" } })
                                 </div>
                             </div>
-                           
+
                         </div>
                         <div class="row mb-4">
                             <div class="col">
@@ -83,14 +84,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.JoiningDate,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.JoiningDate,new { htmlAttributes = new
-                                    { @class = "form-control  required", @type="text",@id="JoiningDate" ,autocomplete = "off"}  })
+                                    { @class = "form-control  required dtpicker", @type="text",@id="JoiningDate" ,autocomplete = "off"}  })
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DateOfBirth,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.DateOfBirth,new { htmlAttributes = new
-                                    { @class = "form-control  required", @type="text",@id="DateOfBirth" ,autocomplete = "off"}  })
+                                    { @class = "form-control  required ", @type="text",@id="DateOfBirth" ,autocomplete = "off"}  })
                                 </div>
                             </div>
                         </div>
@@ -99,7 +100,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.LicenseExpiration,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.LicenseExpiration,new { htmlAttributes = new
-                                    { @class = "form-control  required", @type="text",@id="LicenseExpiration" ,autocomplete = "off"}  })
+                                    { @class = "form-control  required dtpicker", @type="text",@id="LicenseExpiration" ,autocomplete = "off"}  })
                                 </div>
                             </div>
                             <div class="col">
@@ -108,7 +109,7 @@
                                     @Html.EditorFor(model => model.VehicleTypeId, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Vehicle TypeId",autocomplete = "off" } })
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
                         <div class="row mb-4">
                             <div class="col">
@@ -125,9 +126,9 @@
                             </div>
                         </div>
 
-                            <hr />
-                            <h4> Address information</h4>
-                            <hr />
+                        <hr />
+                        <h4> Address information</h4>
+                        <hr />
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-group">
@@ -138,12 +139,12 @@
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.State,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "State",autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Enter a location",autocomplete = "off" } })
                                 </div>
-                                
+
                             </div>
                         </div>
-                        
+
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-group">
@@ -157,10 +158,9 @@
                                     @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Zip Code",autocomplete = "off" } })
                                 </div>
                             </div>
+                           
                         </div>
-
-                        
-                                   
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="row align-items-center">
@@ -183,6 +183,9 @@
         </div>
     </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi0CKnhnRClfWA5UC4MKNh55c6D9phWC8&libraries=places"></script>
+
 @section Scripts{
+
     <script src="~/Assets/ManageUserStaff.js" asp-append-version="true"></script>
 }

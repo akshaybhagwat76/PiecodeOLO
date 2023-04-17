@@ -156,19 +156,19 @@ namespace DishoutOLO.Service
                         if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)) && data.Count() > 0)
                         {
                             sortColumn = sortColumn.First().ToString().ToUpper() + sortColumn.Substring(1);
-                            //if (sortColumnDirection == "asc")
-                            //{
+                            if (sortColumnDirection == "asc")
+                            {
 
-                            //    data = data.OrderByDescending(p => p.GetType()
-                            //            .GetProperty(sortColumn)
-                            //            .GetValue(p, null)).ToList();
-                            //}
-                            //else
-                            //{
-                            //    data = data.OrderBy(p => p.GetType()
-                            //           .GetProperty(sortColumn)
-                            //           .GetValue(p, null)).ToList();
-                            //}
+                                data = data.OrderByDescending(p => p.GetType()
+                                        .GetProperty(sortColumn)
+                                        .GetValue(p, null)).ToList();
+                            }
+                            else
+                            {
+                                data = data.OrderBy(p => p.GetType()
+                                       .GetProperty(sortColumn)
+                                       .GetValue(p, null)).ToList();
+                            }
                         }
                     }
                 }
