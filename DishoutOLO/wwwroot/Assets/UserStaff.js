@@ -24,7 +24,6 @@ $("#userStaffTbl").on("click", "a#btn-delete", function () {
 });
 
 function deleteUserStaff() {
-    var id = $('#deleteModal').data('id');
     $.ajax({
         type: "GET",
         url: "/UserStaff/DeleteUserStaff",

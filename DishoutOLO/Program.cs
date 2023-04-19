@@ -1,6 +1,8 @@
+using DishoutOLO.Data;
 using DishoutOLO.Helpers.Provider;
 using DishoutOLO.Repo;
 using DishoutOLO.Repo.Interface;
+using DishoutOLO.Repo.Migrations;
 using DishoutOLO.Service;
 using DishoutOLO.Service.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -36,12 +38,11 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IRolesRepository, RolesRepository>();
 builder.Services.AddScoped<IRolesService, RolesService>();
-
 builder.Services.AddScoped<IUserStaffRepository, UserStaffRepository>();
 builder.Services.AddScoped<IUserStaffService, UserStaffService>();
-
-
 builder.Services.AddScoped<LoggerProvider>();
+
+
 
 
 //var connectionString = builder.Configuration.GetConnectionString("ConnectionStrings:ConnectDB");

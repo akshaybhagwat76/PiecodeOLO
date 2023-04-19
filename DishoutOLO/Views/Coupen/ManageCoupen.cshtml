@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.StartDate,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.StartDate,new { htmlAttributes = new
-                                    { @class = "form-control  required",@id="Startdate", @type="text" ,autocomplete = "off"}  })
+                                    { @class = "form-control  required dtpicker",@id="StartDate", @type="text" ,autocomplete = "off"}  })
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.EndDate,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.EndDate,new { htmlAttributes = new
-                                    { @class = "form-control  required" ,@id="Enddate", @type="text", autocomplete = "off"} })
+                                    { @class = "form-control  required dtpicker" ,@id="EndDate", @type="text", autocomplete = "off"} })
                                 </div>
                             </div>
                             <div class="col">

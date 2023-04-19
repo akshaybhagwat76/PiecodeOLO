@@ -1,8 +1,6 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
-
-
-    
+  
     if ($("#hdnStatus").val() == 'true') {
         $("#Status").attr('checked', true);
     }

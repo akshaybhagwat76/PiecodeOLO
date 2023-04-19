@@ -8,7 +8,7 @@ namespace DishoutOLO.ViewModel
         [DisplayName("Article Name")]
         public string ArticleName { get; set; }
         [DisplayName("Article Description")]
-        public string ArticleDescription { get; set; }
+        public string? ArticleDescription { get; set; }
 
         public bool IsActive { get; set; }
     }
@@ -17,7 +17,7 @@ namespace DishoutOLO.ViewModel
         public int Id { get; set; }
 
         public string ArticleName { get; set; }
-        public string ArticleDescription { get; set; }
+        public string? ArticleDescription { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -27,7 +27,7 @@ namespace DishoutOLO.ViewModel
             public int Id { get; set; }
 
             public string ArticleName { get; set; }
-            public string ArticleDescription { get; set; }
+            public string? ArticleDescription { get; set; }
 
             public bool IsActive { get; set; }
 

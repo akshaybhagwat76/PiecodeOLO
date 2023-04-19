@@ -133,7 +133,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Street,new {@class="form-control-label"})
-                                    @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Street",autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Street",autocomplete = "off",@id="Street" } })
                                 </div>
                             </div>
                             <div class="col">
@@ -144,6 +144,7 @@
 
                             </div>
                         </div>
+                        <div id="map_canvas" class="mt-n3" style="height: 370px;width:1010px;margin: 0.5em;"></div>
 
                         <div class="row mb-4">
                             <div class="col">
@@ -158,7 +159,7 @@
                                     @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control required", @Placeholder = "Zip Code",autocomplete = "off" } })
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>

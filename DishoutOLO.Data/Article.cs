@@ -6,7 +6,7 @@ namespace DishoutOLO.Data
     public class Article :BaseEntity
     {
         public string ArticleName { get; set; }
-        public string ArticleDescription { get; set; }
+        public string? ArticleDescription { get; set; }
 
     }
 }
