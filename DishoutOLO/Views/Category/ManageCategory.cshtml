@@ -35,7 +35,7 @@
                                     <div class="mb-4">
                                         <div>
                                             @Html.CheckBoxFor(m => m.Status, new { @class = "form-check-input" })
-                                            @Html.LabelFor(model => model.Status, new { @class = "form-check-label lblStatusTxt" })
+                                            @Html.LabelFor(model => model.Status, new { @class = "form-check-label lblStatusTxt ml-5" })
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                 <div class="card-footer">
                     <div class="row align-items-center">
                         <div class="col-12 text-center">
-                            <button type="submit" id="btn-Add" class="btn btn-md btn-primary">
+                            <button type="submit" id="btn-Add" class="btn btn-md btn-primary DefaultSuccess">
                                 Save
                             </button>
                             <a href="/Category/Index" class="btn btn-default">Cancel</a>

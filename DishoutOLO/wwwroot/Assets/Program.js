@@ -3,13 +3,26 @@ $("document").ready(function () {
     loadAllProgram();
 })
 $("#programTbl").on("click", "a#btn-delete", function () {
-    var id = $(this).data('id');
-    $('#deleteModal').data('id', id).modal('show');
-    $('#deleteModal').modal('show');
+    var pid = $(this).data('id');
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will not be able to recover this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            id = pid
+            deleteProgram();
+            toastr.success('Record Deleted Successfully.')
+
+        }
+    })
 });
 
-$('#delete-btn').click(function () {
-    var id = $('#deleteModal').data('id');
+function deleteProgram() {
     $.ajax({
         type: "GET",
         url: "/Program/DeleteProgram",
@@ -27,7 +40,7 @@ $('#delete-btn').click(function () {
         error: function (error) {
         }
     });
-});
+}
 
 
 function loadAllProgram() {

@@ -80,9 +80,9 @@
                 <div class="row chooseplus mt-5">
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label for="colFormLabelSm" class="col-sm-2  col-form-label mt-1 col-form-label-sm" required>Days</label>
+                            <label for="colFormLabelSm" class="col-sm-2  col-form-label mt-1 col-form-label-sm" >Days</label>
                             <div class="col-sm-10">
-                                <select class="form-control" required id="week" name="week" style="height: 40px;">
+                                <select class="form-control"  id="week" name="week" required style="height: 40px;">
                                     <option value="">---Day---</option>
                                     <option value="sunday">Sunday</option>
                                     <option value="monday">Monday</option>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group row">
-                            <label for="colFormLabelSm" required class="col-sm-2  col-form-label mt-1 col-form-label-sm">Form-time</label>
+                            <label for="colFormLabelSm"  class="col-sm-2  col-form-label mt-1 col-form-label-sm">Form-time</label>
                             <div class="col-sm-10">
                                 <input type="time" class="form-control " required id="fromtime" name="fromtime" style="height: 40px;">
                             </div>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label for="colFormLabelSm" required class="col-sm-2  col-form-label mt-1 col-form-label-sm ">To-time</label>
+                            <label for="colFormLabelSm" class="col-sm-2  col-form-label mt-1 col-form-label-sm ">To-time</label>
                             <div class="col-sm-10">
                                 <input type="time" class="form-control" id="endtime" required name="endtime" style="height: 40px;">
                             </div>
@@ -169,7 +169,7 @@
     </div>
 </div>
 
-<partial name="_CommonResponseModel" />
+<partial name="_CommonDeleteModal" />
 
 
 @section Scripts{

@@ -1,8 +1,12 @@
 ﻿var retvalDetails = true;
 var MenuAvailabilities = [];
+var id = 0; 
 
 $(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
+    $('.DefaultSuccess').click(function () {
+        toastr.success('Item Added Successfully.')
+    });
     $("#btn-submit").on("click", function () {
 
         $("#lblError").removeClass("success").removeClass("error").text('');
@@ -36,7 +40,7 @@ $(document).ready(function () {
                 type: 'POST', // For jQuery < 1.9
                 success: function (data) {
                     if (!data.isSuccess) {
-                        $("#lblError").addClass("error").text(data.message.toString()).show();
+                        $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
 
 
                     }
@@ -55,11 +59,7 @@ $(document).ready(function () {
     $('#ProgramId').select2();
 });
 
-
-
-
 $(document).ready(function () {
-
     var id = $("#Id").val();
     if (id != null && id.length > 0 && parseInt(id) > 0) {
         $('#ProgramId').select2().val($("#programIds").val().split(',').map(Number)).trigger("change")
@@ -73,38 +73,32 @@ $('#btn-check').click(function () {
     }
 });
 $('#dataupload').on('click', function () {
-
+   
     $("thead").show();
     var week = $('#week').val();
     var fromtime = $('#fromtime').val();
     var endtime = $('#endtime').val();
-
     var obj = {
         "week": week,
         "fromtime": fromtime,
         "endtime": endtime,
     }
-    if (retvalDetails) {
-        
-        var alreadyExist = false;
+    if (retvalDetails)
+    {
+         var alreadyExist = false;
         if (MenuAvailabilities != null && MenuAvailabilities.length > 0) {
-
             var alreadyExist = MenuAvailabilities.some(x => parseInt(x.fromtime) <= parseInt(obj.fromtime) && parseInt(x.endtime) >= parseInt(obj.endtime) && obj.week == x.week);
             if (alreadyExist) {
-
                 alert("Please choose different time");
             }
 
         }
         if (!alreadyExist) {
-
             MenuAvailabilities.push(obj);
             $("#trpolicy tbody tr").remove();
-
             if (week != '---SelectName---' && fromtime != '' && endtime != '') {
                 $('#deletebtn').show();
-
-                var data = '<tr class="trpolicy" data-id=' + MenuAvailabilities.length + '><td>' + week + '</td> <td>' + fromtime + '</td> <td> ' + endtime + '</td><td><a class="deletepolicy"> <i class="fa fa-times" aria-hidden="true"></i> </a></td></tr>';
+               var data = '<tr class="trpolicy" data-id=' + MenuAvailabilities.length + '><td>' + week + '</td> <td>' + fromtime + '</td> <td> ' + endtime + '</td> <td><a class="deletepolicy"> <i class="fa fa-times" aria-hidden="true"></i> </a></td></tr>';
                 $('tbody').append(data);
                 $('#week').val('');
                 $('#fromtime').val('');
@@ -117,49 +111,68 @@ $('#dataupload').on('click', function () {
 
 });
 
-$("#weektbl").on("click", "a.deletepolicy", function () {
-    var id = $(this).data('id');
-    $('#deleteModal').data('id', id).modal('show');
-    $('#deleteModal').modal('show');
+$("#weektbl").on("click", ".deletepolicy", function () {
+    var wid = $(this).data('id');
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will not be able to recover this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            id = wid
+            deletemenuAvaliblities();
+            toastr.success('Record Deleted Successfully.')
+
+        }
+    })
 });
 let menuavailid = 0;
 function deletemenuAvaliblities(id) {
-    
     $.ajax({
-
         type: "GET",
-        url: "/Menu/DeleteMenuAvailabilities?id=" + id,
+        url: "/Menu/DeleteMenuAvailabilities?id="+id,
         data: { id: id },
         success: function (response) {
             if (!response.isSuccess) {
                 $('#deleteModal').modal('hide');
-                table.ajax.reload();
             }
             else {
                 $('#deleteModal').modal('hide');
-
             }
         },
         error: function (error) {
         }
     });
-    console.log($(this).parent().parent().remove())
 }
 $('#selectvalue').on('change', function () {
 
     console.log($(this).val())
 
-    $.get("/Menu/GetMenuAvailability?key=" + $(this).val(), function (data, status) {
+    if (retvalDetails) {
+        var alreadyExist = false;
+        if (MenuAvailabilities != null && MenuAvailabilities.length > 0) {
+            var alreadyExist = MenuAvailabilities.some(x => parseInt(x.fromtime) <= parseInt(obj.fromtime) && parseInt(x.endtime) >= parseInt(obj.endtime) && obj.week == x.week);
+            if (alreadyExist) {
+                alert("Please choose different time");
+            }
 
-        
-        $('#weektbl tbody').empty();
-        for (var i = 0; i < data.length; i++) {
-
-            $('#weektbl tbody').append('<tr><td>' + data[i].week + '</td><td>' + data[i].fromtime + '</td><td>' + data[i].endtime + '</td> </tr>   ');
         }
 
-    });
+        $.get("/Menu/GetMenuAvailability?key=" + $(this).val(), function (data, status) {
+            if (!alreadyExist) {
+                $('#weektbl tbody').empty();
+                for (var i = 0; i < data.length; i++) {
 
+                    $('#weektbl tbody').append('<tr><td>' + data[i].week + '</td><td>' + data[i].fromtime + '</td><td>' + data[i].endtime + '</td><td><a class="deletepolicy"> <i class="fa fa-times" aria-hidden="true"></i> </a></td> </tr>');
+                }
+            }
+           
+        });
+    }
 });
 
 

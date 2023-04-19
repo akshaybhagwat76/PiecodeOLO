@@ -96,7 +96,8 @@ namespace DishoutOLO.Controllers
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
                 ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
-                                                          
+                ViewBag.MenuList = new SelectList((IList)_menuService.GetAllMenus().Data, "Id", "MenuName");
+
             }
             catch (Exception ex)
             {

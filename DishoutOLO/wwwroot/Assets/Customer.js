@@ -4,28 +4,61 @@ var table;
 $("document").ready(function () {
     loadAllCustomer();
 
-    $('#btn-deactive').on('click', function () {
-        $('#deactivemodel').modal('toggle');
-        toastr.success('Status Has Been Changed!')
-    })
-    $('#btn-active').on('click', function () {
-        $('#activemodel').modal('toggle');
-        toastr.success('Status Has Been Changed!')
-    })
 });
 $("#customerTbl").on("change", "#checkit", function () {
     var id = $(this).data('id');
+
     if ($(this).is(':checked') == true) {
 
-        $('#deactivemodel').data('id', id).modal('show');
-        $('#deactivemodel').modal('show');
+        Swal.fire({
+            title: 'Are You Sure You Want active!',
+            //text: "Are You Sure You Want active!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                id = id
 
-    }
-    else {
-        $('#activemodel').data('id', id).modal('show');
-        $('#activemodel').modal('show');
+                toastr.success('Status Has Been Changed.')
 
+            }
+        })
+
+    } else {
+        Swal.fire({
+            title: 'Are You Sure You Want deactive',
+            //text: "Are You Sure You Want deactive",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                id = id
+
+                toastr.success('Status Has Been Changed.')
+
+            }
+        })
     }
+
+
+
+    //if ($(this).is(':checked') == true) {
+
+    //    $('#deactivemodel').data('id', id).modal('show');
+    //    $('#deactivemodel').modal('show');
+
+    //}
+    //else {
+    //    $('#activemodel').data('id', id).modal('show');
+    //    $('#activemodel').modal('show');
+
+    //}
 
 
 });

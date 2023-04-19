@@ -1,7 +1,7 @@
-﻿$(document).ready(function () {
-    $("#lblError").removeClass("success").removeClass("error").text('');
-   
+﻿
 
+$(document).ready(function () {
+    $("#lblError").removeClass("success").removeClass("error").text('');
     $("#btn-Add ").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
@@ -26,11 +26,16 @@
                 url: "/Article/AddOrUpdateArticle",
                 data: { articleVM: data },
                 success: function (data) {
+                    debugger
+                    console.log(data);
                     if (!data.isSuccess) {
-                        $("#lblError").addClass("error").text(data.message.toString()).show();
+                        $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
+                        toastr.success('Article Added Successfully.')
+
                     }
                     else {
                         window.location.href = '/Article/Index'
+
                     }
                 }
             });

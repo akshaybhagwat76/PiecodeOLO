@@ -1,15 +1,13 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
+        
 
-    
 
     var id = $("#Id").val();
     if (id == 0) {
         $("#Startdate").val("");
         $("#Enddate").val("");
     }
-
-
     $("#btn-Add").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
@@ -63,8 +61,7 @@ $(document).ready(function () {
 
     $(function () {
         $("#Startdate").datepicker({
-            minDate: 0,
-            format: 'DD-MM-YYYY',
+            minDate: 0
             
         });
     });
@@ -72,7 +69,6 @@ $(document).ready(function () {
     $(function () {
         $("#Enddate").datepicker({
             minDate: 0,
-            format: 'DD-MM-YYYY',
         });
       
     });

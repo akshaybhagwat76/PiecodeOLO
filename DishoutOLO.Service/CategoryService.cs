@@ -47,6 +47,8 @@ namespace DishoutOLO.Service
                     tblCategory.CreationDate = DateTime.Now;
                     tblCategory.IsActive = true;
                     _categoryRepository.Insert(tblCategory);
+                    
+
                 }
                 else
                 {

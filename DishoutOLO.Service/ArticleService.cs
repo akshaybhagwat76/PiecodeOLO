@@ -29,7 +29,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                Article Article = _articleRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive && (x.ArticleName.ToLower() == data.ArticleName.ToLower()));
+                Article Article = _articleRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive==false && (x.ArticleName.ToLower() == data.ArticleName.ToLower()));
 
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
