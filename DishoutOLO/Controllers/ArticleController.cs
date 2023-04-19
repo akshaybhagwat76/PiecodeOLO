@@ -21,19 +21,66 @@ namespace DishoutOLO.Controllers
             _loggerProvider=loggerProvider;
         }
         #endregion
-        #region Get Methods
+        #region Crud Methods
         public IActionResult Index()
         {
+
             return View();
         }
+
         /// <summary>
         /// Create Article
         /// </summary>
         /// <returns></returns>
         public IActionResult Create()
         {
+
             return View("ManageArticle", new AddArticleModel());
         }
+        /// <summary>
+        /// To add or insert Article
+        /// </summary>
+        /// <param name="articleVM"></param>
+        /// <returns></returns>
+        public JsonResult AddOrUpdateArticle(AddArticleModel articleVM)
+        {
+            try
+            {
+                return Json(_articleService.AddOrUpdateArticle(articleVM));
+            }
+            catch (Exception ex)
+            {
+                _loggerProvider.logmsg(ex.Message);
+            }
+
+            return Json(articleVM);
+        }
+
+        /// <summary>
+        /// Delete Article
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IActionResult DeleteArticle(int id)
+        {
+            try
+            {
+                DishoutOLOResponseModel list = _articleService.DeleteArticle(id);
+            }
+            catch (Exception ex)
+            {
+                _loggerProvider.logmsg(ex.Message);
+            }
+            return Json(id);
+        }
+
+        #endregion
+
+
+
+
+
+        #region Get Methods
         /// <summary>
         /// Get All Article List
         /// </summary>
@@ -53,7 +100,7 @@ namespace DishoutOLO.Controllers
             return Json(filter);
         }
         /// <summary>
-        /// go to edit page with update data 
+        ///  go to edit page with update data 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -61,6 +108,7 @@ namespace DishoutOLO.Controllers
         {
             try
             {
+
             }
             catch (Exception ex)
             {
@@ -68,47 +116,8 @@ namespace DishoutOLO.Controllers
             }
             return View("ManageArticle", _articleService.GetArticle(id));
         }
+
         #endregion
 
-
-        #region Crud Methods
-        /// <summary>
-        ///  To add or insert Article
-        /// </summary>
-        /// <param name="articleVM"></param>
-        /// <returns></returns>
-        public JsonResult AddOrUpdateArticle(AddArticleModel articleVM)
-        {
-            try
-            {
-                return Json(_articleService.AddOrUpdateArticle(articleVM));
-            }
-            catch (Exception ex)
-            {
-                _loggerProvider.logmsg(ex.Message);
-            }
-
-            return Json(articleVM);
-        }
-        /// <summary>
-        /// Delete Article
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IActionResult DeleteArticle(int id)
-        {
-            try
-            {
-                DishoutOLOResponseModel list = _articleService.DeleteArticle(id);
-                return Json(list);
-            }
-            catch (Exception ex)
-            {
-                _loggerProvider.logmsg(ex.Message);
-
-            }
-            return Json(id);
-        } 
-        #endregion
     }
 }

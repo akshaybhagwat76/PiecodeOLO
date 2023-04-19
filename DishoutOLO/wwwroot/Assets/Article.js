@@ -1,4 +1,4 @@
-﻿var table;
+﻿var table,id=0;
 $("document").ready(function () {
     loadAllArticles();
 
@@ -22,6 +22,7 @@ $("#articleTbl").on("click", "a#btn-delete", function () {
         }
     })
 });
+
 function deleteArticle() {
     $.ajax({
         type: "GET",
@@ -30,16 +31,19 @@ function deleteArticle() {
         success: function (response) {
             if (!response.isSuccess) {
                 $('#deleteModal').modal('hide');
+                table.ajax.reload()
             }
             else {
                 $('#deleteModal').modal('hide');
                 table.ajax.reload()
+
             }
         },
         error: function (error) {
         }
     });
 }
+
 
 
 

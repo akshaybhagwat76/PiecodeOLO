@@ -42,7 +42,5 @@
             });
         }
     });
-    //$("#dataupload").click(function () {
-
-    //});
+    
 });

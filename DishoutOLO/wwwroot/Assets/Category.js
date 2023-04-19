@@ -4,11 +4,6 @@ $("document").ready(function () {
 
    
 })
-
-
-
-
-
 $("#categoryTbl").on("click", "a#btn-delete", function () {
     var cid = $(this).data('id');
     Swal.fire({

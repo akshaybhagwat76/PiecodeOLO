@@ -151,16 +151,7 @@ function deletemenuAvaliblities(id) {
 $('#selectvalue').on('change', function () {
 
     console.log($(this).val())
-
-    if (retvalDetails) {
-        var alreadyExist = false;
-        if (MenuAvailabilities != null && MenuAvailabilities.length > 0) {
-            var alreadyExist = MenuAvailabilities.some(x => parseInt(x.fromtime) <= parseInt(obj.fromtime) && parseInt(x.endtime) >= parseInt(obj.endtime) && obj.week == x.week);
-            if (alreadyExist) {
-                alert("Please choose different time");
-            }
-
-        }
+       
 
         $.get("/Menu/GetMenuAvailability?key=" + $(this).val(), function (data, status) {
             if (!alreadyExist) {
@@ -172,7 +163,7 @@ $('#selectvalue').on('change', function () {
             }
            
         });
-    }
+    
 });
 
 

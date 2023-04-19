@@ -39,7 +39,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                    Menu Menu = _menuRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive==false && (x.MenuName.ToLower() == data.MenuName.ToLower()));
+                Menu Menu = _menuRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive == false && (x.MenuName.ToLower() == data.MenuName.ToLower()));
 
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
@@ -57,7 +57,6 @@ namespace DishoutOLO.Service
                 }
                 if (response.Errors == null)
                 {
-
                     if (data.Id == 0)
                     {
                         Menu tblMenu = _mapper.Map<AddMenuModel, Menu>(data);
@@ -80,33 +79,37 @@ namespace DishoutOLO.Service
 
                                 }
                             }
-                            else
+
+                        }
+
+                    }
+                    else
+                    {
+                        Menu menu = _menuRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
+                        DateTime CreationDate = menu.CreationDate ?? new DateTime();
+                        bool isactive = menu.IsActive;
+                        menu = _mapper.Map<AddMenuModel, Menu>(data);
+                        menu.CreationDate = CreationDate;
+                        menu.IsActive = isactive;
+                        menu.ModifiedDate = DateTime.Now;
+                        _menuRepository.Update(menu);
+
+                        if (menu.Id > 0)
+                        {
+                            if (data.ListAvaliblities != null && data.ListAvaliblities.Count > 0)
                             {
-                                Menu menu = _menuRepository.GetByPredicate(x => x.Id == data.Id && x.IsActive);
-                                DateTime CreationDate = menu.CreationDate ?? new DateTime();
-                                bool isactive = menu.IsActive;
-                                menu = _mapper.Map<AddMenuModel, Menu>(data);
-                                menu.CreationDate = CreationDate;
-                                menu.IsActive = isactive;
-                                menu.ModifiedDate = DateTime.Now;
-                                _menuRepository.Update(menu);
-
-                                if (menu.Id > 0)
+                                foreach (AddMenuAvaliblities item in data.ListAvaliblities)
                                 {
-                                    if (data.ListAvaliblities != null && data.ListAvaliblities.Count > 0)
-                                    {
-                                        foreach (AddMenuAvaliblities item in data.ListAvaliblities)
-                                        {
-                                            item.MenuId = menu.Id;
-                                            _menuAvailabilitiesService.AddOrUpdateMenuAvailabilities(item);
-                                        }
-                                    }
-
+                                    item.MenuId = menu.Id;
+                                    _menuAvailabilitiesService.AddOrUpdateMenuAvailabilities(item);
                                 }
                             }
+
                         }
                     }
+
                 }
+
                 return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "category") : string.Format(Constants.UpdatedSuccessfully, "category") };
             }
             catch (Exception ex)
@@ -160,7 +163,7 @@ namespace DishoutOLO.Service
                     ProgramId = y.ProgramId,
                     Description = y.Description,
                     CategoryName = y.CategoryName,
-                    
+
 
                 }).FirstOrDefault();
 
@@ -201,7 +204,6 @@ namespace DishoutOLO.Service
                 IEnumerable<ListMenuModel> data = (from ct in _categoryRepository.GetAll()
                                                    join mn in _menuRepository.GetAll() on
                                                    ct.Id equals mn.CategoryId
-
                                                    where mn.IsActive == true
                                                    select new ListMenuModel
                                                    {
@@ -209,7 +211,6 @@ namespace DishoutOLO.Service
                                                        MenuName = mn.MenuName,
                                                        MenuPrice = mn.MenuPrice,
                                                        ProgramId = mn.ProgramId,
-
                                                        Description = mn.Description,
                                                        Id = mn.Id,
                                                    }).AsEnumerable();

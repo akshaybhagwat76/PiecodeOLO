@@ -29,7 +29,7 @@ namespace DishoutOLO.Service
         {
             try
             {
-                Article Article = _articleRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive==false && (x.ArticleName.ToLower() == data.ArticleName.ToLower()));
+                Article Article = _articleRepository.GetAllAsQuerable().WhereIf(data.Id > 0, x => x.Id != data.Id).FirstOrDefault(x => x.IsActive == false && (x.ArticleName.ToLower() == data.ArticleName.ToLower()));
 
                 DishoutOLOResponseModel response = new DishoutOLOResponseModel();
 
@@ -97,7 +97,7 @@ namespace DishoutOLO.Service
         #endregion
         #region Get Methods
         public DataTableFilterModel GetArticleList(DataTableFilterModel filter)
-        {
+                {
             try
             {
                 IEnumerable<ListArticleModel> data = _articleRepository.GetListByPredicate(x => x.IsActive == true
@@ -191,7 +191,7 @@ namespace DishoutOLO.Service
                 throw ex;
             }
 
-        } 
+        }
         #endregion
     }
 }
