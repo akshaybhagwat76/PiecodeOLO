@@ -96,31 +96,36 @@
         types: ['geocode']
     })
 
-    google.maps.event.addListener(auto, 'place_changed', function () {
+google.maps.event.addListener(auto, 'place_changed', function () {
+    debugger
         var place = auto.getPlace();
         var componentForm = {
             street_number: 'short_name',
             route: 'long_name',
             locality: 'long_name',
             administrative_area_level_1: 'short_name',
-            ZipCode: 'short_name',
+            ZipCode: 'long_name',
             postal_code: 'short_name'
         };
-        if (place.address_components) {
+    if (place.address_components) {
+        debugger
             for (const comment of place.address_components) {
                 const addressType = comment.types[0];
                 const val = comment[componentForm[addressType]];
                 if (componentForm[addressType]) {
-                    if (addressType === 'postal_code') {
-                        $("#ZipCode").val(val);
+                    if (addressType === 'street_number') {
+                        $("#ZipCode").val(comment.long_name);
                     } else if (addressType === 'administrative_area_level_1') {
                         $("#State").val(comment.long_name);
                     } else if (addressType === 'locality') {
                         $("#City").val(comment.long_name);
                     }
-                    if (addressType && addressType === 'ZipCode') {
-                        console.log('ZipCode' + comment.long_name);
+                    //if (addressType && addressType === 'ZipCode') {
+                    //    console.log('ZipCode' + comment.long_name);
 
+                    //}
+                    if (addressType == "street_number" || addressType == "postal_code_prefix,street_number") {
+                        addressType.ZipCode = results[0].address_components[ii].long_name;
                     }
                 }
             }
