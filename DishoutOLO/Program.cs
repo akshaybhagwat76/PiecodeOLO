@@ -41,10 +41,7 @@ builder.Services.AddScoped<IRolesService, RolesService>();
 builder.Services.AddScoped<IUserStaffRepository, UserStaffRepository>();
 builder.Services.AddScoped<IUserStaffService, UserStaffService>();
 builder.Services.AddScoped<LoggerProvider>();
-
-
-
-
+ 
 //var connectionString = builder.Configuration.GetConnectionString("ConnectionStrings:ConnectDB");
 builder.Services.AddDbContext<DishoutOLOContext>(x => x.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDB"]));
 var app = builder.Build();

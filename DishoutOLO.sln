@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DishoutOLO.Service", "Disho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DishoutOLO.ViewModel", "DishoutOLO.ViewModel\DishoutOLO.ViewModel.csproj", "{F3EE5227-1732-4364-A964-F6C43B216E39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodosService", "TodosService\TodosService.csproj", "{D32684A7-0471-4EDA-B312-1544F9D497EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodosService", "TodosService\TodosService.csproj", "{D32684A7-0471-4EDA-B312-1544F9D497EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

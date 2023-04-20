@@ -223,6 +223,11 @@ namespace DishoutOLO.Service
             }
 
         }
+
+        public IList<Coupen> GetCoupenAll()
+        {
+            return _coupenRepository.GetAll(); 
+        }
         #endregion
     }
 }
