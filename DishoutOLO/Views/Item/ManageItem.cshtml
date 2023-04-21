@@ -27,7 +27,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CategoryId,new {@class="form-control-label"})
-                                    @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList,"---SELECT-----", new { @class = "form-control required" })
+                                    @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList,"---SELECT-----", new { @class = "form-control required",multiple = "multiple" })
                                 </div>
                             </div>
                         </div>

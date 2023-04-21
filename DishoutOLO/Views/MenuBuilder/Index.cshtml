@@ -1,0 +1,428 @@
+﻿@model DishoutOLO.ViewModel.AddMenuBuilderModel
+<style>
+   /**
+* Template Name: NiceAdmin
+* Updated: Mar 09 2023 with Bootstrap v5.2.3
+* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
+/* Card */
+.card {
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-header,
+.card-footer {
+  border-color: #ebeef4;
+  background-color: #fff;
+  color: #798eb3;
+  padding: 15px;
+}
+
+.card-title {
+        padding: 16px 0 0px 0;
+        font-size: 15px;
+        font-weight: revert;
+        color: #000;
+        font-family: "Poppins", sans-serif;
+}
+
+.card-title span {
+  color: #899bbd;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card-body {
+  padding: 0 20px 20px 20px;
+       
+}   
+
+.card-img-overlay {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Alerts */
+.alert-heading {
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+/* Close Button */
+.btn-close {
+  background-size: 25%;
+}
+
+.btn-close:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+/* Accordion */
+.accordion-item {
+  border: 1px solid #ebeef4;
+}
+
+.accordion-button:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #012970;
+  background-color: #f6f9ff;
+}
+
+.accordion-flush .accordion-button {
+  padding: 15px 0;
+  background: none;
+  border: 0;
+}
+
+.accordion-flush .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  color: #4154f1;
+}
+
+.accordion-flush .accordion-body {
+  padding: 0 0 15px 0;
+  color: #3e4f6f;
+  font-size: 15px;
+}
+
+    .filter {
+        position: absolute;
+        right: 0px;
+        top: 15px;
+    }
+
+       .filter .icon {
+            color: #aab7cf;
+            padding-right: 20px;
+            padding-bottom: 5px;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+           .filter .icon:hover,
+            .filter .icon:focus {
+                color: #4154f1;
+            }
+
+       .filter .dropdown-header {
+            padding: 8px 15px;
+        }
+
+             .filter .dropdown-header h6 {
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                color: #aab7cf;
+                margin-bottom: 0;
+                padding: 0;
+            }
+
+      .filter .dropdown-item {
+            padding: 8px 15px;
+        }
+
+    h6 {
+        font-size: 15px;
+        }
+
+    .small {
+        font-size: 15px;
+    }
+
+    .switch {
+        float: right;
+    }
+</style>
+<div class="row">
+     <div class="col-md-2">
+        <div class="card info-card sales-card" style="height: 84%; overflow: scroll;">
+            <div class="card-body" style=" display: grid;">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>      
+                <h2 class="card-title">New Menu</h2>
+                <div class="ps-3">
+                    <h6>New Menu</h6>
+                    <span class="text-muted small pt-2 ps-1">
+                        Monday     
+                        <label class="switch">
+                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                    <h6>1:00AM - 4:00AM</h6>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+            <hr />
+            <div class="card-body" style=" display: grid;">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+                <h2 class="card-title">New Menu</h2>
+                <div class="ps-3">
+                    <h6>New Menu</h6>
+                    <span class="text-muted small pt-2 ps-1">
+                        Monday
+                        <label class="switch">
+                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                    <h6>1:00AM - 4:00AM</h6>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+            <hr />
+            <div class="card-body" style=" display: grid;">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+                <h2 class="card-title">New Menu</h2>
+                <div class="ps-3">
+                    <h6>New Menu</h6>
+                    <span class="text-muted small pt-2 ps-1">
+                        Monday
+                        <label class="switch">
+                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                    <h6>1:00AM - 4:00AM</h6>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+            <hr />
+            <div class="card-body" style=" display: grid;">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+                <h2 class="card-title">New Menu</h2>
+                <div class="ps-3">
+                    <h6>New Menu</h6>
+                    <span class="text-muted small pt-2 ps-1">
+                        Monday
+                        <label class="switch">
+                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                    <h6>1:00AM - 4:00AM</h6>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+            <hr />
+            <div class="card-body" style=" display: grid;">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+                <h2 class="card-title">New Menu</h2>
+                <div class="ps-3">
+                    <h6>New Menu</h6>
+                    <span class="text-muted small pt-2 ps-1">
+                        Monday
+                        <label class="switch">
+                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                    <h6>1:00AM - 4:00AM</h6>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+             <hr />
+            <div class="card-body" style=" display: grid;">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+                <h2 class="card-title">New Menu</h2>
+                <div class="ps-3">
+                    <h6>New Menu</h6>
+                    <span class="text-muted small pt-2 ps-1">
+                        Monday
+                        <label class="switch">
+                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                    <h6>1:00AM - 4:00AM</h6>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>  
+       
+    </div>
+    <div class="col-md-10">
+        <div class="card">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/Category/Index" class="nav-link">
+                                    <p> Category </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Item/Index" class="nav-link">
+                                    <p>Item</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/Itemgroup/Index" class="nav-link">
+                                    <p> ItemGroup </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Modifier/Index" class="nav-link">
+                                    <p>Modifier</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/ModifierGroup/Index" class="nav-link">
+                                    <p> ModifierGroup </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.DropDownListFor(f=>f.ItemId, ViewBag.ItemList as SelectList,"---SELECT-----", new { @class = "form-control required"})
+                </div>
+            </div>
+        </div>
+        <!-- Revenue Card -->
+        <div class="col-xxl-4 col-md-3">
+            <div class="card info-card revenue-card">
+
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title"> <span>Menu</span></h5>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xxl-4 col-md-3" style="margin-left: -27px;">
+            <div class="card info-card revenue-card">
+
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-plus-circle"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title"> <span>All Item</span></h5>
+                </div>
+                <div class="form-group">
+                    @Html.DropDownListFor(f=>f.ItemId, ViewBag.ItemList as SelectList,"---SELECT-----", new { @class = "form-control required"})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

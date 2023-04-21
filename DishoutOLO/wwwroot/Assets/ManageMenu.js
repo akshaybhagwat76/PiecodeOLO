@@ -149,10 +149,8 @@ function deletemenuAvaliblities(id) {
     });
 }
 $('#selectvalue').on('change', function () {
-
     console.log($(this).val())
-       
-
+     
         $.get("/Menu/GetMenuAvailability?key=" + $(this).val(), function (data, status) {
             if (!alreadyExist) {
                 $('#weektbl tbody').empty();

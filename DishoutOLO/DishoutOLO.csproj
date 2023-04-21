@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Content\**" />
+    <Compile Remove="wwwroot\lib\Sorttable\**" />
     <Content Remove="Content\**" />
+    <Content Remove="wwwroot\lib\Sorttable\**" />
     <EmbeddedResource Remove="Content\**" />
+    <EmbeddedResource Remove="wwwroot\lib\Sorttable\**" />
     <None Remove="Content\**" />
+    <None Remove="wwwroot\lib\Sorttable\**" />
   </ItemGroup>
 
   <ItemGroup>

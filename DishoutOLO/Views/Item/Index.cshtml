@@ -7,15 +7,12 @@
                     <tbody>
                         <tr>
                             <td>
-                                  @Html.DropDownList("CategoryName", ViewBag.CategoryList as SelectList, "---SELECT---", new { @class = "form-control  " })
-                                
+                                @Html.DropDownList("CategoryName", ViewBag.CategoryList as SelectList, "---SELECT---", new { @class = "form-control  " })
                             <td> <input type="text" class="form-control" id="txtItemName" placeholder="Item Name" /></td>
-
                             <td>
                                 <div class="col-lg-12  text-right" style="margin-left:570px;">
                                     <a href="/Item/Create" class="btn btn-md btn-warning">Add Item</a>
                                 </div>
-
                             </td>
                         </tr>
                     </tbody>
