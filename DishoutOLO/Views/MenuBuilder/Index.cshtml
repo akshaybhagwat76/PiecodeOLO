@@ -1,7 +1,6 @@
 ﻿@model DishoutOLO.ViewModel.AddMenuBuilderModel
 
-
-<div class="col-md-10">
+<main class="col-md-10">
     <div class="card">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -44,12 +43,7 @@
             </div>
         </nav>
 
-        @*
-        <div class="col-md-3">
-        <div class="form-group">
-        @Html.DropDownListFor(f=>f.ItemId, ViewBag.ItemList as SelectList,"---SELECT-----", new { @class = "form-control required"})
-        </div>
-        </div>*@
+
     </div>
     <main id="main">
         <!-- ======= Lifestyle Category Section ======= -->
@@ -62,181 +56,50 @@
                                 <div class="card" style="height: 80vh; overflow-x: auto;">
                                     <div class="card-body Menudata">
                                         <div class="post-entry-1 border-bottom">
-                                        <div class="post-meta" style="text-align: center;">
-                                            <span class="date">New Menu</span>
-                                        </div>
-                                        @*<div id="card">
-                                           
-                                        </div>*@
-                                            <div class="post-entry-1 border-bottom">
-                                                <div class="post-meta">
-                                                    <span class="date">New Menu</span> <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <i class="bi bi-three-dots-vertical"></i>
-                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                            <li class="dropdown-header text-start">
-                                                                <h6>Filter</h6>
-                                                            </li>
+                                            <div class="post-meta" style="text-align: center;">
+                                                <a class="icon" style="top: 20px;" href="/Menu/Create" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
+                                                <span class="date">New Menu</span>
+                                            </div>
 
-                                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                        </ul>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">New Menu</span></div>
-                                                <div class="post-meta">
-                                                    <span class="date">Monday</span>
+                                            @foreach (var item in ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>)
+                                            {
+                                                <div class="post-entry-1 border-bottom">
+
+                                                    <div class="post-meta">
+                                                        <span class="date">@item.MenuName</span>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <span class="date">@item.Descrition</span>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <span class="date">@item.Week</span>
+                                                    </div>
+                                                    <div class="dropdown" style="float: right; top: -35px;">
+                                                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="bi bi-three-dots-vertical"></i></a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>&nbsp;&nbsp; Edit</a>
+                                                            <a class="dropdown-item" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp; Delete</a>
+                                                        </div>
+                                                    </div>
+
                                                     <a class="icon" href="#" data-bs-toggle="dropdown">
                                                         <label class="switch">
-                                                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
+                                                            <input type="checkbox" class="checkit">
                                                             <span class="slider round"></span>
                                                         </label>
                                                     </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">1:00AM - 4:00AM</span></div>
-                                                <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
-                                            </div>
-                                            <div class="post-entry-1 border-bottom">
-                                                <div class="post-meta">
-                                                    <span class="date">New Menu</span> <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <i class="bi bi-three-dots-vertical"></i>
-                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                            <li class="dropdown-header text-start">
-                                                                <h6>Filter</h6>
-                                                            </li>
+                                                    <div class="post-meta"><span class="date">@item.FullTime</span></div>
 
-                                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                        </ul>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">New Menu</span></div>
-                                                <div class="post-meta">
-                                                    <span class="date">Monday</span>
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <label class="switch">
-                                                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
-                                                            <span class="slider round"></span>
-                                                        </label>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">1:00AM - 4:00AM</span></div>
-                                                <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
-                                            </div>
-                                            <div class="post-entry-1 border-bottom">
-                                                <div class="post-meta">
-                                                    <span class="date">New Menu</span> <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <i class="bi bi-three-dots-vertical"></i>
-                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                            <li class="dropdown-header text-start">
-                                                                <h6>Filter</h6>
-                                                            </li>
 
-                                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                        </ul>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">New Menu</span></div>
-                                                <div class="post-meta">
-                                                    <span class="date">Monday</span>
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <label class="switch">
-                                                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
-                                                            <span class="slider round"></span>
-                                                        </label>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">1:00AM - 4:00AM</span></div>
-                                                <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
-                                            </div>
-                                            <div class="post-entry-1 border-bottom">
-                                                <div class="post-meta">
-                                                    <span class="date">New Menu</span> <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <i class="bi bi-three-dots-vertical"></i>
-                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                            <li class="dropdown-header text-start">
-                                                                <h6>Filter</h6>
-                                                            </li>
 
-                                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                        </ul>
-                                                    </a>
+                                                    @foreach (var p in item.ListAvaliblities)
+                                                    {
+                                                        <div class="post-meta"><span class="date">@p.fromtime : @p.endtime  </span></div>
+                                                    }
+                                                    <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
                                                 </div>
-                                                <div class="post-meta"><span class="date">New Menu</span></div>
-                                                <div class="post-meta">
-                                                    <span class="date">Monday</span>
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <label class="switch">
-                                                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
-                                                            <span class="slider round"></span>
-                                                        </label>
-                                                    </a>
+                                                                                                                                                                                              }
                                                 </div>
-                                                <div class="post-meta"><span class="date">1:00AM - 4:00AM</span></div>
-                                                <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
-                                            </div>
-                                            <div class="post-entry-1 border-bottom">
-                                                <div class="post-meta">
-                                                    <span class="date">New Menu</span> <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <i class="bi bi-three-dots-vertical"></i>
-                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                            <li class="dropdown-header text-start">
-                                                                <h6>Filter</h6>
-                                                            </li>
-
-                                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                        </ul>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">New Menu</span></div>
-                                                <div class="post-meta">
-                                                    <span class="date">Monday</span>
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <label class="switch">
-                                                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
-                                                            <span class="slider round"></span>
-                                                        </label>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">1:00AM - 4:00AM</span></div>
-                                                <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
-                                            </div>
-                                            <div class="post-entry-1 border-bottom">
-                                                <div class="post-meta">
-                                                    <span class="date">New Menu</span> <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <i class="bi bi-three-dots-vertical"></i>
-                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                            <li class="dropdown-header text-start">
-                                                                <h6>Filter</h6>
-                                                            </li>
-
-                                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                        </ul>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">New Menu</span></div>
-                                                <div class="post-meta">
-                                                    <span class="date">Monday</span>
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <label class="switch">
-                                                            <input type="checkbox" [checked]="item.isActive" (click)="changeStatus(item.menuId,!item.isActive)">
-                                                            <span class="slider round"></span>
-                                                        </label>
-                                                    </a>
-                                                </div>
-                                                <div class="post-meta"><span class="date">1:00AM - 4:00AM</span></div>
-                                                <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -258,69 +121,58 @@
                                                         <li><a class="dropdown-item" href="#">This Year</a></li>
                                                     </ul>
                                                 </div>
-
-                                                <div class="card-body">
-                                                    <h5 class="card-title">1005 Menu</h5>
+                                                <div class="card-body mb-5">
+                                                    <h5 class="card-title ">1005 Menu</h5>
+                                                    <div id="userFacets" class="facet-list">
+                                                        <label>No Category Found...</label>
+                                                    </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="card recent-sales overflow-auto" style="margin-left: -26px; height: 75vh; border: 2px solid;">
-
                                                 <div class="filter">
-                                                    <a class="icon" style="top: 20px;" href="#" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
+                                                    <a class="icon" style="top: 20px;" href="/Item/Create" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
                                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                         <li class="dropdown-header text-start">
                                                             <h6>Filter</h6>
                                                         </li>
-
-                                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                        <li><a class="dropdown-item" href="#">This Year</a></li>
                                                     </ul>
                                                 </div>
-
                                                 <div class="card-body">
-                                                    <h5 class="card-title">1005 Menu</h5>
-                                                    <div class="d-flex align-items-center">
-                                                        @* <div class="col-md-12 mb-3">
-                                                            <div class="form-group">
-                                                                @Html.DropDownListFor(f=>f.ItemId, ViewBag.ItemList as SelectList, "---SELECT---", new { @class = "form-control required" })
+                                                    <h2 class="card-title mb-5"> All Items </h2>
+                                                    <div class="post-entry-1 border-bottom">
+                                                    @foreach (var item in ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>)
+                                                    {
+
+                                                        @foreach (var m in item.ItemModels)
+                                                        {
+                                                            <div class="post-meta">
+                                                                <span class="date">@m.ItemName</span>
                                                             </div>
-                                                        </div>*@
-                                                    </div>
-
-                                                </div>
-
+                                                        }
+ 
+                                                    }|
+                                                                                                       
+                                                   </div>
+                                                </div>  
                                             </div>
+
                                         </div>
                                     </div>
                                 </section>
                             </div>
+
                         </div>
                     </div>
                 </div>
-                <!-- End .row -->
             </div>
         </section>
-        <!-- End Lifestyle Category Section -->
     </main>
-    <table id="menubuilderTbl" class="table table-bordered table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col" class="sort" data-sort="name">Menuname</th>
-                <th scope="col" class="sort" data-sort="name">Description</th>
-                <th scope="col" class="sort" data-sort="name">Week</th>
-                <th scope="col" class="sort" data-sort="name">Fulltime</th>
 
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    </div>
-@section Scripts {
 
-                <script src="~/Assets/MenuBuilder.js" asp-append-version="true "></script>
+
+    @section Scripts {
+
+        <script src="~/Assets/MenuBuilder.js" asp-append-version="true "></script>
     }

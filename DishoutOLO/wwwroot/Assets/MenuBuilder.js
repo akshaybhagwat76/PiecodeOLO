@@ -1,60 +1,70 @@
-﻿var table;
-$("document").ready(function () {
-    loadAllMenuBuilder();
+﻿
+$(".checkit").on("click", function () {
+    // var id = $(this).data('id');
+
+    if ($(this).is(':checked') == true) {
+
+        Swal.fire({
+            title: 'Are You Sure You Want active!',
+            //text: "Are You Sure You Want active!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //id = id
+
+                toastr.success('Status Has Been Changed.')
+
+            }
+        })
+
+    } else {
+        Swal.fire({
+            title: 'Are You Sure You Want deactive',
+            //text: "Are You Sure You Want deactive",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //id = id
+
+                toastr.success('Status Has Been Changed.')
+
+            }
+        })
+    }
+})
+
+
+
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 
 
 
-function loadAllMenuBuilder() {
 
-    var url = "/MenuBuilder/GetAllMenuBuilder"
+$(document).ready(function () {
+     
+      $("#selUser").select2();
+     
+        var username = $('#selUser option:selected').text();
+        var userid = $('#selUser').val();
+
+    $('#result').html("id : " + userid + ", name : " + username);
 
 
-    //table = $("#menubuilderTbl").DataTable({
 
-    //    "serverSide": true,
-    //    "bFilter": true,
-    //    "orderMulti": false,
-    //    "ajax": {
-    //        url: url,
-    //        type: "POST",
-    //        datatype: "json"
-    //    },
 
-    //    "columns": [
-    //        {
-    //            "data": "menuName"
-    //        },
-    //        {
-    //            "data": "descrition"
-    //        },
-    //        {
-    //            "data": "week"
-    //        },
-    //        {
-    //            "data": "fullTime"
-    //        },
 
-    //    ],
 
    
+});
 
-    debugger;
-    $.ajax({
-        type: "GET",
-        url: url,
-        dataType: "json",
-        success: function (response) {
-            console.log("Test", response);
-
-            $("#card").html('');
-            var div3Content = '';
-            for (var i = 0; i < response.length; i++) {
-                div3Content += '<card>' + response[i].Name + '</card>' + '<p>'
-            }
-            $("#card").append(div3Content);
-        }
-    });   
-
-}

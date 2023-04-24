@@ -31,8 +31,9 @@ namespace DishoutOLO.Controllers
         public IActionResult Index()
         {
 
-            ViewBag.ItemList = new SelectList((IList)_itemService.GetAllItems().Data, "Id", "ItemName");
-
+            ViewData["menuInfolist"] = _menubuilderService.GetMenuBuilderList();
+            
+           
             return View();
         }
 
@@ -47,7 +48,7 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                DataTableFilterModel list = _menubuilderService.GetMenuBuilderList(filter);
+                var list = _menubuilderService.GetMenuBuilderList();
                 return Json(list);
             }
             catch (Exception ex)
@@ -57,7 +58,7 @@ namespace DishoutOLO.Controllers
             return Json(filter);
         }
 
-
+       
 
         #endregion
     }

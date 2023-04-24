@@ -8,9 +8,8 @@ namespace DishoutOLO.Data
         public string MenuName { get; set; }
         public string Descrition { get; set; }
         public string Week { get; set; }
-        public DateTime FullTime { get; set; }
+        public string FullTime { get; set; }
 
-        //public int ItemId { get; set; }   
 
     }
 }

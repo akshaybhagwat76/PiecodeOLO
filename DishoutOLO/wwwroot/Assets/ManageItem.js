@@ -1,17 +1,5 @@
 ﻿$(document).ready(function () {
-
-    
-        var id = $("#Id").val();
-        if (id != null && id.length > 0 && parseInt(id) > 0) {
-            $('#CategoryId').select2().val($("#CategoryId").val().split(',').map(Number)).trigger("change")
-        }
    
-
-
-
-    $("#lblError").removeClass("success").removeClass("error").text('');
-    $('#CategoryId').select2();
-
     $('.DefaultSuccess').click(function () {
         toastr.success('Item Added Successfully.')
     });
@@ -30,8 +18,8 @@
 
         var data = {
             Id: $("#Id").val(),
-            CategoryId: $("#CategoryId").val().select2('data').map(x => x.id).toString(),
             ItemName: $("#ItemName").val(),
+            CategoryId: $("#CategoryId").select2('data').map(x => x.id).toString(),
             ItemImage: $("#ItemImage").val(),
             ItemDescription: $("#ItemDescription").val(),
             UnitCost: $("#UnitCost").val(),
@@ -79,5 +67,13 @@
         }
     })
 });
+$(document).ready(function () {
+    $("#lblError").removeClass("success").removeClass("error").text('');
+    $('#CategoryId').select2();
 
+    var id = $("#Id").val();
+    if (id != null && id.length > 0 && parseInt(id) > 0) {
+        $('#CategoryId').select2().val($("#categoryIds").val().split(',').map(Number)).trigger("change")
+    }
+})
 

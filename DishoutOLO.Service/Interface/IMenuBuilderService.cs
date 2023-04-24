@@ -1,10 +1,11 @@
-﻿using DishoutOLO.ViewModel.Helper;
+﻿using DishoutOLO.ViewModel;
+using DishoutOLO.ViewModel.Helper;
 
 namespace DishoutOLO.Service.Interface
 {
     public interface IMenuBuilderService
     {
-        public DataTableFilterModel GetMenuBuilderList(DataTableFilterModel filter);
+        public List<AddMenuBuilderModel> GetMenuBuilderList();
 
     }
 }
