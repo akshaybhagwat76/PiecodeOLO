@@ -40,6 +40,9 @@ builder.Services.AddScoped<IRolesRepository, RolesRepository>();
 builder.Services.AddScoped<IRolesService, RolesService>();
 builder.Services.AddScoped<IUserStaffRepository, UserStaffRepository>();
 builder.Services.AddScoped<IUserStaffService, UserStaffService>();
+
+builder.Services.AddScoped<IMenuBuilderRepository, MenuBuilderRepository>();
+builder.Services.AddScoped<IMenuBuilderService, MenuBuilderService>();
 builder.Services.AddScoped<LoggerProvider>();
  
 //var connectionString = builder.Configuration.GetConnectionString("ConnectionStrings:ConnectDB");

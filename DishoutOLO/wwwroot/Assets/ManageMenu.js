@@ -148,6 +148,7 @@ function deletemenuAvaliblities(id) {
         }
     });
 }
+
 $('#selectvalue').on('change', function () {
     console.log($(this).val())
      

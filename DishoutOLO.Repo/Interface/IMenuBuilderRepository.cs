@@ -1,6 +1,8 @@
-﻿namespace DishoutOLO.Repo.Interface
+﻿using DishoutOLO.Data;
+
+namespace DishoutOLO.Repo.Interface
 {
-    public interface IMenuBuilderRepository
+    public interface IMenuBuilderRepository : IRepository<MenuBuilder>
     {
 
     }
