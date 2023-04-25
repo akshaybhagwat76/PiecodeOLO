@@ -22,6 +22,10 @@ namespace DishoutOLO.Data
         public decimal TaxRate2 { get; set; }
         public decimal TaxRate3 { get; set; }
         public decimal TaxRate4 { get; set; }
+
+        [NotMapped]
+        public string CategoryName { get; set; }
+
     }
 }
 

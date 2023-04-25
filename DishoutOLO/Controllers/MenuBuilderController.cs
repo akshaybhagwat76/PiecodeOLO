@@ -32,8 +32,8 @@ namespace DishoutOLO.Controllers
         {
 
             ViewData["menuInfolist"] = _menubuilderService.GetMenuBuilderList();
-            
-           
+
+            ViewBag.lstItems = (IList)_itemService.GetAllItems().Data;
             return View();
         }
 

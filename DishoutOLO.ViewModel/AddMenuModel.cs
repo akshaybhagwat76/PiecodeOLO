@@ -34,7 +34,7 @@ namespace DishoutOLO.ViewModel
         public string? endtime { get; set; }
         public string? fromtime { get; set; }
         public string? week { get; set; }
-        public int? MenuId { get; set; }
+        public int MenuId { get; set; }
 
     }
 

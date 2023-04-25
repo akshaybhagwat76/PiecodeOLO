@@ -28,7 +28,7 @@ namespace DishoutOLO.Repo.Migrations
                     MenuName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descrition = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Week = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FullTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                   // FullTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),

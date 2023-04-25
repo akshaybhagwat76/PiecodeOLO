@@ -412,8 +412,8 @@ namespace DishoutOLO.Repo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FullTime")
-                        .HasColumnType("datetime2");
+                    //b.Property<DateTime>("FullTime")
+                    //    .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

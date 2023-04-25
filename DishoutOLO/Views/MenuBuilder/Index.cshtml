@@ -36,8 +36,6 @@
                                 <p> ModifierGroup </p>
                             </a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
@@ -88,8 +86,8 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                     </a>
-                                                    <div class="post-meta"><span class="date">@item.FullTime</span></div>
-
+                                                    @*                                                    <div class="post-meta"><span class="date">@item.FullTime</span></div>
+                                                *@
 
 
                                                     @foreach (var p in item.ListAvaliblities)
@@ -98,8 +96,8 @@
                                                     }
                                                     <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
                                                 </div>
-                                                                                                                                                                                              }
-                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -142,20 +140,16 @@
                                                 <div class="card-body">
                                                     <h2 class="card-title mb-5"> All Items </h2>
                                                     <div class="post-entry-1 border-bottom">
-                                                    @foreach (var item in ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>)
-                                                    {
-
-                                                        @foreach (var m in item.ItemModels)
+                                                        @foreach (var item in ViewBag.lstItems)
                                                         {
                                                             <div class="post-meta">
-                                                                <span class="date">@m.ItemName</span>
+                                                                <span class="date">@item.ItemName</span>
                                                             </div>
+
                                                         }
- 
-                                                    }|
-                                                                                                       
-                                                   </div>
-                                                </div>  
+
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -169,10 +163,10 @@
             </div>
         </section>
     </main>
+</main>
 
 
+@section Scripts {
 
-    @section Scripts {
-
-        <script src="~/Assets/MenuBuilder.js" asp-append-version="true "></script>
+    <script src="~/Assets/MenuBuilder.js" asp-append-version="true "></script>
     }

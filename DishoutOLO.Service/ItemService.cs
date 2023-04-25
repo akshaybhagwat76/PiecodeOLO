@@ -120,7 +120,9 @@ namespace DishoutOLO.Service
                                     )
                                     .Select(y => new ListItemModel()
                                     {
+                                        CategoryId = y.CategoryId,
                                         ItemName = y.ItemName,
+                                        ItemDescription=y.ItemDescription,
                                         ItemImage = y.ItemImage,
                                         IsActive = y.IsActive,
                                         UnitCost = y.UnitCost,
@@ -229,7 +231,8 @@ namespace DishoutOLO.Service
                                          CategoryId = y.CategoryId,
                                          ItemDescription = y.ItemDescription,
                                          ItemImage=y.ItemImage ,
-                                         UnitCost=y.UnitCost,
+                                         CategoryName=y.CategoryName,
+                                         UnitCost =y.UnitCost,
                                          MSRP=y.MSRP,
                                          TaxRate1=y.TaxRate1,
                                          TaxRate2=y.TaxRate2,

@@ -41,7 +41,5 @@ namespace DishoutOLO.Repo
 
         public DbSet<UserStaff> UserStaffs { get; set; }  
         
-        public DbSet<MenuBuilder> MenuBuilder { get; set; }
-
     }
 }

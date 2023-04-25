@@ -59,12 +59,6 @@ $(document).ready(function () {
         var userid = $('#selUser').val();
 
     $('#result').html("id : " + userid + ", name : " + username);
-
-
-
-
-
-
-   
+     
 });
 
