@@ -39,7 +39,7 @@ namespace DishoutOLO.Repo
         public DbSet<Roles> Roles { get; set; } 
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<UserStaff> UserStaffs { get; set; }    
-
+        public DbSet<UserStaff> UserStaffs { get; set; }  
+        
     }
 }

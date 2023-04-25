@@ -57,9 +57,7 @@ $('#deletebtn').click(function () { $('.table tbody').empty(); $('.table thead')
 $(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
     $('#ProgramId').select2();
-});
 
-$(document).ready(function () {
     var id = $("#Id").val();
     if (id != null && id.length > 0 && parseInt(id) > 0) {
         $('#ProgramId').select2().val($("#programIds").val().split(',').map(Number)).trigger("change")
@@ -148,11 +146,10 @@ function deletemenuAvaliblities(id) {
         }
     });
 }
+
 $('#selectvalue').on('change', function () {
-
     console.log($(this).val())
-       
-
+     
         $.get("/Menu/GetMenuAvailability?key=" + $(this).val(), function (data, status) {
             if (!alreadyExist) {
                 $('#weektbl tbody').empty();

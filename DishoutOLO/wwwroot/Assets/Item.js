@@ -63,10 +63,10 @@ function loadAllItem() {
 
         "columns": [
             {
-                "data": "categoryName"
+                "data": "itemName"
             },
             {
-                "data": "itemName"
+                "data": "itemDescription"
             },
             {
                 orderable: false,

@@ -20,8 +20,9 @@ namespace DishoutOLO.Service
         private IRepository<Data.MenuAvailabilities> _menuAvailabilitiesRepository;
         private IRepository<Category> _categoryRepository;
         private IMenuAvailabilityService _menuAvailabilitiesService;
-
+            
         #endregion
+
         #region Constructor
         public MenuService(IRepository<Menu> menuRepository, IMenuAvailabilityService userService, IRepository<Category> categoryRepository, IMapper mapper, IRepository<Data.MenuAvailabilities> menuAvailabilitiesRepository)
         {

@@ -31,7 +31,6 @@ namespace DishoutOLO.Repo.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ArticleDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArticleName")
@@ -395,6 +394,49 @@ namespace DishoutOLO.Repo.Migrations
                     b.ToTable("MenuAvailabilities");
                 });
 
+            modelBuilder.Entity("DishoutOLO.Data.MenuBuilder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descrition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    //b.Property<DateTime>("FullTime")
+                    //    .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MenuName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Week")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuBuilder");
+                });
+
             modelBuilder.Entity("DishoutOLO.Data.Modifier", b =>
                 {
                     b.Property<int>("Id")
@@ -646,7 +688,6 @@ namespace DishoutOLO.Repo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                   
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 

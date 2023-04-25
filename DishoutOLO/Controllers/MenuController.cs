@@ -21,7 +21,6 @@ namespace DishoutOLO.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IProgramService _programService;   
-        
         private readonly ILogger _logger;
         private LoggerProvider _loggerProvider;
         #endregion

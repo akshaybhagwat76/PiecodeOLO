@@ -115,27 +115,27 @@ namespace DishoutOLO.Service
         {
             try
             {
-                IEnumerable<ListItemModel> data = (from ct in _categoryRepository.GetAll()
-                                                   join it in _itemRepository.GetAll() on
-                                                   ct.Id equals it.CategoryId
-                                                   where it.IsActive ==true
-                                                  
-                                                   select new ListItemModel
-                                                   {
-                                                       CategoryName = ct.CategoryName,
-                                                       ItemName = it.ItemName,
-                                                       ItemImage = it.ItemImage,
-                                                      IsActive = it.IsActive,
-                                                      UnitCost= it.UnitCost,
-                                                      MSRP = it.MSRP,
-                                                      TaxRate1 = it.TaxRate1,
-                                                      TaxRate2 = it.TaxRate2,
-                                                      TaxRate3  =it.TaxRate3,
-                                                      TaxRate4 =it.TaxRate4,
-                                                       Id = it.Id
 
-                                                   }).AsEnumerable();
+                IEnumerable<ListItemModel> data = _itemRepository.GetListByPredicate(x => x.IsActive == true
+                                    )
+                                    .Select(y => new ListItemModel()
+                                    {
+                                        CategoryId = y.CategoryId,
+                                        ItemName = y.ItemName,
+                                        ItemDescription=y.ItemDescription,
+                                        ItemImage = y.ItemImage,
+                                        IsActive = y.IsActive,
+                                        UnitCost = y.UnitCost,
+                                        MSRP = y.MSRP,
+                                        TaxRate1 = y.TaxRate1,
+                                        TaxRate2 = y.TaxRate2,
+                                        TaxRate3 = y.TaxRate3,
+                                        TaxRate4 = y.TaxRate4,
+                                        Id = y.Id
 
+
+                                    }).Distinct().OrderByDescending(x => x.Id).AsEnumerable();
+                 
 
                 var sortColumn = string.Empty;
                 var sortColumnDirection = string.Empty;
@@ -231,7 +231,8 @@ namespace DishoutOLO.Service
                                          CategoryId = y.CategoryId,
                                          ItemDescription = y.ItemDescription,
                                          ItemImage=y.ItemImage ,
-                                         UnitCost=y.UnitCost,
+                                         CategoryName=y.CategoryName,
+                                         UnitCost =y.UnitCost,
                                          MSRP=y.MSRP,
                                          TaxRate1=y.TaxRate1,
                                          TaxRate2=y.TaxRate2,
