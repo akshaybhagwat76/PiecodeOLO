@@ -8,6 +8,7 @@ using DishoutOLO.ViewModel;
 using DishoutOLO.Service.Interface;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using System.Data;
 
 namespace DishoutOLO.Service
 {
@@ -48,7 +49,6 @@ namespace DishoutOLO.Service
                                           MenuName = y.MenuName,
                                           Descrition = y.Description,
                                           ListAvaliblities = null,
-                                          ItemModels = null
 
                                       }).OrderByDescending(x => x.Id).ToList();
 
@@ -75,6 +75,27 @@ namespace DishoutOLO.Service
             }
 
         }
+
+        public List<Menu> GetMenuCategoryById(int categoryid)
+
+        {
+            var data=_menurepository.GetListByPredicate(x=>x.IsActive == true && x.CategoryId == categoryid).ToList();
+
+            var categorylist=_mapper.Map<List<Menu>>(data);     
+
+            if(data != null && data.Count > 0)
+            {
+                foreach(var item in categorylist)
+                {
+                    item.CategoryId = categoryid;
+                    
+                }
+            }
+            return categorylist;
+
+                
+        }
+
 
 
         #endregion

@@ -52,7 +52,7 @@
                         <div class="row g-5">
                             <div class="col-lg-3">
                                 <div class="card" style="height: 80vh; overflow-x: auto;">
-                                    <div class="card-body Menudata">
+                                    <div class="card-body ">
                                         <div class="post-entry-1 border-bottom">
                                             <div class="post-meta" style="text-align: center;">
                                                 <a class="icon" style="top: 20px;" href="/Menu/Create" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
@@ -61,8 +61,9 @@
 
                                             @foreach (var item in ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>)
                                             {
-                                                <div class="post-entry-1 border-bottom">
+                                                <div class="post-entry-1 border-bottom ">
 
+                                                    <div class="Selectitemlist">
                                                     <div class="post-meta">
                                                         <span class="date">@item.MenuName</span>
                                                     </div>
@@ -73,7 +74,7 @@
                                                         <span class="date">@item.Week</span>
                                                     </div>
                                                     <div class="dropdown" style="float: right; top: -35px;">
-                                                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="bi bi-three-dots-vertical"></i></a>
+                                                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"> <i class="bi bi-three-dots-vertical"></i></a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>&nbsp;&nbsp; Edit</a>
                                                             <a class="dropdown-item" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp; Delete</a>
@@ -86,14 +87,12 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                     </a>
-                                                    @*                                                    <div class="post-meta"><span class="date">@item.FullTime</span></div>
-                                                *@
-
 
                                                     @foreach (var p in item.ListAvaliblities)
                                                     {
                                                         <div class="post-meta"><span class="date">@p.fromtime : @p.endtime  </span></div>
                                                     }
+                                                    </div>
                                                     <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
                                                 </div>
                                             }
@@ -106,25 +105,18 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="card recent-sales overflow-auto" style="height: 75vh; border: 2px solid;">
-
                                                 <div class="filter">
-                                                    <a class="icon" style="top: 20px;" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
-                                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                        <li class="dropdown-header text-start">
-                                                            <h6>Filter</h6>
-                                                        </li>
-
-                                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                    </ul>
-                                                </div>
+@*                                                   
+*@                                                </div>
                                                 <div class="card-body mb-5">
-                                                    <h5 class="card-title ">1005 Menu</h5>
-                                                    <div id="userFacets" class="facet-list">
-                                                        <label>No Category Found...</label>
+                                                    <div class="post-meta connected-sortable" id="userFacets">
+                                                            <span class="date " id="getdata"></span>
+                                                        </div>
+
+                                                    
+                                                    <h5 class="card-title ">menu</h5>
+                                                   
                                                     </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -137,21 +129,23 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="card-body">
-                                                    <h2 class="card-title mb-5"> All Items </h2>
-                                                    <div class="post-entry-1 border-bottom">
+                                                <div class="card" style="height: 80vh; overflow-x: auto;">
+                                                    <div class="card-body">
+                                                        <div class="post-meta" style="text-align: center;">
+                                                            <a class="icon" style="top: 20px;" href="/Menu/Create" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
+                                                            <span class="date">All Items</span>
+                                                        </div>
                                                         @foreach (var item in ViewBag.lstItems)
                                                         {
-                                                            <div class="post-meta">
-                                                                <span class="date">@item.ItemName</span>
-                                                            </div>
-
+                                                            <div class="post-entry-1 border-bo  ttom">
+                                                                <div class="post-meta " id="allFacets">
+                                                                    <span class="date connected-sortable" id="getdata">@item.ItemName</span>
+                                                                </div>
+                                                             </div> 
                                                         }
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </section>
