@@ -1,14 +1,9 @@
-﻿using DishoutOLO.Data;
-using DishoutOLO.ViewModel;
-using DishoutOLO.ViewModel.Helper;
-
+﻿using DishoutOLO.ViewModel;
 namespace DishoutOLO.Service.Interface
 {
     public interface IMenuBuilderService
     {
         public List<AddMenuBuilderModel> GetMenuBuilderList();
-        public List<Menu> GetMenuCategoryById(int categoryid);
-
-
+        public List<AddMenuModel> GetMenuCategoryById(int id);
     }
 }

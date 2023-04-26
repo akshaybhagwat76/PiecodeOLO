@@ -1,15 +1,10 @@
 ﻿
 using DishoutOLO.Data;
-using DishoutOLO.Repo;
 using DishoutOLO.Repo.Interface;
-using DishoutOLO.Repo.Migrations;
-using DishoutOLO.ViewModel.Helper;
 using DishoutOLO.ViewModel;
 using DishoutOLO.Service.Interface;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Data;
-
 namespace DishoutOLO.Service
 {
     public class MenuBuilderService : IMenuBuilderService
@@ -42,14 +37,14 @@ namespace DishoutOLO.Service
             try
             {
 
-                var data = _menurepository.GetAll()
+                List<AddMenuBuilderModel> data = _menurepository.GetAll()
                                       .Select(y => new AddMenuBuilderModel()
                                       {
                                           Id = y.Id,
                                           MenuName = y.MenuName,
                                           Descrition = y.Description,
                                           ListAvaliblities = null,
-
+                                          CategoryId = y.CategoryId
                                       }).OrderByDescending(x => x.Id).ToList();
 
                 if (data != null && data.Count > 0)
@@ -76,27 +71,37 @@ namespace DishoutOLO.Service
 
         }
 
-        public List<Menu> GetMenuCategoryById(int categoryid)
+        public List<AddMenuModel> GetMenuCategoryById(int id)
 
         {
-            var data=_menurepository.GetListByPredicate(x=>x.IsActive == true && x.CategoryId == categoryid).ToList();
+            var data = _menurepository.GetAll()
+                                    .Select(y => new AddMenuModel()
+                                    {
+                                         Id = y.Id,
+                                       CategoryId=y.CategoryId,
+                                    }).OrderByDescending(x => x.Id).ToList();
 
-            var categorylist=_mapper.Map<List<Menu>>(data);     
-
+           // var data = _menurepository.GetListByPredicate(c => c.CategoryId == c.CategoryId).ToList();
             if(data != null && data.Count > 0)
             {
-                foreach(var item in categorylist)
+                foreach(var item in data)
                 {
-                    item.CategoryId = categoryid;
-                    
+                    var menulist = _menurepository.GetListByPredicate(x => x.IsActive == true && x.CategoryId == x.CategoryId).ToList();
+                    var menurelatedlist = _mapper.Map<List<Menu>, List<AddMenuModel>>(menulist);
+                     
                 }
+                 
             }
-            return categorylist;
-
-                
+            return data;
+                 
+        }
+        public List<Menu> GetMenuAvailabilitiesById(int Id)
+        {
+            var menuAvailabilities = _menurepository.GetListByPredicate(x => x.IsActive && x.Id == Id).ToList();
+            return menuAvailabilities;
         }
 
-
+       
 
         #endregion
     }

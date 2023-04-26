@@ -1,4 +1,28 @@
 ﻿@model DishoutOLO.ViewModel.AddMenuBuilderModel
+<style>
+    #activeclass {
+        list-style: none;
+    }
+
+        #activeclass .Selectitemlist {
+            padding: 20px;
+            padding-bottom: 10px;
+            border: 1px solid #1B3E70;
+            color: #1B3E70;
+            text-decoration: none;
+        }
+
+            #activeclass .Selectitemlist:hover {
+                background-color: #1B3E70;
+                color: white;
+            }
+
+        #activeclass .active {
+            background-color: #1B3E70;
+            color: white;
+        }
+</style>
+
 
 <main class="col-md-10">
     <div class="card">
@@ -61,39 +85,37 @@
 
                                             @foreach (var item in ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>)
                                             {
-                                                <div class="post-entry-1 border-bottom ">
-
+                                                <div class="post-entry-1 border-bottom" id="activeclass">
                                                     <div class="Selectitemlist">
-                                                    <div class="post-meta">
-                                                        <span class="date">@item.MenuName</span>
-                                                    </div>
-                                                    <div class="post-meta">
-                                                        <span class="date">@item.Descrition</span>
-                                                    </div>
-                                                    <div class="post-meta">
-                                                        <span class="date">@item.Week</span>
-                                                    </div>
-                                                    <div class="dropdown" style="float: right; top: -35px;">
-                                                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"> <i class="bi bi-three-dots-vertical"></i></a>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>&nbsp;&nbsp; Edit</a>
-                                                            <a class="dropdown-item" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp; Delete</a>
+                                                        <div class="post-meta">
+                                                            <span class="date " id="current">@item.MenuName</span>
                                                         </div>
-                                                    </div>
-
-                                                    <a class="icon" href="#" data-bs-toggle="dropdown">
-                                                        <label class="switch">
-                                                            <input type="checkbox" class="checkit">
-                                                            <span class="slider round"></span>
-                                                        </label>
-                                                    </a>
-
-                                                    @foreach (var p in item.ListAvaliblities)
-                                                    {
-                                                        <div class="post-meta"><span class="date">@p.fromtime : @p.endtime  </span></div>
-                                                    }
+                                                        <div class="post-meta">
+                                                            <span class="date">@item.Descrition</span>
+                                                        </div>
+                                                        <div class="post-meta">
+                                                            <span class="date">@item.Week</span>
+                                                        </div>
+                                                        <div class="dropdown" style="float: right; top: -35px;">
+                                                            <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"> <i class="bi bi-three-dots-vertical"></i></a>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>&nbsp;&nbsp; Edit</a>
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp; Delete</a>
+                                                            </div>
+                                                        </div>
+                                                        <a class="icon" href="#" data-bs-toggle="dropdown">
+                                                            <label class="switch">
+                                                                <input type="checkbox" class="checkit">
+                                                                <span class="slider round"></span>
+                                                            </label>
+                                                        </a>
+                                                        @foreach (var p in item.ListAvaliblities)
+                                                        {
+                                                            <div class="post-meta"><span class="date">@p.fromtime : @p.endtime  </span></div>
+                                                        }
                                                     </div>
                                                     <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
+
                                                 </div>
                                             }
                                         </div>
@@ -106,17 +128,17 @@
                                         <div class="col-md-6">
                                             <div class="card recent-sales overflow-auto" style="height: 75vh; border: 2px solid;">
                                                 <div class="filter">
-@*                                                   
-*@                                                </div>
-                                                <div class="card-body mb-5">
-                                                    <div class="post-meta connected-sortable" id="userFacets">
-                                                            <span class="date " id="getdata"></span>
-                                                        </div>
+                                                </div>
+                                                <div class="card-body mb-5 parent">
+                                                    <div class="post-entry-1 border-bottom">
+                                                        <div class="post-meta parent">
+                                                            <ul class="parent">
+                                                                <li class="droppable"><span class="draggable">Item 1</span></li>
 
-                                                    
-                                                    <h5 class="card-title ">menu</h5>
-                                                   
+                                                            </ul>
+                                                        </div>
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -137,11 +159,15 @@
                                                         </div>
                                                         @foreach (var item in ViewBag.lstItems)
                                                         {
-                                                            <div class="post-entry-1 border-bo  ttom">
-                                                                <div class="post-meta " id="allFacets">
-                                                                    <span class="date connected-sortable" id="getdata">@item.ItemName</span>
+                                                            <div class="post-entry-1 border-bottom">
+                                                                <div class="post-meta">
+                                                                    <ul class="parent">
+                                                                        <li class="droppable"> <span class="draggable ">@item.ItemName</span></li>
+
+                                                                    </ul>
                                                                 </div>
-                                                             </div> 
+
+                                                            </div>
                                                         }
                                                     </div>
                                                 </div>
@@ -150,7 +176,6 @@
                                     </div>
                                 </section>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,6 @@ using System.Text.Json;
 
 namespace DishoutOLO.Controllers
 {
-
     public class MenuController : Controller
     {
         #region Declarations
