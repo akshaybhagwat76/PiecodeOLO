@@ -24,71 +24,96 @@ html, body, #map_canvas {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * {
-    margin: 0;
-    padding: 0;
+    font-family: Microsoft JhengHei;
 }
 
-body {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-h1 {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.group {
-    width: 150px;
-    margin: 5px 0 5px 5px;
+.listBlock {
     float: left;
 }
 
-.parent {
+#sortable1, #sortable2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+    background: #fff;
+    padding: 5px;
+    width: 250px;
+    /*     border: 1px solid black; */
+    border-radius: 5px;
+}
+
+    #sortable1 li, #sortable2 li{
+        color: black;
+        cursor: move;
+        margin: 7px 17px;
+        padding: 5px;
+        font-size: 1.2em;
+        width: 200px;
+        background: none;
+        background-color: #F07C65;
+        border-radius: 5px;
+        color: #fff
+    }
+
+.selected {
+    background: #e74 !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+ul {
     list-style-type: none;
 }
 
-    .parent li {
-        height: 41px;
-        margin-bottom: 5px;
-        padding: 5px;
-        background: #ddd;
-    }
+input {
+    border-radius: 3px;
+    border: 1px solid #fff;
+    height: 30px;
+}
 
-        .parent li.active {
-            background: yellow;
-        }
-
-        .parent li.hover {
-            background: orange;
-        }
-
-            .parent li.hover span {
-                opacity: .5;
-            }
-
-        .parent li span {
-            display: block;
-            height: 25px;
-            line-height: 25px;
-            padding: 5px;
-            background: #eee;
-            border: 3px solid #eee;
-            cursor: move;
-        }
-
-            .parent li span.ui-draggable-dragging {
-                z-index: 10;
-                border-color: red;
-            }
-
-
-
-
-
-
-
-
+.search {
+    margin-top: 30px;
+    margin-left: 25px;
+    width: 200px;
+    padding-left: 10px;
+}
 
 
 

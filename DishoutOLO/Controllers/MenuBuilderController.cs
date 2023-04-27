@@ -1,7 +1,9 @@
 ﻿using DishoutOLO.Helpers.Provider;
+using DishoutOLO.Service;
 using DishoutOLO.Service.Interface;
 using DishoutOLO.ViewModel.Helper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections;
 
 namespace DishoutOLO.Controllers
@@ -56,12 +58,12 @@ namespace DishoutOLO.Controllers
             return Json(filter);
         }
 
-        //public JsonResult GetCategoryId()
-        // {
-        //     var list = _menubuilderService.GetMenuCategoryById();
+        public IActionResult getcategoryid(int id)
+        {
+          
+              return Json(_menubuilderService.GetMenuById(Convert.ToInt32(id)));
 
-        //     return Json(list);
-        // }
+        }
 
 
         //public JsonResult GetCategoryId(DataTableFilterModel filter)
@@ -82,7 +84,7 @@ namespace DishoutOLO.Controllers
         #endregion
     }
 
-
+   
 
 
 
