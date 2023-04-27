@@ -44,7 +44,8 @@ namespace DishoutOLO.Service
                                           MenuName = y.MenuName,
                                           Descrition = y.Description,
                                           ListAvaliblities = null,
-                                          CategoryId = y.CategoryId
+                                          CategoryId = y.CategoryId,
+                                          
                                       }).OrderByDescending(x => x.Id).ToList();
 
                 if (data != null && data.Count > 0)
@@ -70,36 +71,13 @@ namespace DishoutOLO.Service
             }
 
         }
-
-        public List<AddMenuModel> GetMenuCategoryById(int id)
-
+        public List<Menu> GetMenuById(int id)
         {
-            var data = _menurepository.GetAll()
-                                    .Select(y => new AddMenuModel()
-                                    {
-                                         Id = y.Id,
-                                       CategoryId=y.CategoryId,
-                                    }).OrderByDescending(x => x.Id).ToList();
-
-           // var data = _menurepository.GetListByPredicate(c => c.CategoryId == c.CategoryId).ToList();
-            if(data != null && data.Count > 0)
-            {
-                foreach(var item in data)
-                {
-                    var menulist = _menurepository.GetListByPredicate(x => x.IsActive == true && x.CategoryId == x.CategoryId).ToList();
-                    var menurelatedlist = _mapper.Map<List<Menu>, List<AddMenuModel>>(menulist);
-                     
-                }
-                 
-            }
-            return data;
-                 
+            var menubyid = _menurepository.GetListByPredicate(x => x.IsActive && x.CategoryId == id).ToList();
+            return menubyid;
         }
-        public List<Menu> GetMenuAvailabilitiesById(int Id)
-        {
-            var menuAvailabilities = _menurepository.GetListByPredicate(x => x.IsActive && x.Id == Id).ToList();
-            return menuAvailabilities;
-        }
+        
+        
 
        
 

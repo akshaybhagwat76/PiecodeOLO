@@ -54,7 +54,6 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
-                //ViewBag.ItemList=(IList)_ItemService.GetAllItems().Data;   
             }
             catch (Exception ex)
             {
@@ -123,7 +122,7 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                    var CategoryName = Request.Form["columns[1][search][value]"].FirstOrDefault();
+                var CategoryName = Request.Form["columns[1][search][value]"].FirstOrDefault();
                 var ItemName = Request.Form["columns[2][search][value]"].FirstOrDefault();
                 filter.CategoryName = CategoryName;
                 filter.ItemName = ItemName;
