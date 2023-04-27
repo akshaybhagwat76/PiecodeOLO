@@ -54,14 +54,14 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
-
+                //ViewBag.ItemList=(IList)_ItemService.GetAllItems().Data;   
             }
             catch (Exception ex)
             {
                 _loggerProvider.logmsg(ex.Message);
 
             }
-            return View("ManageItem", new AddItemModel());
+            return View("Index", new AddItemModel());
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace DishoutOLO.Controllers
                 _loggerProvider.logmsg(ex.Message);
 
             }
-            return View("ManageItem", _ItemService.GetItem(id));
+            return View("Index", _ItemService.GetItem(id));
 
         }
        

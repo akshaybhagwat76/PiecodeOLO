@@ -2,8 +2,6 @@
 var table,id=0;
 $("document").ready(function () {
     loadAllMenu();
-    
-       
 })
 
 
@@ -19,10 +17,9 @@ $("#menuTbl").on("click", "a#btn-delete", function () {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            id = mid
+            id = mid;
             deleteMenu();
             toastr.success('Record Deleted Successfully.')
-
         }
     })
 });
