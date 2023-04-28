@@ -13,21 +13,26 @@ namespace DishoutOLO.Service
 
     public class MenuAvailabilityService:IMenuAvailabilityService
     {
+        #region Declarations
         private IRepository<MenuAvailabilities> _menuAvailabilitiesRepository;
-        private IMapper _mapper;    
+        private IMapper _mapper;
+        #endregion
 
-        public MenuAvailabilityService(IRepository<MenuAvailabilities> menuAvailabilitiesRepository,IMapper mapper)
+        #region Constructor
+        public MenuAvailabilityService(IRepository<MenuAvailabilities> menuAvailabilitiesRepository, IMapper mapper)
         {
-                      
+
             _mapper = mapper;
             _menuAvailabilitiesRepository = menuAvailabilitiesRepository;
         }
+        #endregion
 
+        #region Crud Methods
         public DishoutOLOResponseModel AddOrUpdateMenuAvailabilities(AddMenuAvaliblities data)
         {
             try
             {
-                
+
                 if (data.Id == 0)
                 {
                     MenuAvailabilities menuAvailabilities = _mapper.Map<AddMenuAvaliblities, MenuAvailabilities>(data);
@@ -46,15 +51,15 @@ namespace DishoutOLO.Service
                     menuavailabilities.IsActive = true;
                     _menuAvailabilitiesRepository.Update(menuavailabilities);
                 }
-            
-                                      
+
+
                 return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "menuavailabilities") : string.Format(Constants.UpdatedSuccessfully, "menuavailabilities") };
             }
             catch (Exception ex)
             {
                 return new DishoutOLOResponseModel() { IsSuccess = false, Message = Constants.GetDetailError };
             }
-            }
+        }
 
 
         public DishoutOLOResponseModel DeleteMenuAvailabilities(int data)
@@ -79,7 +84,8 @@ namespace DishoutOLO.Service
         }
 
 
-        
+        #endregion
+
 
     }
 }

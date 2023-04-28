@@ -1,5 +1,6 @@
 ﻿var alreadyExist = false;
-
+var categoryId = 0;
+var menuId = 0;
 $(".checkit").on("click", function () {
     if ($(this).is(':checked') == true) {
 
@@ -49,7 +50,19 @@ $(document).ready(function () {
  
 
 
-$(function () {
+function goodbye(e) {
+    debugger
+    var itemsIds = [];
+
+    $('#sortable2 li').map(function () {
+        itemsIds.push($(this)[0].id)
+    });
+    
+}
+window.onbeforeunload = goodbye;
+
+
+$(function () { 
     $('.droptrue').on('click', 'li', function () {
         $(this).toggleClass('selected');
     });
@@ -60,6 +73,7 @@ $(function () {
         opacity: 0.6,
         revert: true,
         helper: function (e, item) {
+            debugger
             console.log('parent-helper');
             console.log(item);
             if (!item.hasClass('selected'))
@@ -70,13 +84,22 @@ $(function () {
             return helper.append(elements);
         },
         start: function (e, ui) {
+            debugger
+            console.log('parent-start');
+            console.log(ui);
             var elements = ui.item.siblings('.selected.hidden').not('.ui-sortable-placeholder');
             ui.item.data('items', elements);
         },
         receive: function (e, ui) {
+            debugger
+            console.log('parent-receive');
+            console.log(ui);
             ui.item.before(ui.item.data('items'));
         },
         stop: function (e, ui) {
+            debugger
+            console.log('parent-stop');
+            console.log(ui);
             ui.item.siblings('.selected').removeClass('hidden');
             $('.selected').removeClass('selected');
         },
@@ -98,32 +121,24 @@ function updatePostOrder() {
     $('#postOrder').val(arr.join(','));
 }
 
+
+
  
-$('#activeclass').click(function () {
-    debugger
-    var categoryId = $("#activeclass").val();
-    
-    if (categoryId != null && categoryId.length > 0 && categoryId++)
-        $.ajax({
-            url: '/MenuBuilder/GetAllMenuBuilder',
-            type: 'Get',
-            dataType: 'Json',
-            data: { categoryId: parseInt(categoryId) },
-            success: function (res) {
-                $("#sortable2").empty();
-                $.each(res, function (i, row) {
-                    $("#sortable2").append("<ul value='" + row.categoryId + "'>" + row.categoryName + "</ul>")
-                });
-                $("#sortable2").trigger("change");
-            }
-        })
+
+$('#activeclass .Selectitemlist').click(function () {
+    $('#activeclass .Selectitemlist').removeClass("active");
+    $(this).addClass("active");
 });
 
 
 
-$(document).ready(function () {
-    $('#activeclass .Selectitemlist').click(function () {
-        $('#activeclass .Selectitemlist').removeClass("active");
-        $(this).addClass("active");
-    });
+$('.Selectitemlist').click(function () {
+    var categoryName = $(this).find("div.catDiv")[0].id;
+    debugger
+    var menuId = $(this)[0].id;
+    menuId = parseInt(menuId);
+
+    var catId = $(this).find("div.catDiv")[0].attributes["data-catid"].value;
+    categoryId = parseInt(catId);
+    $("#categoryContainer").find("h2").text("Category : " +categoryName);
 });
