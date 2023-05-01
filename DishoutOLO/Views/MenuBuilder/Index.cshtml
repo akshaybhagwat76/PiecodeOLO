@@ -1,4 +1,8 @@
 ﻿@model DishoutOLO.ViewModel.AddMenuBuilderModel
+
+@{
+    var data = ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>;
+}
 <style>
 
     .listBlock {
@@ -77,10 +81,11 @@
                                                 <span class="date">New Menu</span>
                                             </div>
 
-                                            @foreach (var item in ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>)
+                                            @foreach (var item in data)
                                             {
                                                 <div class="post-entry-1 border-bottom" id="activeclass">
-                                                    <div class="Selectitemlist">
+                                                    <div class="Selectitemlist" id="@item.Id" data-id="@item.CategoryName">
+                                                        <div id="   @item.CategoryName" data-catid="@item.CategoryId" class="catDiv"></div>
                                                         <div class="post-meta">
                                                             <span class="date " id="current">@item.MenuName</span>
                                                         </div>
@@ -127,11 +132,11 @@
                             <div class="col-lg-9">
 
                                 <div class="col-md-4">
-                                    <div class="listBlock">
-                                        <h2>Category</h2>
-                                        
+                                    <div class="listBlock" id="categoryContainer">
+                                        <h2>Category : @data.ToList()[0].CategoryName </h2>
+        
                                         <ul id="sortable2" class='droptrue'></ul>
-                                            
+                                       
                                     </div>
                                     <br clear="both" />
                                     <br>
@@ -148,7 +153,7 @@
                                                         @foreach (var item in ViewBag.lstItems)
                                                         {
                                                             <ul id="sortable1" class='droptrue'>
-                                                                <li id="@item.ItemName" data-filter-item data-filter-name="@item.ItemName"><span class="draggable ">@item.ItemName</span></li>
+                                                                <li id="@item.Id" data-filter-item data-filter-name="@item.ItemName"><span class="draggable ">@item.ItemName</span></li>
 
                                                             </ul>
                                                         }
@@ -172,6 +177,5 @@
 
 
 @section Scripts {
-
     <script src="~/Assets/MenuBuilder.js" asp-append-version="true "></script>
     }
