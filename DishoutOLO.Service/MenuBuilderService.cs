@@ -7,34 +7,32 @@ using AutoMapper;
 using System.Data;
 using DishoutOLO.Repo;
 using DishoutOLO.ViewModel.Helper;
+using DishoutOLO.Repo.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
+using MenuDetail = DishoutOLO.Data.MenuDetails;
 
 namespace DishoutOLO.Service
 {
     public class MenuBuilderService : IMenuBuilderService
     {
         #region Declarations
-        private IRepository<Item> _itemRepository;
         private IRepository<Menu> _menurepository;
         private IRepository<Category> _categoryrepository;
-        private readonly IMapper _mapper;
+         private readonly IMapper _mapper;
         private IRepository<Data.MenuAvailabilities> _menuAvailabilitiesRepository;
 
         #endregion  
 
         #region Constructor
-        public MenuBuilderService(IMapper mapper, IRepository<Category> categoryrepository, IRepository<Menu> menurepository, IRepository<Data.MenuAvailabilities> menuAvailabilitiesRepository, IRepository<Item> itemRepository)
+        public MenuBuilderService(IMapper mapper, IRepository<Category> categoryrepository, IRepository<Menu> menurepository, IRepository<Data.MenuAvailabilities> menuAvailabilitiesRepository)
         {
             _mapper = mapper;
             _menuAvailabilitiesRepository = menuAvailabilitiesRepository;
             _menurepository = menurepository;
             _categoryrepository = categoryrepository;
-            _itemRepository = itemRepository;
         }
         #endregion
-
-
-
-
+         
         #region Get Methods
         public List<AddMenuBuilderModel> GetMenuBuilderList()
         {
@@ -49,7 +47,7 @@ namespace DishoutOLO.Service
                                           Descrition = y.Description,
                                           ListAvaliblities = null,
                                           CategoryId = y.CategoryId,
-
+                                         
                                       }).OrderByDescending(x => x.Id).ToList();
 
                 if (data != null && data.Count > 0)
@@ -64,9 +62,9 @@ namespace DishoutOLO.Service
                             item.ListAvaliblities = menuRelatedAvailabilities;
                         }
                     }
-
+                   
                 }
-
+                
                 return data;
             }
             catch (Exception ex)
@@ -81,7 +79,7 @@ namespace DishoutOLO.Service
             return menubyid;
         }
 
-
+       
 
         #endregion
     }

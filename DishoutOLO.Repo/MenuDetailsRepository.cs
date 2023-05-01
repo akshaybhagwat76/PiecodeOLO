@@ -4,7 +4,7 @@ using DishoutOLO.Repo.Migrations;
 
 namespace DishoutOLO.Repo
 {
-    public class MenuDetailsRepository:Repository<MenuDetails>, IMenuDetailsRepository
+    public class MenuDetailsRepository:Repository<Data.MenuDetails>, IMenuDetailsRepository
     {
         public MenuDetailsRepository(DishoutOLOContext dishoutOLO ) : base(dishoutOLO)
         {
