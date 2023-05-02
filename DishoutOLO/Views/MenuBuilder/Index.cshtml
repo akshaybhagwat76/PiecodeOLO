@@ -80,6 +80,11 @@
                                                 <a class="icon" style="top: 20px;" href="/Menu/Create" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
                                                 <span class="date">New Menu</span>
                                             </div>
+                                            <input type="hidden" id="hdnmenuId" />
+                                            <input type="hidden" id="hdncategoryId" />
+                                            @*<input type="hidden" id="hdmenuDetailsId" />
+                                            <input type="hidden" id="hditemId" />*@
+
 
                                             @foreach (var item in data)
                                             {
@@ -133,7 +138,7 @@
                             <div class="col-lg-9">
                                 <div class="col-md-4">
                                     <div class="listBlock" id="categoryContainer">
-                                        <h2>Category : @data.ToList()[0].CategoryName </h2>
+                                        <h2>Category : @data.ToList()[0].CategoryName</h2>
                                         <ul id="sortable2" class='droptrue'></ul>
                                     </div>
 

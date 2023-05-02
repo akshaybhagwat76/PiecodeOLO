@@ -34,7 +34,7 @@ namespace DishoutOLO.Controllers
         /// <param name="menudetailVM"></param>
         /// <returns></returns>
 
-            
+
         public JsonResult AddOrUpdateMenuDetails(AddMenuDetailsModel menudetailVM)
         {
             try
@@ -49,9 +49,9 @@ namespace DishoutOLO.Controllers
             return Json(menudetailVM);
         }
 
-        
+
 
         #endregion
-        
+
     }
 }

@@ -60,6 +60,8 @@ namespace DishoutOLO.ViewModel
 
         public string ProgramId { get; set; }
         public string Description { get; set; }
+        public int MenuDetailId { get; set; }
+
 
     }
 
