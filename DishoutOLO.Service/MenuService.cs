@@ -24,13 +24,13 @@ namespace DishoutOLO.Service
         #endregion
 
         #region Constructor
-        public MenuService(IRepository<Menu> menuRepository, IMenuAvailabilityService userService, IRepository<Category> categoryRepository, IMapper mapper, IRepository<Data.MenuAvailabilities> menuAvailabilitiesRepository)
+        public MenuService(IRepository<Menu> menuRepository, IMenuAvailabilityService menuAvailabilitiesService, IRepository<Category> categoryRepository, IMapper mapper, IRepository<Data.MenuAvailabilities> menuAvailabilitiesRepository)
         {
             _menuRepository = menuRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
             _menuAvailabilitiesRepository = menuAvailabilitiesRepository;
-            _menuAvailabilitiesService = userService;
+            _menuAvailabilitiesService = menuAvailabilitiesService;
         }
 
         #endregion

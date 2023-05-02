@@ -16,7 +16,7 @@
         }
 
     #activeclass .Selectitemlist.active,
-    #activeclass .Selectitemlist.active {       
+    #activeclass .Selectitemlist.active {
         background: blue;
         color: #fff;
         padding: 9px;
@@ -83,9 +83,10 @@
 
                                             @foreach (var item in data)
                                             {
-                                                <div class="post-entry-1 border-bottom" id="activeclass">
+                                                <div class="post-entry-1 border-bottom " id="activeclass">
                                                     <div class="Selectitemlist" id="@item.Id" data-id="@item.CategoryName">
-                                                        <div id="   @item.CategoryName" data-catid="@item.CategoryId" class="catDiv"></div>
+                                                        <div id="@item.CategoryName" data-catid="@item.CategoryId" class="catDiv"></div>
+
                                                         <div class="post-meta">
                                                             <span class="date " id="current">@item.MenuName</span>
                                                         </div>
@@ -109,7 +110,7 @@
 
                                                             </div>
                                                         </div>
-                                                         <a class="icon" href="#" data-bs-toggle="dropdown">
+                                                        <a class="icon" href="#" data-bs-toggle="dropdown">
                                                             <label class="switch">
                                                                 <input type="checkbox" class="checkit">
                                                                 <span class="slider round"></span>
@@ -121,7 +122,7 @@
                                                         }
                                                         <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
                                                     </div>
-                                                    
+
 
                                                 </div>
                                             }
@@ -130,33 +131,41 @@
                                 </div>
                             </div>
                             <div class="col-lg-9">
-
                                 <div class="col-md-4">
                                     <div class="listBlock" id="categoryContainer">
                                         <h2>Category : @data.ToList()[0].CategoryName </h2>
-        
                                         <ul id="sortable2" class='droptrue'></ul>
-                                       
                                     </div>
-                                    <br clear="both" />
-                                    <br>
-                                </div>
-                                <div id="maincontainer">
-                                    <div id="contentwrapper">
-                                        <div id="maincolumn">
-                                            <div class="text">
-                                                <div class="col-md-4">
-                                                    <div class="listBlock">
-                                                        <h2> All Item</h2>
-                                                        <a class="icon" style="top: 20px;" href="/Item/Index" data-bs-toggle="dropdown"><i class="bi bi-plus-circle ml-n5"></i></a>
 
-                                                        @foreach (var item in ViewBag.lstItems)
-                                                        {
-                                                            <ul id="sortable1" class='droptrue'>
-                                                                <li id="@item.Id" data-filter-item data-filter-name="@item.ItemName"><span class="draggable ">@item.ItemName</span></li>
+                                    @foreach (var item in ViewBag.lstItems)
+                                    {
+                                        <div class="itemlist" id="@item.Id" data-id="@item.ItemName">
+                                            <div id="@item.ItemName" data-catid="@item.Id" class="itemDiv"></div>
+                                            </div>
+                                    }
 
-                                                            </ul>
-                                                        }
+                                            <br clear="both" />
+                                            <br>
+                                        </div>
+                                        <div id="maincontainer">
+                                            <div id="contentwrapper">
+                                                <div id="maincolumn">
+                                                    <div class="text">
+                                                        <div class="col-md-4">
+                                                            <div class="listBlock">
+                                                                <h2> All Item</h2>
+                                                                <a class="icon" style="top: 20px;" href="/Item/Index" data-bs-toggle="dropdown"><i class="bi bi-plus-circle ml-n5"></i></a>
+
+                                                                @foreach (var item in ViewBag.lstItems)
+                                                                {
+                                                            <div id="@item.Id" data-itemid="@item.ItemName" class="itemDiv"></div>
+                                                                        <ul id="sortable1" class='droptrue'>
+                                                                            <li id="@item.Id" data-filter-item data-filter-name="@item.ItemName" class="itemli" ><span class="draggable" id="itemvalue">@item.ItemName</span></li>
+    
+                                                                        </ul>
+                                                                }
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,16 +175,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
     </main>
-</main>
 
 
 
 
 
-@section Scripts {
+                                        @section Scripts {
     <script src="~/Assets/MenuBuilder.js" asp-append-version="true "></script>
     }

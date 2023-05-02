@@ -30,7 +30,7 @@ namespace DishoutOLO.Service
         public DishoutOLOResponseModel AddOrUpdateMenuDetails(AddMenuDetailsModel data)
         {
             try
-            {
+                {
 
                 if (data.Id == 0)
                 {
@@ -52,7 +52,7 @@ namespace DishoutOLO.Service
                 }
 
 
-                return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "menuavailabilities") : string.Format(Constants.UpdatedSuccessfully, "menuavailabilities") };
+                return new DishoutOLOResponseModel() { IsSuccess = true, Message = data.Id == 0 ? string.Format(Constants.AddedSuccessfully, "MenuDetails") : string.Format(Constants.UpdatedSuccessfully, "MenuDetails") };
             }
             catch (Exception ex)
             {

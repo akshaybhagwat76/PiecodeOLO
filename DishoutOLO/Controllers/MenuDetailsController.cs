@@ -33,6 +33,8 @@ namespace DishoutOLO.Controllers
         /// </summary>
         /// <param name="menudetailVM"></param>
         /// <returns></returns>
+
+            
         public JsonResult AddOrUpdateMenuDetails(AddMenuDetailsModel menudetailVM)
         {
             try

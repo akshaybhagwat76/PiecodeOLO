@@ -16,16 +16,19 @@ namespace DishoutOLO.Controllers
         private readonly IMenuService _menuService;
         private readonly ICategoryService _categoryService;
         private readonly IMenuBuilderService _menubuilderService;
+        private readonly IMenuDetailsService _menudetailsService;
+
         private LoggerProvider _loggerProvider;
 
 
-        public MenuBuilderController(IitemService itemService, IMenuBuilderService menubuilderService, LoggerProvider loggerProvider, IMenuService menuService, ICategoryService categoryService)
+        public MenuBuilderController(IitemService itemService, IMenuBuilderService menubuilderService, LoggerProvider loggerProvider, IMenuService menuService, ICategoryService categoryService,IMenuDetailsService menuDetailsService)
         {
             _itemService = itemService;
             _menuService = menuService;
             _menubuilderService = menubuilderService;
             _loggerProvider = loggerProvider;
             _categoryService = categoryService;
+            _menudetailsService = menuDetailsService;
         }
 
         public IActionResult Index()
@@ -66,6 +69,7 @@ namespace DishoutOLO.Controllers
 
         }
        
+
 
         #endregion
     }

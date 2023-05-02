@@ -42,6 +42,9 @@ builder.Services.AddScoped<IUserStaffRepository, UserStaffRepository>();
 builder.Services.AddScoped<IUserStaffService, UserStaffService>();
 
 builder.Services.AddScoped<IMenuBuilderService, MenuBuilderService>();
+builder.Services.AddScoped<IMenuDetailsService, MenuDetailsService>();
+builder.Services.AddScoped<IMenuDetailsRepository,MenuDetailsRepository>();
+
 builder.Services.AddScoped<LoggerProvider>();
  
 //var connectionString = builder.Configuration.GetConnectionString("ConnectionStrings:ConnectDB");
