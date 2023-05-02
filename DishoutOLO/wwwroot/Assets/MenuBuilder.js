@@ -35,17 +35,14 @@ $(".checkit").on("click", function () {
             }
         })
     }
-})  
- 
+})
+
 $(document).ready(function () {
 
     $("#selUser").select2();
-
     var username = $('#selUser option:selected').text();
     var userid = $('#selUser').val();
-
     $('#result').html("id : " + userid + ", name : " + username);
-     
 
     $(window).bind('beforeunload', function () {
         debugger
@@ -53,34 +50,41 @@ $(document).ready(function () {
         $('#sortable2 li').map(function () {
             itemIds.push($(this)[0].id);
         });
-        
-        var menuId = $('#MenuId').val();
-        var categoryId = $('#CategoryId').val();
 
+        var data = {
+            MenuId: Number($("#hdnmenuId").val()),
+            CategoryId: Number($("#hdncategoryId").val()),
+            ItemId: itemIds.toString(),
+            //MenuDetailsId: MenuDetailsId($("#hdmenuDetailsId").val()),
+        }
+        console.log(data);
+        debugger
         $.ajax({
 
             type: "POST",
             url: "/MenuDetails/AddOrUpdateMenuDetails",
-            data: { menuId, categoryId, itemIds },
+            data: data,
+            success: function (response) {
 
+            }
         });
 
         return 'Please save your settings before leaving the page.';
     });
 
-   
+
 
 });
 
-    
-    
-$(function () { 
+
+
+$(function () {
     $('.droptrue').on('click', 'li', function () {
         $(this).toggleClass('selected');
     });
 
     $("ul.droptrue").sortable({
-       
+
         connectWith: 'ul.droptrue',
         opacity: 0.6,
         revert: true,
@@ -94,6 +98,7 @@ $(function () {
             var helper = $('<ul/>');
             item.siblings('.selected').addClass('hidden');
             return helper.append(elements);
+            
         },
         start: function (e, ui) {
             debugger
@@ -107,12 +112,15 @@ $(function () {
             console.log('parent-receive');
             console.log(ui);
             ui.item.before(ui.item.data('items'));
+            
+
         },
         stop: function (e, ui) {
             debugger
             console.log('parent-stop');
             console.log(ui);
             ui.item.siblings('.selected').removeClass('hidden');
+            $("#hditemId").val();
             $('.selected').removeClass('selected');
         },
         update: function () {
@@ -124,7 +132,7 @@ $(function () {
     $("#sortable1, #sortable2 ").disableSelection();
     $("#sortable1, #sortable2").css('minHeight', $("#sortable1, #sortable2").height() + "px");
 });
- 
+
 function updatePostOrder() {
     var arr = [];
     $("#sortable2 li").each(function () {
@@ -132,27 +140,28 @@ function updatePostOrder() {
     });
     $('#postOrder').val(arr.join(','));
 }
- 
+
 $('#activeclass .Selectitemlist').click(function () {
     $('#activeclass .Selectitemlist').removeClass("active");
-    
+
     $(this).addClass("active");
 });
 
 $('.Selectitemlist').click(function () {
 
-        var categoryName = $(this).find("div.catDiv")[0].id;
-        debugger
-        var menuId = $(this)[0].id;
-        menuId = parseInt(menuId);
+    var categoryName = $(this).find("div.catDiv")[0].id;
+    debugger
+    var menuId = $(this)[0].id;
+    menuId = parseInt(menuId);
+    $("#hdnmenuId").val(menuId);
 
-        var catId = $(this).find("div.catDiv")[0].attributes["data-catid"].value;
-        categoryId = parseInt(catId);
-        $("#categoryContainer").find("h2").text("Category : " + categoryName);
+    var catId = $(this).find("div.catDiv")[0].attributes["data-catid"].value;
+    categoryId = parseInt(catId);
+    $("#categoryContainer").find("h2").text("Category : " + categoryName);
+    $("#hdncategoryId").val(categoryId);
 
 
-       
-    
+
 });
 
 

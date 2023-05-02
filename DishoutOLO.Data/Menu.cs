@@ -19,7 +19,11 @@ namespace DishoutOLO.Data
 
         [NotMapped]
         public string ProgramName { get; set; }
-
-
+        [NotMapped]
+        public int MenuDetailId { get; set; }
+        [NotMapped]
+        public string ItemId { get; set; }
+        [NotMapped]
+        public int MenuId { get; set; }
     }
 }
