@@ -54,14 +54,13 @@ namespace DishoutOLO.Controllers
             try
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
-
             }
             catch (Exception ex)
             {
                 _loggerProvider.logmsg(ex.Message);
 
             }
-            return View("ManageItem", new AddItemModel());
+            return View("Index", new AddItemModel());
         }
 
         /// <summary>
@@ -123,7 +122,7 @@ namespace DishoutOLO.Controllers
         {
             try
             {
-                    var CategoryName = Request.Form["columns[1][search][value]"].FirstOrDefault();
+                var CategoryName = Request.Form["columns[1][search][value]"].FirstOrDefault();
                 var ItemName = Request.Form["columns[2][search][value]"].FirstOrDefault();
                 filter.CategoryName = CategoryName;
                 filter.ItemName = ItemName;
@@ -156,7 +155,7 @@ namespace DishoutOLO.Controllers
                 _loggerProvider.logmsg(ex.Message);
 
             }
-            return View("ManageItem", _ItemService.GetItem(id));
+            return View("Index", _ItemService.GetItem(id));
 
         }
        

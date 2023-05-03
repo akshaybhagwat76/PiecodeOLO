@@ -1,4 +1,4 @@
-﻿@model DishoutOLO.ViewModel.AddItemModel
+﻿@*@model DishoutOLO.ViewModel.AddItemModel
 
 <div class="row">
     <div class="col-xl-8 order-xl-3 ">
@@ -7,6 +7,8 @@
                 @Html.HiddenFor(mode=>mode.Id)
                 @Html.HiddenFor(mode=>mode.IsActive)
                 @Html.HiddenFor(mode=>mode.ItemImage)
+                <input type="hidden" id="categoryIds" value="@Model.CategoryId" />
+
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-12">
@@ -27,7 +29,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CategoryId,new {@class="form-control-label"})
-                                    @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList,"---SELECT-----", new { @class = "form-control required" })
+                                    @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList,"---SELECT-----", new { @class = "form-control required",multiple = "multiple" })
                                 </div>
                             </div>
                         </div>
@@ -105,7 +107,7 @@
         <div class="card-footer">
             <div class="row align-items-center">
                 <div class="col-12 text-center">
-                    <button type="submit" id="btn-submit" class="btn btn-md btn-primary">
+                    <button type="submit" id="btn-submit" class="btn btn-md btn-primary DefaultSuccess">
                         Save
                     </button>
                     <a href="/Item/Index" class="btn btn-default">Cancel</a>
@@ -123,3 +125,4 @@
 
 
 
+*@

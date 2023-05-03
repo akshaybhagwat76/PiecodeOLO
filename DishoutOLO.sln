@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DishoutOLO.Service", "Disho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DishoutOLO.ViewModel", "DishoutOLO.ViewModel\DishoutOLO.ViewModel.csproj", "{F3EE5227-1732-4364-A964-F6C43B216E39}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodosService", "TodosService\TodosService.csproj", "{D32684A7-0471-4EDA-B312-1544F9D497EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F3EE5227-1732-4364-A964-F6C43B216E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3EE5227-1732-4364-A964-F6C43B216E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3EE5227-1732-4364-A964-F6C43B216E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32684A7-0471-4EDA-B312-1544F9D497EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32684A7-0471-4EDA-B312-1544F9D497EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32684A7-0471-4EDA-B312-1544F9D497EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32684A7-0471-4EDA-B312-1544F9D497EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

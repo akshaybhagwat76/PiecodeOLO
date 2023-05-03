@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.StartDate,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.StartDate,new { htmlAttributes = new
-                                    { @class = "form-control  required",@id="Startdate", @type="text" ,autocomplete = "off"}  })
+                                    { @class = "form-control  required dtpicker",@id="StartDate", @type="text" ,autocomplete = "off"}  })
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.EndDate,new {@class="form-control-label"})
                                     @Html.EditorFor(model => model.EndDate,new { htmlAttributes = new
-                                    { @class = "form-control  required" ,@id="Enddate", @type="text", autocomplete = "off"} })
+                                    { @class = "form-control  required dtpicker" ,@id="EndDate", @type="text", autocomplete = "off"} })
                                 </div>
                             </div>
                             <div class="col">
@@ -99,7 +99,7 @@
                 <div class="card-footer">
                     <div class="row align-items-center">
                         <div class="col-12 text-center">
-                            <button type="submit" id="btn-Add" class="btn btn-md btn-primary">
+                            <button type="submit" id="btn-Add" class="btn btn-md btn-primary DefaultSuccess">
                                 Save
                             </button>
                             <a href="/Coupen/Index" class="btn btn-default">Cancel</a>

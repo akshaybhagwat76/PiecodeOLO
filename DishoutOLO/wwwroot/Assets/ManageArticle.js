@@ -1,8 +1,11 @@
-﻿$(document).ready(function () {
-    $("#lblError").removeClass("success").removeClass("error").text('');
-   
+﻿
 
+$(document).ready(function () {
+    $("#lblError").removeClass("success").removeClass("error").text('');
     $("#btn-Add ").on("click", function () {
+        debugger
+        var textareaValue = $('#summernote').summernote('code');
+       
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
         $("#myForm .required").each(function () {
@@ -16,9 +19,10 @@
         });
         if (retval) {
             var data = {
+                
                 id: $("#Id").val(),
                 ArticleName: $("#ArticleName").val(),
-                ArticleDescription: $("#ArticleDescription").val(),
+                ArticleDescription: $("#summernote").val().html($(summernote.code()).text()),
                 IsActive: $("#IsActive").val() == "true" ? true : false
             }
             $.ajax({
@@ -26,23 +30,22 @@
                 url: "/Article/AddOrUpdateArticle",
                 data: { articleVM: data },
                 success: function (data) {
+                  
                     if (!data.isSuccess) {
-                        $("#lblError").addClass("error").text(data.message.toString()).show();
+                        $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
+                        toastr.success('Article Added Successfully.')
+
                     }
                     else {
                         window.location.href = '/Article/Index'
+
                     }
                 }
             });
         }
 
     })
-   
 
-});
-
-
-$(document).ready(function () {
     var editor = $('#summernote');
     editor.summernote({
         height: ($(window).height() - 250),
@@ -53,13 +56,15 @@ $(document).ready(function () {
             ['fontsize', ['fontsize']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],
-            ['view', ['fullscreen', 'codeview']],
+            ['view', ['fullscreen']],
         ],
         oninit: function () {
             // Add "open" - "save" buttons
             var noteBtn = '<button id="makeSnote" type="button" class="btn btn-default btn-sm btn-small" title="Identify a music note" data-event="something" tabindex="-1"><i class="fa fa-music"></i></button>';
             var fileGroup = '<div class="note-file btn-group">' + noteBtn + '</div>';
             $(fileGroup).appendTo($('.note-toolbar'));
+            html.replace(/<p>\s*<br>\s*<\/p>/, '');
+        
             // Button tooltips
             $('#makeSnote').tooltip({ container: 'body', placement: 'bottom' });
             // Button events

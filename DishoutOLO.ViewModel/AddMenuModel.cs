@@ -34,7 +34,7 @@ namespace DishoutOLO.ViewModel
         public string? endtime { get; set; }
         public string? fromtime { get; set; }
         public string? week { get; set; }
-        public int? MenuId { get; set; }
+        public int MenuId { get; set; }
 
     }
 
@@ -47,7 +47,6 @@ namespace DishoutOLO.ViewModel
         public string CategoryName { get; set; }
         [DisplayName("CategorY")]
 
-        public IFormFile File { get; set; }
 
         public int MenuPrice { get; set; }
 
@@ -61,6 +60,8 @@ namespace DishoutOLO.ViewModel
 
         public string ProgramId { get; set; }
         public string Description { get; set; }
+        public int MenuDetailId { get; set; }
+
 
     }
 
@@ -69,7 +70,6 @@ namespace DishoutOLO.ViewModel
         public int Id { get; set; }
 
         public string MenuName { get; set; }
-        public IFormFile File { get; set; }
 
         public int MenuPrice { get; set; }
         public string CategoryName { get; set; }

@@ -1,0 +1,193 @@
+﻿@model DishoutOLO.ViewModel.AddMenuBuilderModel
+
+@{
+    var data = ViewData["menuInfolist"] as IEnumerable<DishoutOLO.ViewModel.AddMenuBuilderModel>;
+}
+<style>
+
+    .listBlock {
+        background: #fff;
+        height: 80vh;
+    }
+
+        .listBlock h2 {
+            font-size: 15px;
+            text-align: center;
+        }
+
+    #activeclass .Selectitemlist.active,
+    #activeclass .Selectitemlist.active {
+        background: blue;
+        color: #fff;
+        padding: 9px;
+    }
+</style>
+
+
+<main class="col-md-10">
+    <div class="card">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/Category/Index" class="nav-link">
+                                <p> Category </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Item/Index" class="nav-link">
+                                <p>Item</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/Itemgroup/Index" class="nav-link">
+                                <p> ItemGroup </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Modifier/Index" class="nav-link">
+                                <p>Modifier</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/ModifierGroup/Index" class="nav-link">
+                                <p> ModifierGroup </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <main id="main">
+        <!-- ======= Lifestyle Category Section ======= -->
+        <section class="category-section">
+            <div class="container" data-aos="fade-up">
+                <div class="row g-5">
+                    <div class="col-lg-12">
+                        <div class="row g-5">
+                            <div class="col-lg-3">
+                                <div class="card" style="height: 80vh; overflow-x: auto;">
+                                    <div class="card-body">
+                                        <div class="post-entry-1 border-bottom">
+                                            <div class="post-meta" style="text-align: center;">
+                                                <a class="icon" style="top: 20px;" href="/Menu/Create" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
+                                                <span class="date">New Menu</span>
+                                            </div>
+                                            <input type="hidden" id="hdnmenuId" />
+                                            <input type="hidden" id="hdncategoryId" />
+                                            @*<input type="hidden" id="hdmenuDetailsId" />
+                                            <input type="hidden" id="hditemId" />*@
+
+
+                                            @foreach (var item in data)
+                                            {
+                                                <div class="post-entry-1 border-bottom " id="activeclass">
+                                                    <div class="Selectitemlist" id="@item.Id" data-id="@item.CategoryName">
+                                                        <div id="@item.CategoryName" data-catid="@item.CategoryId" class="catDiv"></div>
+
+                                                        <div class="post-meta">
+                                                            <span class="date " id="current">@item.MenuName</span>
+                                                        </div>
+                                                        <div class="post-meta">
+                                                            <span class="date">@item.Descrition</span>
+                                                        </div>
+                                                        <div class="post-meta">
+                                                            <span class="date">@item.Week</span>
+                                                        </div>
+                                                        <div class="post-meta">
+                                                            <span class="date">@item.CategoryId</span>
+                                                        </div>
+
+                                                        <div class="btn-group" style="float:right;top: -5vh;">
+                                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>&nbsp;&nbsp; Edit</a>
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp; Delete</a>
+
+                                                            </div>
+                                                        </div>
+                                                        <a class="icon" href="#" data-bs-toggle="dropdown">
+                                                            <label class="switch">
+                                                                <input type="checkbox" class="checkit">
+                                                                <span class="slider round"></span>
+                                                            </label>
+                                                        </a>
+                                                        @foreach (var p in item.ListAvaliblities)
+                                                        {
+                                                            <div class="post-meta"><span class="date">@p.fromtime : @p.endtime  </span></div>
+                                                        }
+                                                        <div class="post-meta"><span class="date"><a href="#"><i class="bi bi-chevron-down ms-auto"></i></a></span></div>
+                                                    </div>
+
+
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="col-md-4">
+                                    <div class="listBlock" id="categoryContainer">
+                                        <h2>Category : @data.ToList()[0].CategoryName</h2>
+                                        <ul id="sortable2" class='droptrue'></ul>
+                                    </div>
+
+                                    @foreach (var item in ViewBag.lstItems)
+                                    {
+                                        <div class="itemlist" id="@item.Id" data-id="@item.ItemName">
+                                            <div id="@item.ItemName" data-catid="@item.Id" class="itemDiv"></div>
+                                            </div>
+                                    }
+
+                                            <br clear="both" />
+                                            <br>
+                                        </div>
+                                        <div id="maincontainer">
+                                            <div id="contentwrapper">
+                                                <div id="maincolumn">
+                                                    <div class="text">
+                                                        <div class="col-md-4">
+                                                            <div class="listBlock">
+                                                                <h2> All Item</h2>
+                                                                <a class="icon" style="top: 20px;" href="/Item/Index" data-bs-toggle="dropdown"><i class="bi bi-plus-circle ml-n5"></i></a>
+
+                                                                @foreach (var item in ViewBag.lstItems)
+                                                                {
+                                                            <div id="@item.Id" data-itemid="@item.ItemName" class="itemDiv"></div>
+                                                                        <ul id="sortable1" class='droptrue'>
+                                                                            <li id="@item.Id" data-filter-item data-filter-name="@item.ItemName" class="itemli" ><span class="draggable" id="itemvalue">@item.ItemName</span></li>
+    
+                                                                        </ul>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </main>
+    </main>
+
+
+
+
+
+                                        @section Scripts {
+    <script src="~/Assets/MenuBuilder.js" asp-append-version="true "></script>
+    }

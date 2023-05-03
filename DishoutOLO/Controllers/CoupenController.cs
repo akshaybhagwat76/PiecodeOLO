@@ -109,6 +109,17 @@ namespace DishoutOLO.Controllers
             }
             return Json(id);
         }
+         
+        public void DeleteingCoupensByDate()
+        {
+          var data=_coupenService.GetCoupenAll();
+            data = data.Where(x => x.EndDate.Date < DateTime.Now.Date).ToList();
+            foreach(var item in data)
+            {
+                Console.Write("Deleting the " + item.CouponName);
+                DeleteCoupen(item.Id);
+            }
+        }
         #endregion
     }
 }

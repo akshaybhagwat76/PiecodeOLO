@@ -1,15 +1,31 @@
-﻿var table;
+﻿var table,id=0;
 $("document").ready(function () {
     loadAllItemgroup();
+    
+
+
 })
 $("#itemgroupTbl").on("click", "a#btn-delete", function () {
-    var id = $(this).data('id');
-    $('#deleteModal').data('id', id).modal('show');
-    $('#deleteModal').modal('show');
+    var gid = $(this).data('id');
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will not be able to recover this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            id = gid
+            deleteItemgroup();
+            toastr.success('Record Deleted Successfully.')
+
+        }
+    })
 });
 
-$('#delete-btn').click(function () {
-    var id = $('#deleteModal').data('id');
+function deleteItemgroup() {
     $.ajax({
         type: "GET",
         url: "/Itemgroup/DeleteItemGroup",
@@ -22,13 +38,12 @@ $('#delete-btn').click(function () {
             else {
                 $('#deleteModal').modal('hide');
                 table.ajax.reload()
-                //    funToastr(true, response.message);
             }
         },
         error: function (error) {
         }
     });
-});
+}
 
 
 function loadAllItemgroup() {

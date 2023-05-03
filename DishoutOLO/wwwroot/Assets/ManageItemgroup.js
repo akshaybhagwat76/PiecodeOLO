@@ -1,7 +1,12 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
+    $('.DefaultSuccess').click(function () {
+        toastr.success('Item Added Successfully.')
+    });
+   
 
     $("#btn-submit").on("click", function () {
+    
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
         $("#myForm .required").each(function () {
@@ -28,6 +33,7 @@
                 success: function (data) {
                     if (!data.isSuccess) {
                         $("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
+
                     }
                     else {
                         window.location.href = '/ItemGroup/Index'
@@ -36,7 +42,5 @@
             });
         }
     });
-    //$("#dataupload").click(function () {
-
-    //});
+    
 });

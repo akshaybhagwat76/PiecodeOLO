@@ -7,10 +7,10 @@ using DishoutOLO.ViewModel.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections;
+using System.Text.Json;
 
 namespace DishoutOLO.Controllers
 {
-
     public class MenuController : Controller
     {
         #region Declarations
@@ -20,7 +20,6 @@ namespace DishoutOLO.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IProgramService _programService;   
-        
         private readonly ILogger _logger;
         private LoggerProvider _loggerProvider;
         #endregion
@@ -55,6 +54,8 @@ namespace DishoutOLO.Controllers
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
                 ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
+                ViewBag.MenuList = new SelectList((IList)_menuService.GetAllMenus().Data, "Id", "MenuName");
+
             }
             catch (Exception ex)
             {
@@ -93,7 +94,8 @@ namespace DishoutOLO.Controllers
             {
                 ViewBag.CategoryList = new SelectList((IList)_categoryService.GetAllCategories().Data, "Id", "CategoryName");
                 ViewBag.ProgramList = new SelectList((IList)_programService.GetAllPrograms().Data, "Id", "ProgramName");
-                                                          
+                ViewBag.MenuList = new SelectList((IList)_menuService.GetAllMenus().Data, "Id", "MenuName");
+
             }
             catch (Exception ex)
             {
@@ -160,7 +162,13 @@ namespace DishoutOLO.Controllers
             return Json(id);
         }
 
-    
+
+
+        public IActionResult GetMenuAvailability(string key)
+        {
+
+            return Json(_menuService.GetMenuAvailabilitiesById(Convert.ToInt32(key)));
+        }
         #endregion
 
 

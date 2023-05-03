@@ -6,11 +6,10 @@ namespace DishoutOLO.Data
     public class Item : BaseEntity
     {
 
-        [Required]
-        [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
-        public string ItemName { get; set; }
+       
+        public string CategoryId { get; set; }
+       
+        public string? ItemName { get; set; }
         public string? ItemDescription { get; set; }
 
         public string ItemImage { get; set; }
@@ -23,6 +22,10 @@ namespace DishoutOLO.Data
         public decimal TaxRate2 { get; set; }
         public decimal TaxRate3 { get; set; }
         public decimal TaxRate4 { get; set; }
+
+        [NotMapped]
+        public string CategoryName { get; set; }
+
     }
 }
 

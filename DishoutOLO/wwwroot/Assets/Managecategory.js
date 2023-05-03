@@ -1,11 +1,10 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
+  
     if ($("#hdnStatus").val() == 'true') {
         $("#Status").attr('checked', true);
     }
     $(".lblStatusTxt").text($("#Status").is(':checked') ? "Active" : "Deactive");
-
-
 
     $("#btn-Add").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
@@ -31,12 +30,17 @@
                 url: "/Category/AddOrUpdateCategory",
                 data: { categoryVM: data },
                 success: function (data) {
+                    debugger
                     if (!data.isSuccess) {
                         $("#lblError").addClass("error").text(data.message.toString()).show();
+                        toastr.success('Category Added Succefully!')
+
                     }
                     else {
                         window.location.href = '/Category/Index'
+
                     }
+
                 }
             });
         }

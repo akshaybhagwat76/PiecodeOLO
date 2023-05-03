@@ -1,17 +1,29 @@
 ﻿
-var table;
+var table,id=0;
 $("document").ready(function () {
     loadAllItem();
-
-})
+ })
 $("#itemTbl").on("click", "a#btn-delete", function () {
-    var id = $(this).data('id');
-    $('#deleteModal').data('id', id).modal('show');
-    $('#deleteModal').modal('show');
+    var tid = $(this).data('id');
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will not be able to recover this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            id = tid
+            deleteItem();
+            toastr.success('Record Deleted Successfully.')
+
+        }
+    })
 });
 
-$('#delete-btn').click(function () {
-    var id = $('#deleteModal').data('id');
+function deleteItem() {
     $.ajax({
         type: "GET",
         url: "/Item/DeleteItem",
@@ -29,7 +41,7 @@ $('#delete-btn').click(function () {
         error: function (error) {
         }
     });
-});
+}
 
 var index = 0;
 function loadAllItem() {
@@ -50,21 +62,9 @@ function loadAllItem() {
 
         "columns": [
             {
-                "data": "categoryName"
-            },
-            {
                 "data": "itemName"
             },
-            {
-                orderable: false,
-
-                "data": function (full) {
-
-                    var imgPath = '/Content/Item/' + full.itemImage;
-                    return "<img src=" + imgPath + " height='60'width='100'>";
-                }
-            },
-            
+                
             {
                 orderable: false,
                 "render": function (data, type, full, meta) {
@@ -82,23 +82,6 @@ function loadAllItem() {
     })
 }   
 
-
-
-
-$('#CategoryName').on('change', function () {
-
-    table.columns(1).search($("#CategoryName option:selected").text().trim());
-   
-    table.draw();
-
-});
-   
-
-$('#txtItemName').on('keyup', function () {
-    table.columns(2).search($('#txtItemName').val().trim());
-    table.draw();
-
-});
 
 
 

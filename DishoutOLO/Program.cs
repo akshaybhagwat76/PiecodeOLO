@@ -1,6 +1,8 @@
+using DishoutOLO.Data;
 using DishoutOLO.Helpers.Provider;
 using DishoutOLO.Repo;
 using DishoutOLO.Repo.Interface;
+using DishoutOLO.Repo.Migrations;
 using DishoutOLO.Service;
 using DishoutOLO.Service.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -33,11 +35,18 @@ builder.Services.AddScoped<IMenuAvailabilityService, MenuAvailabilityService>();
 builder.Services.AddScoped<ICoupenRepository, CoupenRepository>();
 builder.Services.AddScoped<ICoupenService, CoupenService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IOrderService, OrderService>();   
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IRolesRepository, RolesRepository>();
+builder.Services.AddScoped<IRolesService, RolesService>();
+builder.Services.AddScoped<IUserStaffRepository, UserStaffRepository>();
+builder.Services.AddScoped<IUserStaffService, UserStaffService>();
+
+builder.Services.AddScoped<IMenuBuilderService, MenuBuilderService>();
+builder.Services.AddScoped<IMenuDetailsService, MenuDetailsService>();
+builder.Services.AddScoped<IMenuDetailsRepository,MenuDetailsRepository>();
 
 builder.Services.AddScoped<LoggerProvider>();
-
-
+ 
 //var connectionString = builder.Configuration.GetConnectionString("ConnectionStrings:ConnectDB");
 builder.Services.AddDbContext<DishoutOLOContext>(x => x.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDB"]));
 var app = builder.Build();

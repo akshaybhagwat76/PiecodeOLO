@@ -1,52 +1,175 @@
-﻿<div class="row">
-    <div class="col-12">
-        <div class="card">
+﻿@model DishoutOLO.ViewModel.AddItemModel
 
-            <div style="background-color:#f5f5f5; padding:20px">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                  @Html.DropDownList("CategoryName", ViewBag.CategoryList as SelectList, "---SELECT---", new { @class = "form-control  " })
-                                
-                            <td> <input type="text" class="form-control" id="txtItemName" placeholder="Item Name" /></td>
 
-                            <td>
-                                <div class="col-lg-12  text-right" style="margin-left:570px;">
-                                    <a href="/Item/Create" class="btn btn-md btn-warning">Add Item</a>
+
+
+<section class="category-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+            <div class="col-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="col-md-6 ml-5">
+                            <div class="card recent-sales overflow-auto" style="margin-left: -26px; height: 75vh; border: 2px solid;width: 35vh;">
+                                <div class="filter">
+                                    <a class="icon" style="top: 20px;" href="/Item/Index" data-bs-toggle="dropdown"><i class="bi bi-plus-circle"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="itemTbl" class="table table-bordered table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col" class="sort" data-sort="name">Item Name</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 order-xl-3 ">
+                <div class="card" style="height: 75vh;width:90vh;">
+                    <form id="myForm" action="javascript:;">
+                        @Html.HiddenFor(mode=>mode.Id)
+                        @Html.HiddenFor(mode=>mode.IsActive)
+                        @Html.HiddenFor(mode=>mode.ItemImage)
+
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <h3 class="mb-0">New Item</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="pl-lg-4">
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("Item Name", null,htmlAttributes: new { @class = "ml-1" })
+                                            @Html.Editor("ItemName", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "Item Name" } })
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.CategoryId,new {@class="form-control-label"})
+                                            @Html.DropDownListFor(f=>f.CategoryId, ViewBag.CategoryList as SelectList,"---SELECT-----", new { @class = "form-control required",multiple = "multiple" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("UnitCost", null,htmlAttributes: new { @class = "ml-1 requiredLabel" })
+                                            @Html.Editor("UnitCost", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "Unicost" } })
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("MSRP", null,htmlAttributes: new { @class = "ml-1 requiredLabel" })
+                                            @Html.Editor("MSRP", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "MSRP" } })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("TaxRate1", null,htmlAttributes: new { @class = "ml-1" })
+                                            @Html.Editor("TaxRate1", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate1" } })
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("TaxRate2", null,htmlAttributes: new { @class = "ml-1" })
+                                            @Html.Editor("TaxRate2", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate2" } })
+
+                                        </div>
+                                    </div>
                                 </div>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("TaxRate3", null,htmlAttributes: new { @class = "ml-1" })
+                                            @Html.Editor("TaxRate3", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate3" } })
 
-            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("TaxRate4", null,htmlAttributes: new { @class = "ml-1" })
+                                            @Html.Editor("TaxRate4", new { htmlAttributes = new { @class = "form-control  required", @placeholder = "TaxRate4" } })
 
-        </div>
-
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="itemTbl" class="table table-bordered table-hover">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col" class="sort" data-sort="name">Category </th>
-                            <th scope="col" class="sort" data-sort="name">Item Name</th>
-                            <th scope="col" class="sort" data-sort="name">Item Image</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.Label("Item Description", null,htmlAttributes: new { @class = "ml-1" })
+                                            @Html.TextArea("ItemDescription",new { @class = "form-control required" })
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="col mt-4">
+                                        </div>
+                                        <div class="col mt-4">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ItemImage,new {@class="form-control-label"})
+                                                <input type="file" name="file" id="itemId" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer mb-n3">
+                            <div class="align-items-center">
+                                <div class="col-12 text-center">
+                                    <button type="submit" id="btn-submit" class="btn btn-md btn-primary DefaultSuccess">
+                                        Save
+                                    </button>
+                                    <a href="/Item/Index" class="btn btn-default">Cancel</a>
+                                    <label id="lblError" class="inline"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+               
             </div>
         </div>
     </div>
+</section>
+
+
+
+
+<div class="row">
 </div>
-<partial name="_CommonResponseModel" />
+
+<partial name="_CommonDeleteModal" />
 
 @section Scripts {
 
     <script src="~/Assets/Item.js" asp-append-version="true"></script>
+
+    <script src="~/Assets/ManageItem.js" asp-append-version="true"></script>
+
 
 }

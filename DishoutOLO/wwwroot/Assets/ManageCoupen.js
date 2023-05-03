@@ -1,15 +1,11 @@
 ﻿$(document).ready(function () {
     $("#lblError").removeClass("success").removeClass("error").text('');
-
-    debugger
-
+  
     var id = $("#Id").val();
     if (id == 0) {
-        $("#Startdate").val("");
-        $("#Enddate").val("");
+        $("#StartDate").val("");
+        $("#EndDate").val("");
     }
-
-
     $("#btn-Add").on("click", function () {
         $("#lblError").removeClass("success").removeClass("error").text('');
         var retval = true;
@@ -23,15 +19,14 @@
             }
            
         });
-
-        debugger
+      
     var data = {
         id: $("#Id").val(),
         CouponName: $("#CouponName").val(),
         CouponCode: $("#CouponCode").val(),
         MinOrderAmount: $("#MinOrderAmount").val(),
-        Startdate: $("#Startdate").val(),
-        Enddate: $("#Enddate").val(),
+        StartDate: $("#StartDate").val(),
+        EndDate: $("#EndDate").val(),
         Discount: $("#Discount").val(),
         RedemptionType: $("#RedemptionType").val(),
         Description: $("#Description").val(),
@@ -46,7 +41,6 @@
 
                 success: function (data) {
                     if (!data.isSuccess) {
-                        //$("#lblError").addClass("error").text(data.errors[0].errorDescription).show();
 
                        $("#lblError").addClass("error").text(data.message.toString()).show();
 
@@ -59,24 +53,11 @@
         }
         
     });
-})
-$(document).ready(function () {
-
-    $(function () {
-        $("#Startdate").datepicker({
-            minDate: 0,
-            format: 'DD-MM-YYYY',
-            
-        });
+   
+    $(".dtpicker").datepicker({
+        format: 'DD-MM-YYYY'
     });
-
-    $(function () {
-        $("#Enddate").datepicker({
-            minDate: 0,
-            format: 'DD-MM-YYYY',
-        });
-      
-    });
+     
 
    
 })

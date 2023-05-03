@@ -11,7 +11,7 @@ namespace DishoutOLO.ViewModel
         public string CategoryName { get; set; }
         [DisplayName("Category")]
 
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string ItemName { get; set; }
 
 
@@ -40,7 +40,7 @@ namespace DishoutOLO.ViewModel
         public string CategoryName { get; set; }
         [DisplayName("Category")]
 
-        public int   CategoryId { get; set; }
+        public string   CategoryId { get; set; }
 
         public string ItemName { get; set; }
         public string ItemImage { get; set; }
@@ -66,7 +66,7 @@ namespace DishoutOLO.ViewModel
         public int Id { get; set; }
         public string CategoryName { get; set; }
 
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         public string ItemName { get; set; }
         [Required]
