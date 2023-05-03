@@ -1,0 +1,844 @@
+
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Articles]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Articles](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ArticleName] [nvarchar](max) NULL,
+	[ArticleDescription] [nvarchar](max) NULL,
+	[IsActive] [bit] NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Articles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categories](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryName] [nvarchar](max) NOT NULL,
+	[Status] [bit] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Coupens]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Coupens](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CouponName] [nvarchar](max) NOT NULL,
+	[CouponCode] [nvarchar](max) NOT NULL,
+	[MinOrderAmount] [decimal](18, 2) NOT NULL,
+	[StartDate] [datetime2](7) NOT NULL,
+	[EndDate] [datetime2](7) NOT NULL,
+	[Discount] [decimal](18, 2) NOT NULL,
+	[RedemptionType] [nvarchar](max) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[DiscountTypePercentageval] [decimal](18, 2) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Coupens] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Customer]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Customer](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](max) NOT NULL,
+	[LastName] [nvarchar](max) NOT NULL,
+	[Address1] [nvarchar](max) NOT NULL,
+	[Address2] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[Phone] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ItemGroups]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ItemGroups](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ItemGroup] [nvarchar](max) NOT NULL,
+	[ItemId] [int] NOT NULL,
+	[DisplayOrder] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_ItemGroups] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Items]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Items](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryId] [varchar](max) NOT NULL,
+	[ItemName] [nvarchar](max) NULL,
+	[ItemDescription] [nvarchar](max) NULL,
+	[ItemImage] [nvarchar](max) NOT NULL,
+	[UnitCost] [int] NOT NULL,
+	[MSRP] [int] NOT NULL,
+	[TaxRate1] [decimal](18, 0) NULL,
+	[TaxRate2] [decimal](18, 0) NULL,
+	[TaxRate3] [decimal](18, 0) NULL,
+	[TaxRate4] [decimal](18, 0) NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Items] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MenuAvailabilities]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MenuAvailabilities](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[fromtime] [nvarchar](max) NOT NULL,
+	[endtime] [nvarchar](max) NOT NULL,
+	[week] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+	[MenuId] [int] NULL,
+ CONSTRAINT [PK_menuAvailabilities] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MenuDetails]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MenuDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MenuId] [int] NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[ItemId] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_MenuDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Menus]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Menus](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MenuName] [nvarchar](max) NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[MenuPrice] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[ProgramId] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Menus] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ModifierGroups]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ModifierGroups](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ModifierId] [int] NOT NULL,
+	[price] [int] NOT NULL,
+	[ModifierGroupName] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_ModifierGroups] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Modifiers]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Modifiers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ModifierName] [nvarchar](max) NOT NULL,
+	[Price] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Modifiers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Orders]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Orders](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MenuId] [int] NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[CustomerId] [int] NOT NULL,
+	[Orderdate] [datetime2](7) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Programs]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Programs](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProgramName] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Programs] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Roles]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Roles](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[RolesName] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserStaffs]    Script Date: 03-05-2023 14:03:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserStaffs](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
+	[RoleId] [int] NOT NULL,
+	[Phonenumber] [nvarchar](max) NOT NULL,
+	[DateOfBirth] [datetime2](7) NOT NULL,
+	[JoiningDate] [datetime2](7) NOT NULL,
+	[LicenseExpiration] [datetime2](7) NOT NULL,
+	[State] [nvarchar](max) NOT NULL,
+	[City] [nvarchar](max) NOT NULL,
+	[ZipCode] [nvarchar](max) NOT NULL,
+	[Street] [nvarchar](max) NOT NULL,
+	[LicensePlate] [nvarchar](max) NOT NULL,
+	[DriverLicenseNumber] [nvarchar](max) NOT NULL,
+	[ContactInfo] [nvarchar](max) NOT NULL,
+	[VehicleTypeId] [nvarchar](max) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[LoginType] [nvarchar](max) NOT NULL,
+	[DeviceId] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreationDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedBy] [int] NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_UserStaffs] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230324055846_seeddb5', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230327115334_program', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230328071150_menuAvailabilities', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230404092404_coupen', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230406093633_order', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230406131620_roles', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230408061200_UserStaff', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230422065831_menubuilder', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230428122628_MenuDetails', N'7.0.3')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20230428123138_MenuDetail', N'7.0.3')
+GO
+SET IDENTITY_INSERT [dbo].[Articles] ON 
+GO
+INSERT [dbo].[Articles] ([Id], [ArticleName], [ArticleDescription], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N's@', N'<p>rfghgjghjngmn&nbsp;</p>', 1, CAST(N'2023-04-18T11:43:35.8308600' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Articles] ([Id], [ArticleName], [ArticleDescription], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'x%', N'<p>cdfvdsgdsgdf</p>', 0, CAST(N'2023-04-18T11:44:20.9997926' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Articles] ([Id], [ArticleName], [ArticleDescription], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'A@', N'<p>test</p>', 1, CAST(N'2023-04-18T11:51:17.3833248' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Articles] ([Id], [ArticleName], [ArticleDescription], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (4, N'k?', N'<p>sdadsdfsdf</p>', 1, CAST(N'2023-04-18T12:01:12.8979052' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Articles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Categories] ON 
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'Drinks', 0, 0, CAST(N'2023-03-24T12:17:36.7601560' AS DateTime2), NULL, NULL, CAST(N'2023-03-24T15:14:02.0648070' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'foods', 1, 0, CAST(N'2023-03-24T12:22:26.2339236' AS DateTime2), NULL, NULL, CAST(N'2023-03-24T14:45:05.7757530' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'Punjabi', 0, 0, CAST(N'2023-03-24T12:22:45.8947159' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (4, N'chines', 0, 1, CAST(N'2023-03-24T12:51:37.8119128' AS DateTime2), NULL, NULL, CAST(N'2023-04-06T16:40:15.8415906' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (5, N'sadsd', 1, 0, CAST(N'2023-03-24T14:45:30.5126776' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (6, N'sadsd', 1, 0, CAST(N'2023-03-24T15:11:30.1872142' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (7, N'sadsd', 1, 0, CAST(N'2023-03-24T15:11:39.7056160' AS DateTime2), NULL, NULL, CAST(N'2023-03-24T15:13:46.2652642' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (8, N'food', 0, 1, CAST(N'2023-03-31T11:09:33.0748609' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T12:49:56.3128597' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (9, N'Punjabi', 1, 1, CAST(N'2023-04-03T16:16:11.0874215' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T16:17:51.9082844' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (10, N'tjghj', 1, 0, CAST(N'2023-04-15T10:25:17.0942547' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T12:49:20.3034811' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (11, N'bevrej', 1, 1, CAST(N'2023-04-15T12:50:39.5880206' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (12, N'bvhhg', 1, 0, CAST(N'2023-04-17T14:50:26.9533733' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (13, N'food', 0, 0, CAST(N'2023-04-17T15:13:47.5154029' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T15:14:16.0271723' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (14, N'hjghj', 1, 0, CAST(N'2023-04-17T15:16:54.1507967' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (15, N'cfgdg', 1, 0, CAST(N'2023-04-17T15:21:16.0563663' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (16, N'vgbcgbc', 1, 0, CAST(N'2023-04-17T15:24:26.2082119' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (17, N'sdfdssfds', 0, 0, CAST(N'2023-04-17T15:26:12.7817390' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (18, N'fsdfds', 1, 0, CAST(N'2023-04-17T15:27:28.3328421' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (19, N'vgbcgbc', 1, 0, CAST(N'2023-04-17T15:30:14.1918916' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (20, N'fgdgtde', 1, 0, CAST(N'2023-04-17T15:32:40.7944020' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (21, N'xfds', 1, 0, CAST(N'2023-04-17T15:36:28.9601349' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (22, N'sdff', 1, 0, CAST(N'2023-04-17T15:37:52.1525613' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (23, N'fgbf', 0, 0, CAST(N'2023-04-17T15:38:07.0943515' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:30:45.1219138' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (24, N'dfssdf', 0, 0, CAST(N'2023-04-17T15:38:31.8087853' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (25, N'Drinks', 1, 1, CAST(N'2023-04-17T15:39:36.4620954' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T12:50:10.9901143' AS DateTime2))
+GO
+INSERT [dbo].[Categories] ([Id], [CategoryName], [Status], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (26, N'sabmenu', 0, 1, CAST(N'2023-04-17T18:53:23.7080518' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T12:50:27.4349982' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[Categories] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Coupens] ON 
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'Fastej', N'2351', CAST(11.00 AS Decimal(18, 2)), CAST(N'2023-04-06T11:21:43.1200000' AS DateTime2), CAST(N'2023-04-06T11:21:44.0633333' AS DateTime2), CAST(21345.00 AS Decimal(18, 2)), N'hgrhrf', N'yrtyfghtyhjg', CAST(15.54 AS Decimal(18, 2)), 0, CAST(N'2023-04-06T11:21:42.8780292' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'nastef', N'6542', CAST(65.22 AS Decimal(18, 2)), CAST(N'2023-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-11-04T00:00:00.0000000' AS DateTime2), CAST(124.00 AS Decimal(18, 2)), N'yhgnj', N'retregrgtr', CAST(16.88 AS Decimal(18, 2)), 1, CAST(N'2023-04-06T11:23:16.8476048' AS DateTime2), NULL, NULL, CAST(N'2023-04-06T11:59:58.9605857' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'adge', N'45854', CAST(15.42 AS Decimal(18, 2)), CAST(N'2023-07-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-08-04T00:00:00.0000000' AS DateTime2), CAST(8562.00 AS Decimal(18, 2)), N'hgrhrf', N'rtbggffgv', CAST(15.62 AS Decimal(18, 2)), 1, CAST(N'2023-04-06T11:25:04.2693431' AS DateTime2), NULL, NULL, CAST(N'2023-04-06T11:59:23.6010288' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (8, N'nastick', N'1242', CAST(45.45 AS Decimal(18, 2)), CAST(N'2023-06-04T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(3215.00 AS Decimal(18, 2)), N'rtyrgfhr', N'ghyrgjgjg', CAST(6542.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-06T12:09:31.9272404' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:38:56.2781596' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (11, N'rewsdr', N'8956', CAST(45632.00 AS Decimal(18, 2)), CAST(N'2023-08-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-12-04T00:00:00.0000000' AS DateTime2), CAST(3698.00 AS Decimal(18, 2)), N'ghjdth', N'hghnggj', CAST(4521.00 AS Decimal(18, 2)), 1, CAST(N'2023-04-06T12:22:02.4218021' AS DateTime2), NULL, NULL, CAST(N'2023-04-06T12:50:12.0805754' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (12, N'yanger', N'1258', CAST(12385.00 AS Decimal(18, 2)), CAST(N'2023-07-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-08-04T00:00:00.0000000' AS DateTime2), CAST(57684.00 AS Decimal(18, 2)), N'rtyhfgh', N'hthgj', CAST(217584.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-06T14:12:16.0819560' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (17, N'tnidek', N'2541', CAST(2563.00 AS Decimal(18, 2)), CAST(N'2023-06-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-07-04T00:00:00.0000000' AS DateTime2), CAST(152.00 AS Decimal(18, 2)), N'fdgdg', N'fgfrhrftgyhrh', CAST(54.82 AS Decimal(18, 2)), 0, CAST(N'2023-04-06T16:59:13.4402128' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T12:59:34.4697220' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1017, N'fecing', N'452', CAST(0.00 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(15.24 AS Decimal(18, 2)), N'dfgtrgrf', N'gfrfttttth', CAST(46.58 AS Decimal(18, 2)), 0, CAST(N'2023-04-17T17:39:38.3199407' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1018, N'seased', N'2514', CAST(25.46 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(5.26 AS Decimal(18, 2)), N'hgutgjhn', N'fgrthgrfhbdrtgyhtr', CAST(10.43 AS Decimal(18, 2)), 0, CAST(N'2023-04-17T17:45:58.4133937' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1019, N'nomanc', N'3645', CAST(25.76 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(0.00 AS Decimal(18, 2)), N'hfghghf', N'bfhfghbhngbvhj', CAST(14.66 AS Decimal(18, 2)), 0, CAST(N'2023-04-17T17:59:57.2326515' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1020, N'finacki', N'4562', CAST(21.65 AS Decimal(18, 2)), CAST(N'2023-01-02T00:00:00.0000000' AS DateTime2), CAST(N'2023-01-04T00:00:00.0000000' AS DateTime2), CAST(12.57 AS Decimal(18, 2)), N'hgujghjghj', N'gfyfhgṅjghj', CAST(14.57 AS Decimal(18, 2)), 0, CAST(N'2023-04-18T12:41:07.2056641' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2020, N'jinkas', N'6985', CAST(12.34 AS Decimal(18, 2)), CAST(N'2022-01-10T00:00:00.0000000' AS DateTime2), CAST(N'2023-01-01T00:00:00.0000000' AS DateTime2), CAST(12.64 AS Decimal(18, 2)), N'lhkhkhjkh', N'kjhjkhhlhl', CAST(56.42 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T15:21:53.9358383' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2021, N'gfhfg', N'1245', CAST(56321.00 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(567844.00 AS Decimal(18, 2)), N'hfghjhj', N'fhghfghghfh', CAST(126354.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T15:22:44.1854075' AS DateTime2), NULL, NULL, CAST(N'2023-04-20T15:47:52.3846372' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2022, N'lkujh', N'1234', CAST(123645.00 AS Decimal(18, 2)), CAST(N'2023-08-02T00:00:00.0000000' AS DateTime2), CAST(N'2023-08-03T00:00:00.0000000' AS DateTime2), CAST(4534.00 AS Decimal(18, 2)), N'olouiolkjl', N'jmkhjkjkjhkhjk', CAST(16545.00 AS Decimal(18, 2)), 1, CAST(N'2023-04-20T15:23:38.9638837' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2023, N'vhjgj', N'1524', CAST(0.00 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(4536.00 AS Decimal(18, 2)), N'igujgjghjhgj', N'hfghfyuhtuhtugh', CAST(12554.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T15:24:40.9927067' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2024, N'fgyhgfrth', N'15664', CAST(0.00 AS Decimal(18, 2)), CAST(N'2023-01-03T00:00:00.0000000' AS DateTime2), CAST(N'2023-01-04T00:00:00.0000000' AS DateTime2), CAST(24544.00 AS Decimal(18, 2)), N'uhtfhjgjhgj', N'hgtyutyuhgjgh', CAST(5654.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T15:25:15.4176108' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2025, N'first', N'98652', CAST(4512.00 AS Decimal(18, 2)), CAST(N'2023-05-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-05-03T00:00:00.0000000' AS DateTime2), CAST(12542412.00 AS Decimal(18, 2)), N'njmghujghjghj', N'fghfyyhfghgh', CAST(15442542.00 AS Decimal(18, 2)), 1, CAST(N'2023-04-20T15:27:14.5418792' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2026, N'second', N'4563', CAST(125454.00 AS Decimal(18, 2)), CAST(N'2023-05-01T00:00:00.0000000' AS DateTime2), CAST(N'2023-05-02T00:00:00.0000000' AS DateTime2), CAST(25441524.00 AS Decimal(18, 2)), N'vhfghfghfghf', N'hfghfghfghjghj', CAST(12542.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T15:27:59.1569473' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2027, N'khjk', N'1423', CAST(45745.00 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'2023-01-04T00:00:00.0000000' AS DateTime2), CAST(5767.00 AS Decimal(18, 2)), N'ghfghgh', N'jhgjghujhyj', CAST(747.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T15:28:42.7289564' AS DateTime2), NULL, NULL, CAST(N'2023-04-20T15:49:02.3963615' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2028, N'tryry', N'125', CAST(1524.00 AS Decimal(18, 2)), CAST(N'2023-05-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-01-03T00:00:00.0000000' AS DateTime2), CAST(1245.00 AS Decimal(18, 2)), N'oljuoljk', N'jyhyuiy', CAST(2441.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T15:30:41.5485754' AS DateTime2), NULL, NULL, CAST(N'2023-04-20T15:33:15.2474178' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2029, N'dwdw', N'6532', CAST(0.00 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(56123.00 AS Decimal(18, 2)), N'kjhk', N'ytredfgfghggf', CAST(45623.00 AS Decimal(18, 2)), 0, CAST(N'2023-04-20T16:38:45.2861158' AS DateTime2), NULL, NULL, CAST(N'2023-04-20T17:08:44.7431317' AS DateTime2))
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2030, N'third', N'65231', CAST(54123.00 AS Decimal(18, 2)), CAST(N'2023-01-04T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(4512.00 AS Decimal(18, 2)), N'fhfghf', N'gfyhrdhfgh', CAST(45632.00 AS Decimal(18, 2)), 1, CAST(N'2023-04-20T17:27:03.2091851' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2031, N'fourth', N'7865', CAST(124524.00 AS Decimal(18, 2)), CAST(N'2023-01-03T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(4542.00 AS Decimal(18, 2)), N'ygfhf', N'gfhfhfh', CAST(124.00 AS Decimal(18, 2)), 1, CAST(N'2023-04-20T17:27:51.0182338' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2032, N'fifth', N'3216', CAST(1245.00 AS Decimal(18, 2)), CAST(N'2023-01-02T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(1245.00 AS Decimal(18, 2)), N'dfgdf', N'fgdgdhg', CAST(1452.00 AS Decimal(18, 2)), 1, CAST(N'2023-04-20T17:28:33.0554095' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2033, N'sixth', N'98521', CAST(12.46 AS Decimal(18, 2)), CAST(N'2023-05-04T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(21145.00 AS Decimal(18, 2)), N'hfghfg', N'gffdgf', CAST(11.25 AS Decimal(18, 2)), 1, CAST(N'2023-04-20T17:29:19.7038407' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Coupens] ([Id], [CouponName], [CouponCode], [MinOrderAmount], [StartDate], [EndDate], [Discount], [RedemptionType], [Description], [DiscountTypePercentageval], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2034, N'seventh', N'124', CAST(1245.00 AS Decimal(18, 2)), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(1524.00 AS Decimal(18, 2)), N'cvgdgdh', N'gfdfxh', CAST(1524.00 AS Decimal(18, 2)), 1, CAST(N'2023-04-20T17:29:59.6909292' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Coupens] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Customer] ON 
+GO
+INSERT [dbo].[Customer] ([Id], [FirstName], [LastName], [Address1], [Address2], [Email], [Phone], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'rakesh', N'patel', N'surat', N'dindoli', N'rakesh@gmail.com', N'1234567890', 1, CAST(N'2023-04-24T00:00:00.0000000' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Customer] ([Id], [FirstName], [LastName], [Address1], [Address2], [Email], [Phone], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'priya', N'shah', N'rajkot', N'navagam', N'priya@gmail.com', N'4561237890', 0, CAST(N'2023-04-24T00:00:00.0000000' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Customer] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ItemGroups] ON 
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'tests', 2, 50, 0, CAST(N'2023-03-24T12:56:23.4298234' AS DateTime2), NULL, NULL, CAST(N'2023-03-24T12:56:31.4725387' AS DateTime2))
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'thsghfh', 3, 56, 0, CAST(N'2023-03-24T12:56:51.3108911' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'tests', 2, 42, 0, CAST(N'2023-03-24T12:57:08.9967811' AS DateTime2), NULL, NULL, CAST(N'2023-03-24T12:57:14.0139386' AS DateTime2))
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (4, N'digsh', 12, 60, 1, CAST(N'2023-03-31T15:19:26.3649069' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (5, N'abc', 13, 100, 1, CAST(N'2023-03-31T15:20:23.8571571' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (6, N'tests', 5, 120, 0, CAST(N'2023-03-31T15:20:51.5475668' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1004, N'hirana', 2, 40, 1, CAST(N'2023-04-06T16:42:01.9681288' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:34:55.1093735' AS DateTime2))
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2004, N'xyz', 4, 45, 1, CAST(N'2023-04-17T14:32:04.9969391' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2005, N'nimake', 1, 155, 1, CAST(N'2023-04-17T14:55:13.9007824' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T12:58:42.8868987' AS DateTime2))
+GO
+INSERT [dbo].[ItemGroups] ([Id], [ItemGroup], [ItemId], [DisplayOrder], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2006, N'ghfg', 2, 35, 1, CAST(N'2023-04-17T14:57:29.5899353' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ItemGroups] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Items] ON 
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'4,9', N'asgas', N'sdgasdg', N'4e893eb0-7b62-4408-8f49-9130f0740dff.jpg', 34, 4, CAST(34 AS Decimal(18, 0)), CAST(53 AS Decimal(18, 0)), CAST(5 AS Decimal(18, 0)), CAST(53 AS Decimal(18, 0)), 0, CAST(N'2023-04-25T11:56:09.9389389' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'9', N'Paasta', N'paste Item Description', N'65a2d182-4cc0-4004-ab15-eb249b22199e.jpg', 234, 4, CAST(34 AS Decimal(18, 0)), CAST(34 AS Decimal(18, 0)), CAST(34 AS Decimal(18, 0)), CAST(34 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T11:59:33.7658069' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'8,11', N'oranges', N'gfgdsgdsfg', N'ffb0be32-ab8a-4319-8508-fbbf75694a6d.jpg', 12, 445, CAST(578 AS Decimal(18, 0)), CAST(7485 AS Decimal(18, 0)), CAST(2345 AS Decimal(18, 0)), CAST(546 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T12:31:10.3223368' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (4, N'9,25', N'pizza', N'hfgydhf', N'7112afe5-9916-424f-a521-4f4c784d4b17.jpg', 45, 14, CAST(21524 AS Decimal(18, 0)), CAST(524 AS Decimal(18, 0)), CAST(42545 AS Decimal(18, 0)), CAST(4244 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T12:31:44.7236298' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (5, N'8,9', N'samosa', N'hfhhjhgfjg', N'13b54bc8-bf5f-4482-bc48-eecabfdbd0b4.jpg', 145, 45, CAST(6532 AS Decimal(18, 0)), CAST(242 AS Decimal(18, 0)), CAST(2154 AS Decimal(18, 0)), CAST(2365 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T12:51:31.7381856' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (6, N'9,25', N'burgar', N'jmnfgvhfghfgh', N'0cb46000-16a7-445f-86a5-cef2d84233a2.jpg', 126, 45, CAST(1424 AS Decimal(18, 0)), CAST(452 AS Decimal(18, 0)), CAST(867 AS Decimal(18, 0)), CAST(7878 AS Decimal(18, 0)), 0, CAST(N'2023-04-25T12:51:56.2517965' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (7, N'4,8', N'Mango', N'fgyhf', N'47e48ad8-2a61-49cb-84c0-e57d7bf7656a.jpg', 152, 247, CAST(6532 AS Decimal(18, 0)), CAST(554 AS Decimal(18, 0)), CAST(9865 AS Decimal(18, 0)), CAST(4554 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T12:52:33.7641803' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (8, N'8,25', N'coco', N'dfgffdhfgh', N'ef214767-1c88-4eac-9ded-bb8096589b36.jpg', 54, 21, CAST(2132 AS Decimal(18, 0)), CAST(4562 AS Decimal(18, 0)), CAST(98651 AS Decimal(18, 0)), CAST(1524 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T12:53:11.7748459' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (9, N'4,25', N'pulav', N'ghdfhfhg', N'5b968316-6844-43cb-9520-956ef9e475e9.jpg', 45, 23, CAST(8965 AS Decimal(18, 0)), CAST(0 AS Decimal(18, 0)), CAST(56454 AS Decimal(18, 0)), CAST(5344 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T12:53:49.9509167' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1002, N'4,25', N'sendwich', N'gfhffrhgj', N'24612ffb-da63-48e6-82d8-0c8ee7545036.jpg', 24, 45, CAST(1324 AS Decimal(18, 0)), CAST(544 AS Decimal(18, 0)), CAST(5632 AS Decimal(18, 0)), CAST(787 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T14:01:15.3615544' AS DateTime2), 21, NULL, NULL)
+GO
+INSERT [dbo].[Items] ([Id], [CategoryId], [ItemName], [ItemDescription], [ItemImage], [UnitCost], [MSRP], [TaxRate1], [TaxRate2], [TaxRate3], [TaxRate4], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1003, N'8,9', N'sabmenu', N'khhgghh', N'509d5a15-3da5-4b3a-a1f6-c6d2072a2dd7.jpg', 45, 12, CAST(1253 AS Decimal(18, 0)), CAST(257 AS Decimal(18, 0)), CAST(453 AS Decimal(18, 0)), CAST(4576 AS Decimal(18, 0)), 1, CAST(N'2023-04-25T14:01:56.5501973' AS DateTime2), 21, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Items] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MenuAvailabilities] ON 
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (2, N'02:20', N'03:30', N'monday', 1, CAST(N'2023-03-29T00:00:00.0000000' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (5, N'05:25', N'11:00', N'tuesday', 1, CAST(N'2023-03-11T00:00:00.0000000' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (13, N'17:33', N'17:36', N'monday', 1, CAST(N'2023-03-30T17:32:18.6187892' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (14, N'12:12', N'23:23', N'sunday', 1, CAST(N'2023-03-30T17:38:20.2278990' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (15, N'19:01', N'22:01', N'tuesday', 1, CAST(N'2023-03-30T18:02:00.6841288' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (16, N'22:01', N'20:01', N'friday', 1, CAST(N'2023-03-30T18:02:00.7178126' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (17, N'20:01', N'22:01', N'wednesday', 1, CAST(N'2023-03-30T18:02:00.7478455' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (18, N'04:05', N'04:35', N'tuesday', 1, CAST(N'2023-03-30T18:39:12.5578582' AS DateTime2), NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (19, N'10:19', N'11:19', N'monday', 1, CAST(N'2023-03-31T10:19:53.8499273' AS DateTime2), NULL, NULL, NULL, 2)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (20, N'13:19', N'14:19', N'friday', 1, CAST(N'2023-03-31T10:19:53.8802561' AS DateTime2), NULL, NULL, NULL, 2)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (24, N'16:42', N'17:42', N'tuesday', 1, CAST(N'2023-03-31T15:43:36.2612932' AS DateTime2), NULL, NULL, NULL, 2)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (25, N'10:00', N'07:01', N'sunday', 0, CAST(N'2023-03-31T16:30:24.3624455' AS DateTime2), NULL, NULL, NULL, 10)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (26, N'12:12', N'12:21', N'monday', 1, CAST(N'2023-03-31T17:06:00.3904377' AS DateTime2), NULL, NULL, NULL, 2)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (27, N'18:16', N'18:16', N'wednesday', 0, CAST(N'2023-03-31T17:16:56.2778334' AS DateTime2), NULL, NULL, NULL, 1)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (28, N'19:38', N'18:39', N'monday', 1, CAST(N'2023-03-31T17:39:03.2574211' AS DateTime2), NULL, NULL, NULL, 2)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (29, N'18:54', N'21:54', N'saturday', 0, CAST(N'2023-03-31T17:54:56.9844341' AS DateTime2), NULL, NULL, NULL, 3)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (31, N'06:00', N'01:00', N'tuesday', 0, CAST(N'2023-04-01T16:16:04.5481366' AS DateTime2), NULL, NULL, NULL, 13)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (32, N'06:00', N'01:00', N'tuesday', 1, CAST(N'2023-04-01T16:22:37.0271701' AS DateTime2), NULL, NULL, NULL, 14)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (33, N'06:00', N'01:00', N'tuesday', 0, CAST(N'2023-04-01T16:30:50.7538124' AS DateTime2), NULL, NULL, NULL, 15)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (34, N'06:00', N'01:00', N'tuesday', 0, CAST(N'2023-04-01T16:41:38.4360354' AS DateTime2), NULL, NULL, NULL, 16)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (35, N'18:12', N'10:12', N'monday', 0, CAST(N'2023-04-03T17:22:50.3827921' AS DateTime2), NULL, NULL, NULL, 31)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (36, N'18:12', N'10:12', N'monday', 0, CAST(N'2023-04-03T17:22:53.3906411' AS DateTime2), NULL, NULL, NULL, 31)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (37, N'18:24', N'22:27', N'sunday', 0, CAST(N'2023-04-03T17:24:14.4955139' AS DateTime2), NULL, NULL, NULL, 32)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (38, N'18:24', N'22:27', N'sunday', 1, CAST(N'2023-04-03T17:24:17.0176064' AS DateTime2), NULL, NULL, NULL, 32)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (39, N'19:27', N'18:26', N'sunday', 0, CAST(N'2023-04-03T17:25:39.5232375' AS DateTime2), NULL, NULL, NULL, 33)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (40, N'19:15', N'20:15', N'tuesday', 1, CAST(N'2023-04-03T18:16:02.9427057' AS DateTime2), NULL, NULL, NULL, 34)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (41, N'16:25', N'19:25', N'monday', 1, CAST(N'2023-04-04T14:25:26.5887868' AS DateTime2), NULL, NULL, NULL, 35)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (42, N'12:35', N'05:35', N'wednesday', 1, CAST(N'2023-04-15T12:35:56.6685820' AS DateTime2), NULL, NULL, NULL, 36)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (43, N'11:09', N'01:09', N'thursday', 1, CAST(N'2023-04-17T16:10:22.7129164' AS DateTime2), NULL, NULL, NULL, 37)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (44, N'06:09', N'10:12', N'monday', 1, CAST(N'2023-04-17T16:10:33.1937943' AS DateTime2), NULL, NULL, NULL, 37)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (45, N'11:30', N'01:30', N'sunday', 1, CAST(N'2023-04-17T16:30:40.8743399' AS DateTime2), NULL, NULL, NULL, 38)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (46, N'02:30', N'10:30', N'monday', 1, CAST(N'2023-04-17T16:30:40.8892043' AS DateTime2), NULL, NULL, NULL, 38)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (47, N'01:40', N'05:40', N'wednesday', 1, CAST(N'2023-04-17T16:41:08.6395071' AS DateTime2), NULL, NULL, NULL, 39)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (51, N'01:11', N'06:30', N'monday', 1, CAST(N'2023-04-17T17:15:59.1935861' AS DateTime2), NULL, NULL, NULL, 40)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (52, N'02:25', N'09:30', N'monday', 0, CAST(N'2023-04-17T17:16:01.7777000' AS DateTime2), NULL, NULL, NULL, 40)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (53, N'23:45', N'06:42', N'monday', 1, CAST(N'2023-04-18T12:54:58.3254425' AS DateTime2), NULL, NULL, NULL, 41)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (54, N'02:12', N'04:24', N'monday', 1, CAST(N'2023-04-18T12:54:58.3416763' AS DateTime2), NULL, NULL, NULL, 41)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (55, N'15:37', N'22:30', N'wednesday', 1, CAST(N'2023-04-18T14:40:15.3874170' AS DateTime2), NULL, NULL, NULL, 42)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (56, N'01:30', N'12:30', N'monday', 1, CAST(N'2023-04-18T14:40:19.1363534' AS DateTime2), NULL, NULL, NULL, 42)
+GO
+INSERT [dbo].[MenuAvailabilities] ([Id], [fromtime], [endtime], [week], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [MenuId]) VALUES (57, N'02:30', N'03:56', N'sunday', 1, CAST(N'2023-04-18T15:44:52.6613569' AS DateTime2), NULL, NULL, NULL, 42)
+GO
+SET IDENTITY_INSERT [dbo].[MenuAvailabilities] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MenuDetails] ON 
+GO
+INSERT [dbo].[MenuDetails] ([Id], [MenuId], [CategoryId], [ItemId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (25, 40, 9, N'3,2,7', 1, CAST(N'2023-05-02T10:23:47.9138885' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[MenuDetails] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Menus] ON 
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (1, N'coco', 1, 12, 1, CAST(N'2023-03-31T17:16:54.8141997' AS DateTime2), NULL, NULL, NULL, N'hjnghkjg', N'2,3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (2, N'biryani', 8, 122, 0, CAST(N'2023-03-31T17:38:53.5890515' AS DateTime2), NULL, NULL, NULL, N'lui kuikugk', N'2,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (3, N'Dhosa', 8, 123, 0, CAST(N'2023-03-31T17:54:51.4705967' AS DateTime2), NULL, NULL, NULL, N'ujtydj  yt tuy yu', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (4, N'UNBLIMited   BURGER', 8, 450, 0, CAST(N'2023-04-01T14:43:50.6498334' AS DateTime2), NULL, NULL, NULL, N'UNBLIMited   BURGER', N'2,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (5, N'dvd', 3, 2323, 0, CAST(N'2023-04-01T14:58:16.1444332' AS DateTime2), NULL, NULL, NULL, N'cscscs', N'2,3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (6, N'czczc', 3, 12121, 0, CAST(N'2023-04-01T14:58:47.1192594' AS DateTime2), NULL, NULL, NULL, N'dcvdvdv', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (7, N'czczc', 3, 12121, 0, CAST(N'2023-04-01T14:59:04.5857861' AS DateTime2), NULL, NULL, NULL, N'dcvdvdv', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (8, N'coco unlimited', 1, 132, 0, CAST(N'2023-04-01T15:00:38.3412102' AS DateTime2), NULL, NULL, NULL, N'hjkjl', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (9, N'samosa', 8, 20, 0, CAST(N'2023-04-01T15:08:35.8857760' AS DateTime2), NULL, NULL, NULL, N'rhfndsvj vdfkngdkj ', N'2,6')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (10, N'Oranges', 1, 150, 0, CAST(N'2023-04-01T15:20:46.9866109' AS DateTime2), NULL, NULL, NULL, N'fsdfdsfdsgsdg ', N'2,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (11, N'asda', 4, 121, 0, CAST(N'2023-04-01T15:28:14.1957525' AS DateTime2), NULL, NULL, NULL, N'sasasa', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (12, N'axa', 3, 12121, 0, CAST(N'2023-04-01T15:57:19.4289429' AS DateTime2), NULL, NULL, NULL, N'axdaxa', N'3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (13, N'panir', 3, 200, 0, CAST(N'2023-04-01T16:15:10.4419057' AS DateTime2), NULL, NULL, NULL, N'djsfier jerongrie goig tgv', N'2,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (14, N'chines', 4, 250, 0, CAST(N'2023-04-01T16:21:58.0230809' AS DateTime2), NULL, NULL, NULL, N' verk ggerk ', N'2,3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (15, N'panirchili', 3, 124, 0, CAST(N'2023-04-01T16:29:55.5291605' AS DateTime2), NULL, NULL, NULL, N'drfgrtdgtddt t', N'2,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (16, N'Rice', 4, 90, 0, CAST(N'2023-04-01T16:40:14.7896510' AS DateTime2), NULL, NULL, NULL, N'fdgdfghgh', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (17, N'DHOSA12121', 1, 2121, 0, CAST(N'2023-04-01T16:58:49.6140170' AS DateTime2), NULL, NULL, NULL, N'fbgvfbfbfb', N'3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (18, N'szdcsc', 3, 1212, 0, CAST(N'2023-04-01T17:03:38.8166394' AS DateTime2), NULL, NULL, NULL, N'asdxdxa', N'3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (19, N'Sabfood', 4, 205, 0, CAST(N'2023-04-03T10:37:10.3342651' AS DateTime2), NULL, NULL, NULL, N'ghrhgrb  rfb ', N'2,4,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (20, N'coco123', 1, 180, 0, CAST(N'2023-04-03T10:59:28.5913537' AS DateTime2), NULL, NULL, NULL, N'hguygvyub ny tyi t', N'2,3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (21, N'nudanlance', 4, 200, 0, CAST(N'2023-04-03T15:08:40.6427387' AS DateTime2), NULL, NULL, NULL, N'fretgetgy ', N'2,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (22, N'samosa', 3, 30, 0, CAST(N'2023-04-03T15:16:03.4184627' AS DateTime2), NULL, NULL, NULL, N'jhntjhntftgyjygyjn ', N'2,3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (23, N'paf', 3, 30, 0, CAST(N'2023-04-03T15:18:26.1634954' AS DateTime2), NULL, NULL, NULL, N'jhntjhntftgyjygyjn ', N'2,3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (24, N'pulavs', 4, 180, 0, CAST(N'2023-04-03T15:32:36.8757864' AS DateTime2), NULL, NULL, NULL, N'hfgjhnhfbghbhk', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (25, N'colddrinks', 1, 60, 0, CAST(N'2023-04-03T16:05:33.8130175' AS DateTime2), NULL, NULL, NULL, N'h fctcghy tthyh', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (26, N'fasfat', 4, 42, 0, CAST(N'2023-04-03T16:07:38.2392542' AS DateTime2), NULL, NULL, NULL, N'
+iyt gytyhtytyhy', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (27, N'bag', 1, 12, 0, CAST(N'2023-04-03T17:13:27.5145982' AS DateTime2), NULL, NULL, NULL, N'hggg', N'3')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (28, N'bags', 1, 12, 0, CAST(N'2023-04-03T17:18:06.7392184' AS DateTime2), NULL, NULL, NULL, N'hgggkuu', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (29, N'mashroom', 1, 12, 0, CAST(N'2023-04-03T17:20:03.7116329' AS DateTime2), NULL, NULL, NULL, N'hgggkuu', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (30, N'mashroom spacial', 1, 12, 0, CAST(N'2023-04-03T17:21:34.2466473' AS DateTime2), NULL, NULL, NULL, N'hgggkuu', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (31, N'mashroom spacial 123123', 1, 12, 0, CAST(N'2023-04-03T17:22:50.1417490' AS DateTime2), NULL, NULL, NULL, N'hgggkuu', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (32, N'MAISOOR DHOSA', 8, 299, 1, CAST(N'2023-04-03T17:24:08.0478212' AS DateTime2), NULL, NULL, NULL, N'MAISOOR DHOSA Description', N'2,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (33, N'burger special', 8, 2323, 0, CAST(N'2023-04-03T17:25:39.3052952' AS DateTime2), NULL, NULL, NULL, N'asdgasdg', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (34, N'shoop', 1, 80, 0, CAST(N'2023-04-03T18:15:54.6781290' AS DateTime2), NULL, NULL, NULL, N'hgfhgfhjgj', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (35, N'panir', 8, 150, 0, CAST(N'2023-04-04T14:25:26.5021630' AS DateTime2), NULL, NULL, NULL, N'tgfhrthghgjty', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (36, N'jghj', 8, 122, 0, CAST(N'2023-04-15T12:35:56.2026100' AS DateTime2), NULL, NULL, NULL, N'kjhkyhjioyuhkhu', N'3,5')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (37, N'DHOSA', 8, 125, 1, CAST(N'2023-04-17T16:10:11.9016371' AS DateTime2), NULL, NULL, NULL, N'lghfghhn', N'3,4')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (38, N'Shooptometo', 11, 134, 1, CAST(N'2023-04-17T16:30:40.8046354' AS DateTime2), NULL, NULL, NULL, N'dfreygrfghrfgh', N'2,6')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (39, N'BURGER', 11, 80, 1, CAST(N'2023-04-17T16:41:08.5751783' AS DateTime2), NULL, NULL, NULL, N'htyfhfgyh', N'4,6')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (40, N'punjabiitem', 9, 150, 1, CAST(N'2023-04-17T17:15:48.0482597' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T15:43:29.3140560' AS DateTime2), N'ghfddffhg', N'3,6')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (41, N'bhel', 4, 220, 1, CAST(N'2023-04-18T12:54:58.2627708' AS DateTime2), NULL, NULL, NULL, N'trytikkkkkjhkgf', N'4,6')
+GO
+INSERT [dbo].[Menus] ([Id], [MenuName], [CategoryId], [MenuPrice], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate], [Description], [ProgramId]) VALUES (42, N'manchuriyam', 4, 70, 1, CAST(N'2023-04-18T14:39:46.1551977' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T15:44:52.6511669' AS DateTime2), N'oitgyjhfg', N'2,4')
+GO
+SET IDENTITY_INSERT [dbo].[Menus] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ModifierGroups] ON 
+GO
+INSERT [dbo].[ModifierGroups] ([Id], [ModifierId], [price], [ModifierGroupName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, 2, 650, N'dhsayr', 0, CAST(N'2023-03-24T12:59:58.8968959' AS DateTime2), NULL, NULL, CAST(N'2023-03-24T13:00:09.7877951' AS DateTime2))
+GO
+INSERT [dbo].[ModifierGroups] ([Id], [ModifierId], [price], [ModifierGroupName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, 2, 60, N'hdgd', 1, CAST(N'2023-03-24T13:00:21.2467939' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[ModifierGroups] ([Id], [ModifierId], [price], [ModifierGroupName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, 1003, 40, N'kanget', 1, CAST(N'2023-03-27T10:33:38.5514147' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:37:03.4103614' AS DateTime2))
+GO
+INSERT [dbo].[ModifierGroups] ([Id], [ModifierId], [price], [ModifierGroupName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (4, 2, 40, N'minlary', 1, CAST(N'2023-03-27T14:58:35.1036833' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:36:51.7204902' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[ModifierGroups] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Modifiers] ON 
+GO
+INSERT [dbo].[Modifiers] ([Id], [ModifierName], [Price], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'abcd', 50, 0, CAST(N'2023-03-24T12:57:52.6610412' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Modifiers] ([Id], [ModifierName], [Price], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'kechri', 50, 1, CAST(N'2023-03-24T12:58:08.3227308' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:36:20.3491975' AS DateTime2))
+GO
+INSERT [dbo].[Modifiers] ([Id], [ModifierName], [Price], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'abcd', 53, 1, CAST(N'2023-03-27T10:33:20.6797914' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Modifiers] ([Id], [ModifierName], [Price], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1003, N'bunsda', 150, 1, CAST(N'2023-04-10T10:17:12.1347524' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Modifiers] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Orders] ON 
+GO
+INSERT [dbo].[Orders] ([Id], [MenuId], [OrderId], [CustomerId], [Orderdate], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, 1, 1, 1, CAST(N'2023-02-12T00:00:00.0000000' AS DateTime2), 1, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[Orders] ([Id], [MenuId], [OrderId], [CustomerId], [Orderdate], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, 3, 2, 2, CAST(N'2023-03-15T00:00:00.0000000' AS DateTime2), 1, NULL, NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Orders] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Programs] ON 
+GO
+INSERT [dbo].[Programs] ([Id], [ProgramName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'sdfsf', 0, CAST(N'2023-03-27T16:41:13.5102225' AS DateTime2), NULL, NULL, CAST(N'2023-03-27T16:44:22.7338413' AS DateTime2))
+GO
+INSERT [dbo].[Programs] ([Id], [ProgramName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'Salad', 1, CAST(N'2023-03-27T16:45:07.7792562' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:37:45.8299858' AS DateTime2))
+GO
+INSERT [dbo].[Programs] ([Id], [ProgramName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'Sandwich', 1, CAST(N'2023-03-27T16:45:16.3858684' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:37:42.3345471' AS DateTime2))
+GO
+INSERT [dbo].[Programs] ([Id], [ProgramName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (4, N'Bread', 1, CAST(N'2023-03-27T16:45:25.9797162' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Programs] ([Id], [ProgramName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (5, N'Steak', 0, CAST(N'2023-03-27T16:45:35.4503736' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Programs] ([Id], [ProgramName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (6, N'Rice', 1, CAST(N'2023-03-27T16:45:43.1847796' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Programs] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Roles] ON 
+GO
+INSERT [dbo].[Roles] ([Id], [RolesName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'emp', 1, CAST(N'2023-04-06T18:50:31.7466141' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:40:03.2579691' AS DateTime2))
+GO
+INSERT [dbo].[Roles] ([Id], [RolesName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'sankas121323', 0, CAST(N'2023-04-06T18:58:49.7611595' AS DateTime2), NULL, NULL, CAST(N'2023-04-06T18:58:58.9229865' AS DateTime2))
+GO
+INSERT [dbo].[Roles] ([Id], [RolesName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1002, N'customer', 1, CAST(N'2023-04-08T10:25:52.6052616' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Roles] ([Id], [RolesName], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1003, N'User', 1, CAST(N'2023-04-08T12:14:20.2034049' AS DateTime2), NULL, NULL, CAST(N'2023-04-08T14:35:38.6627484' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[Roles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[UserStaffs] ON 
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1, N'Rakesh', N'Rakesh@gmail.com', N'3215', 1002, N'1234567890', CAST(N'2023-03-08T00:00:00.0000000' AS DateTime2), CAST(N'2023-04-02T00:00:00.0000000' AS DateTime2), CAST(N'2023-04-07T00:00:00.0000000' AS DateTime2), N'Gujarat', N'Surat', N'4652', N'grghf', N'ghhfghb', N'9028', N'yrthyfg', N'1245', N'Rakesh', N'gfgdfrft', N'1644', 1, CAST(N'2023-04-08T12:55:51.2380397' AS DateTime2), NULL, NULL, CAST(N'2023-04-08T14:23:52.2996785' AS DateTime2))
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (2, N'Kavita', N'Kavita@gmail.com', N'4526', 1, N'7894653210', CAST(N'2023-04-22T00:00:00.0000000' AS DateTime2), CAST(N'2023-04-13T00:00:00.0000000' AS DateTime2), CAST(N'2023-04-28T00:00:00.0000000' AS DateTime2), N'Gujarat', N'rajkot', N'4652', N'grghf', N'ghhfghb', N'9028', N'yrthyfg', N'1245', N'dfdgh', N'gfgdfr', N'1644', 1, CAST(N'2023-04-08T12:57:34.0993083' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (3, N'Nisha', N'Nisha@gmail.com', N'4562', 1, N'7894561320', CAST(N'2023-05-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-04-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-08-04T00:00:00.0000000' AS DateTime2), N'Gujarat', N'Amd', N'4563', N'gfdgdfghf', N'ghfgh', N'564', N'456', N'562', N'ghfhf', N'fdghfbf', N'981', 1, CAST(N'2023-04-08T14:22:32.7085127' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (4, N'Sagar', N'sagar@gmail.com', N'8c90681c-4376-466b-8e1a-21a725dc7351', 1, N'4165789132', CAST(N'2023-05-01T00:00:00.0000000' AS DateTime2), CAST(N'2023-01-03T00:00:00.0000000' AS DateTime2), CAST(N'2023-08-04T00:00:00.0000000' AS DateTime2), N'Kerala ', N'Kochi', N'365411', N'hgjgh', N'hjghjg', N'584623', N'ghjghj', N'2113', N'hgfs', N'jhgjghj', N'261', 1, CAST(N'2023-04-08T16:09:49.1580165' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (5, N'Aasha', N'aasha@gmail.com', N'5495fa11-e0dd-4bc3-896e-4967725df0e9', 1, N'4567891320', CAST(N'2023-11-01T00:00:00.0000000' AS DateTime2), CAST(N'2023-05-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-08-04T00:00:00.0000000' AS DateTime2), N'Kerala ', N'kochi', N'246426', N'tgretg', N'rtyrh', N'265356', N'fsfsdfdsg', N'2154', N'jalen', N'htrhgh', N'4562', 1, CAST(N'2023-04-08T16:11:47.3259251' AS DateTime2), NULL, NULL, CAST(N'2023-04-18T13:00:33.5999282' AS DateTime2))
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (6, N'Kajal', N'Kajal@gmail.com', N'e1b559f5-5fbb-453f-89b6-eb9a43428763', 1002, N'123456890', CAST(N'2022-09-11T00:00:00.0000000' AS DateTime2), CAST(N'2023-03-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-08-04T00:00:00.0000000' AS DateTime2), N'Goa', N'Panaji', N'362514', N'sdfsdfc', N'hjsdf', N'7845', N'dsfsdfvs', N'2164', N'Komal', N'fsdvsd', N'216', 1, CAST(N'2023-04-10T10:35:38.8801234' AS DateTime2), NULL, NULL, CAST(N'2023-04-17T17:40:12.7800070' AS DateTime2))
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (7, N'Payal', N'Payal@gmail.com', N'60157c37-5b57-47ca-b43b-6de27cbfa312', 1002, N'4567891320', CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), CAST(N'2023-04-04T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), N'Gujarat', N'Rajkot', N'362011', N'Rajkot, Gujarat, India', N'ytryhfg', N'5657', N'rtyrthy', N'14574', N'payal', N'tyut', N'156', 1, CAST(N'2023-04-18T12:18:35.3444002' AS DateTime2), NULL, NULL, NULL)
+GO
+INSERT [dbo].[UserStaffs] ([Id], [UserName], [Email], [Password], [RoleId], [Phonenumber], [DateOfBirth], [JoiningDate], [LicenseExpiration], [State], [City], [ZipCode], [Street], [LicensePlate], [DriverLicenseNumber], [ContactInfo], [VehicleTypeId], [Name], [LoginType], [DeviceId], [IsActive], [CreationDate], [CreatedBy], [ModifiedBy], [ModifiedDate]) VALUES (1007, N'thk', N'thk@gmail.com', N'2928ff59-9dd9-4ca4-968f-c9df27fede0c', 1002, N'456879132', CAST(N'2005-04-04T00:00:00.0000000' AS DateTime2), CAST(N'2023-01-04T00:00:00.0000000' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), N'Gujarat', N'Surat', N'244445', N'Surat, Gujarat, India', N'sfgsdgg', N'1023456', N'ghyhtfryh', N'2432', N'hk', N'fgsdgfdsg', N'122', 0, CAST(N'2023-04-19T12:51:45.0759802' AS DateTime2), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[UserStaffs] OFF
+GO
+/****** Object:  Index [IX_Menus_CategoryId]    Script Date: 03-05-2023 14:03:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Menus_CategoryId] ON [dbo].[Menus]
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ModifierGroups_ModifierId]    Script Date: 03-05-2023 14:03:08 ******/
+CREATE NONCLUSTERED INDEX [IX_ModifierGroups_ModifierId] ON [dbo].[ModifierGroups]
+(
+	[ModifierId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Menus] ADD  DEFAULT (N'') FOR [Description]
+GO
+ALTER TABLE [dbo].[Menus]  WITH CHECK ADD  CONSTRAINT [FK_Menus_Categories_CategoryId] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Categories] ([Id])
+GO
+ALTER TABLE [dbo].[Menus] CHECK CONSTRAINT [FK_Menus_Categories_CategoryId]
+GO
+ALTER TABLE [dbo].[ModifierGroups]  WITH CHECK ADD  CONSTRAINT [FK_ModifierGroups_Modifiers_ModifierId] FOREIGN KEY([ModifierId])
+REFERENCES [dbo].[Modifiers] ([Id])
+GO
+ALTER TABLE [dbo].[ModifierGroups] CHECK CONSTRAINT [FK_ModifierGroups_Modifiers_ModifierId]
+GO
