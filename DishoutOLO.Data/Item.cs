@@ -7,9 +7,9 @@ namespace DishoutOLO.Data
     {
 
        
-        public string CategoryId { get; set; }
+        public string? CategoryId { get; set; }
        
-        public string? ItemName { get; set; }
+        public string ItemName { get; set; }
         public string? ItemDescription { get; set; }
 
         public string ItemImage { get; set; }
@@ -24,7 +24,7 @@ namespace DishoutOLO.Data
         public decimal TaxRate4 { get; set; }
 
         [NotMapped]
-        public string CategoryName { get; set; }
+        public string? CategoryName { get; set; }
 
     }
 }

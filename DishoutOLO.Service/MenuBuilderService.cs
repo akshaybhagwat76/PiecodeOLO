@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using System.Collections;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace DishoutOLO.Service
 {
@@ -21,20 +22,21 @@ namespace DishoutOLO.Service
         private IRepository<Menu> _menurepository;
         private IRepository<Category> _categoryrepository;
         private IRepository<MenuDetails> _menudetailsrepository;
+        private IRepository<Item> _itemrepository;
         private readonly IMapper _mapper;
         private IRepository<Data.MenuAvailabilities> _menuAvailabilitiesRepository;
 
         #endregion  
 
         #region Constructor
-        public MenuBuilderService(IMapper mapper, IRepository<Category> categoryrepository, IRepository<Menu> menurepository, IRepository<Data.MenuAvailabilities> menuAvailabilitiesRepository, IRepository<MenuDetails> menudetailsrepository)
+        public MenuBuilderService(IMapper mapper, IRepository<Category> categoryrepository, IRepository<Menu> menurepository, IRepository<Data.MenuAvailabilities> menuAvailabilitiesRepository, IRepository<MenuDetails> menudetailsrepository, IRepository<Item> itemrepository)
         {
             _mapper = mapper;
             _menuAvailabilitiesRepository = menuAvailabilitiesRepository;
             _menurepository = menurepository;
             _categoryrepository = categoryrepository;
             _menudetailsrepository = menudetailsrepository;
-
+            _itemrepository = itemrepository;
         }
         #endregion
 
@@ -44,41 +46,27 @@ namespace DishoutOLO.Service
         {
             try
             {
-                List<AddMenuBuilderModel> data = (from m in _menurepository.GetAll()
-                                                  join md in _menudetailsrepository.GetAll()
-                                                  on m.Id equals md.MenuId into g
-                                                  from md in g.DefaultIfEmpty()
-                                                  where m.IsActive == true
-                                                  select new AddMenuBuilderModel
-                                                  {
-                                                      Id = m.Id,
-                                                      CategoryId = md.CategoryId,
-                                                      ItemId = md.ItemId,
-                                                      MenuId = md.MenuId,
-                                                      MenuDetailId = md.Id,
-                                                      MenuName = m.MenuName,
-                                                      Descrition = m.Description,
-                                                      CategoryName = m.CategoryName,
-                                                  }).OrderByDescending(x => x.Id).ToList();
+                List<AddMenuBuilderModel> data = (from mn in _menurepository.GetAll()
+                            join ca in _categoryrepository.GetAll() on mn.CategoryId equals ca.Id into catGroup
+                            from cat in catGroup.DefaultIfEmpty()
+                            join md in _menudetailsrepository.GetAll() on mn.Id equals md.MenuId into detailGroup
+                            from detail in detailGroup.DefaultIfEmpty()
+                            join it in _itemrepository.GetAll() on int.Parse(mn.ItemId) equals it.Id into itemGroup
+                            from item in itemGroup.DefaultIfEmpty()
+                            select new AddMenuBuilderModel
+                            {
+                                MenuId = mn.Id,
+                                MenuName = mn.MenuName,
+                                Descrition = mn.Description,
+                                CategoryName = cat.CategoryName,
+                                ItemId = mn.ItemId ,
+                                CategoryId = mn.CategoryId,
+                                ListAvaliblities = (_mapper.Map<List<Data.MenuAvailabilities>, List<AddMenuAvaliblities>>(_menuAvailabilitiesRepository.GetListByPredicate(x => x.IsActive == true && x.Id == mn.Id).ToList()))
+                            }).ToList();
 
 
 
-
-
-                if (data != null)
-                {
-                    foreach (var item in data)
-                    {
-                        var menuAvailabilities = _menuAvailabilitiesRepository.GetListByPredicate(x => x.IsActive == true && x.Id == item.Id).ToList();
-                        var menuRelatedAvailabilities = _mapper.Map<List<Data.MenuAvailabilities>, List<AddMenuAvaliblities>>(menuAvailabilities);
-                        item.CategoryName = _categoryrepository.GetByPredicate(x => x.Id == item.CategoryId).CategoryName;
-                        if (item != null)
-                        {
-                            item.ListAvaliblities = menuRelatedAvailabilities;
-                        }
-                    }
-
-                }
+                
 
                 return data;
             }

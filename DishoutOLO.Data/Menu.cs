@@ -24,6 +24,6 @@ namespace DishoutOLO.Data
         [NotMapped]
         public string ItemId { get; set; }
         [NotMapped]
-        public int MenuId { get; set; }
+        public int? MenuId { get; set; }
     }
 }
